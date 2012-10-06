@@ -1,0 +1,44 @@
+body {
+	font-family: Arial, sans-serif;
+	background: white;
+}
+a {
+
+}
+#clothes {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+#clothes li {
+	padding: 0;
+	margin: 10px;
+	box-shadow: 0 0 2px 2px #333;
+}
+#clothes li .item {
+	display: block;
+}
+#clothes li .item .price {
+}
+#clothes li .item .rating {
+}
+#clothes li .item .rating.up {
+}
+#clothes li .item .rating.down {
+}
+#clothes li .item-overlay {
+
+}
+#clothes li .item-overlay .like-buttons {
+
+}
+#clothes li .item-overlay .like-buttons .thumbs-up {
+
+}
+#clothes li .item-overlay .like-buttons .thumbs-down {
+
+}
+#clothes li .item-overlay .save-for-later {
+
+}
+

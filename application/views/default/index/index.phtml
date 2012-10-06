@@ -1,0 +1,59 @@
+<ul id="clothes">
+	<li class="col2">
+		<a href="#" class="item" target="_blank">
+			<img src="img/1.jpg" alt="" />
+			<div class="price">$10</div>
+			<div class="rating up">33</div>
+		</a>
+		<div class="item-overlay">
+			<div class="like-buttons">
+				<div class="thumbs-up"></div>
+				<div class="thumbs-down"></div>
+			</div>
+			<div class="save-for-later"></div>
+		</div>
+	</li>
+</ul><!-- #clothes -->
+
+<nav id="page-nav">
+  <a href="../pages/2.html"></a>
+</nav>
+
+<script type="text/javascript" src="/js/jquery.masonry.js"></script>
+<script type="text/javascript" src="/js/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript" src="/js/modernizr-transitions.js"></script>
+<script type="text/javascript" src="/js/box-maker.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var $container = $('#clothes');
+	
+	$container.imagesLoaded(function(){
+		$container.masonry({
+			itemSelector: 'li',
+			columnWidth: 100
+		});
+	});
+	
+	$container.infinitescroll({
+		navSelector  : '#page-nav',	// selector for the paged navigation 
+		nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+		itemSelector : '.box',	 // selector for all items you'll retrieve
+		loading: {
+			finishedMsg: 'No more pages to load.',
+			img: 'http://i.imgur.com/6RMhx.gif'
+		}
+	},
+	// trigger Masonry as a callback
+	function( newElements ) {
+		// hide new items while they are loading
+		var $newElems = $( newElements ).css({ opacity: 0 });
+		// ensure that images load before adding to masonry layout
+		$newElems.imagesLoaded(function(){
+			// show elems now they're ready
+		 	$newElems.animate({ opacity: 1 });
+			$container.masonry( 'appended', $newElems, true ); 
+		});
+	});
+});
+</script>
