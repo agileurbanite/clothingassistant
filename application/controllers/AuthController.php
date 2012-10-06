@@ -144,12 +144,20 @@ class AuthController extends My_Controller {
                     $msgs = $result->getMessages();
                     $toStore['properties'] = (array) $msgs['user'];
 
+                    if( !empty($msg['user']->gender) ){
+                        switch($msg['user']->gender){
+                            case 'female': $gender = 'female';break;
+                            case 'male': $gender = 'male';break;
+                            default: $gender = 'na';break;
+                        }
+                    }
+                    
                     // save it to our db if new, else update
                     $user = array(
                     	"uid"	=>	$msgs['user']->id,
                     	"email"	=>	$msgs['user']->email,
                     	"username"	=>	$msgs['user']->username,
-                    	"gender"	=>	$msgs['user']->gender,
+                    	"gender"	=>	$gender,
                     	"first_name"	=>	$msgs['user']->first_name,
                     	"last_name"	=>	$msgs['user']->last_name,
                     	"provider_id"	=>	2,

@@ -82,7 +82,8 @@ class Jien_Controller extends Zend_Controller_Action {
         }
         $user['accessed'] = date("Y-m-d h:i:s");
         $user['role'] = $data['role'];
-		$_SESSION['user'] = $user;
+        $user['member'] = true;
+	$_SESSION['user'] = $user;
 
     }
 
