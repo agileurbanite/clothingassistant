@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<title>Assistant.Product.Create</title>
+        <style type='text/css'>
+            body {font-family: verdana}
+        </style>
+	</head>
+	<body>
+	    <h1>Assistant.Product.Create Demo</h1>
+		<form id='create' action=''></form>
+		<div id='products'></div>
+		<script type='text/javascript' 
+                src='../../../steal/steal.js'>
+        </script>
+		<script type='text/javascript'>
+			steal('assistant/product/create','assistant/fixtures',function(){
+				
+				$('#create').assistant_product_create();
+				Assistant.Models.Product.bind('created', function(ev, product){
+					$('<div>').html("<h3>"+product.name+"</h3><p>"+product.description+"</p>")
+					        .appendTo( $('#products') )
+				})
+				
+			})
+		</script>
+	</body>
+</html>
