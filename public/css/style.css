@@ -23,29 +23,29 @@ header {
 	width: 100%;
 	margin: 0 auto;
 }
-#clothes {
+#products {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	width: 100%;
 }
-#clothes li {
+#products li {
 	padding: 0;
 	margin: 5px;
 	position: relative;
 	height: auto;
 }
-#clothes li .item {
+#products li .item {
 	display: block;
 	position: relative;
 	border: 1px solid #A7A9AB;
 }
-#clothes li .item img {
+#products li .item img {
 	width: 160px;
 	margin: 0;
 	margin: 5px;
 }
-#clothes li .item .price {
+#products li .item .price {
 	position: absolute;
 	left: 0px;
 	top: 12px;
@@ -58,17 +58,17 @@ header {
 	font-weight: bold;
 	padding: 7px 15px 7px 5px;
 }
-#clothes li .item .rating {
+#products li .item .rating {
 	position: absolute;
 	left: 0;
 	top: 0;
 	z-index: 1;
 }
-#clothes li .item .rating.up {
+#products li .item .rating.up {
 }
-#clothes li .item .rating.down {
+#products li .item .rating.down {
 }
-#clothes li .item-overlay {
+#products li .item-overlay {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -76,16 +76,16 @@ header {
 	width: 100%;
 	height: 100%;
 }
-#clothes li .item-overlay .like-buttons {
+#products li .item-overlay .like-buttons {
 
 }
-#clothes li .item-overlay .like-buttons .thumbs-up {
+#products li .item-overlay .like-buttons .thumbs-up {
 
 }
-#clothes li .item-overlay .like-buttons .thumbs-down {
+#products li .item-overlay .like-buttons .thumbs-down {
 
 }
-#clothes li .item-overlay .save-for-later {
+#products li .item-overlay .save-for-later {
 
 }
 
