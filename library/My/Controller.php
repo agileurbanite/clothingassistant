@@ -37,13 +37,35 @@ class My_Controller extends Jien_Controller {
     public function setUserStyle($style){
         $_SESSION['user']['style'] = $style;
         
-        $brands = Jien::model('Product')->select('distinct(brand)')->where("style ='$style'")->get()->rows();
+        $model = Jien::model('Product')->select('distinct(brand)')->where("style ='$style'");
+        
+        if( !empty($_SESSION['user']['gender']) ){
+            $gender = $_SESSION['user']['gender'];
+            $model->andWhere("gender='$gender'");
+        }
+        
+        $brands = $model->get()->rows();
         if($brands){
             $brands_arr = array();
             foreach($brands as $brand){
                 $brands_arr[] = $brand['brand'];
             }
             $this->setUserBrands($brands_arr);
+        }
+        
+        $model = Jien::model('Product')->select('distinct(type)')->where("style='$style'");
+        
+        if( !empty($_SESSION['user']['gender']) ){
+            $gender = $_SESSION['user']['gender'];
+            $model->andWhere("gender='$gender'");
+        }
+        $types = $model->get()->rows();
+        if($types){
+            $types_arr = array();
+            foreach($types as $type){
+                $types_arr[] = $type['type'];
+            }
+            $this->setUserAvailableTypes($types_arr);
         }
     }
     
@@ -64,4 +86,11 @@ class My_Controller extends Jien_Controller {
         return $res;
     }
     
+    public function setUserAvailableTypes($types){
+        $_SESSION['user']['availableTypes'] = $types;
+    }
+    
+    public function setUserType($type){
+        $_SESSION['user']['type'] = $type;
+    }
 }
