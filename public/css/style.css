@@ -34,6 +34,7 @@ header {
 	margin: 5px;
 	position: relative;
 	height: auto;
+	width: 170px;
 }
 #products li .item {
 	display: block;
