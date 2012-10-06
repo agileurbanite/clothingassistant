@@ -7,7 +7,7 @@ class ApiController extends My_Controller {
     	parent::init();
 
         $this->layout('blank');
-        
+        $this->_helper->viewRenderer->setNoRender(true);
     }
     
     /**

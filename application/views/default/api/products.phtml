@@ -3,10 +3,9 @@
                 <a href="<?php echo $product['product_url']; ?>" class="item" target="_blank">
                         <img src="<?php echo $product['image_url']; ?>" alt="" />
                         <div class="price">$<?php echo $product['price']; ?></div>
-                        <div data-prod_id="<?php echo $product['product_id']; ?>" class="like-button"></div>
                 </a>
                 <div class="rating"></div>
                 <span class="current-rating"><?php echo $product['like_count']; ?></span>
-                <div class="like-button"></div>
+                <div data-prod_id="<?php echo $product['product_id']; ?>" class="like-button"></div>
 	</li>
 <?php } ?>

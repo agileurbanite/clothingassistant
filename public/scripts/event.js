@@ -200,14 +200,13 @@ $(document).ready(function(){
         $(this).hide();
     });
     
-    $('#products .like-button').on('click', function(e){ alert('test');
+    $('#products').on('click', '.like-button', function(e){
        e.preventDefault();
        var $this = $(this);
        var $rating = $this.parent().find('.current-rating');
        prod_id = $this.attr('data-prod_id');
        
-       
-       $.post('/api/add_like', {prod_id: prod_id}, function(res){
+       $.post('/api/add-like', {prod_id: prod_id}, function(res){
            if(res.code == 200){
                $rating.text(res.count);
            }else{
