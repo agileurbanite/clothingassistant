@@ -4,8 +4,8 @@
                         <img src="<?php echo $product['image_url']; ?>" alt="" />
                         <div class="price">$<?php echo $product['price']; ?></div>
                         <div class="rating"></div>
-                        <span class="current-rating">33</span>
-                        <div class="like-button"></div>
+                        <span class="current-rating"><?php echo $product['like_count']; ?></span>
+                        <div data-prod_id="<?php echo $product['product_id']; ?>" class="like-button"></div>
                 </a>
                 <div class="item-overlay">
                         <div class="like-buttons">
