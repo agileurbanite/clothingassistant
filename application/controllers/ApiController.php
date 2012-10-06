@@ -41,14 +41,17 @@ class ApiController extends My_Controller {
             $model->brands($user['brands']);
         }
         
-        $products = $model->get()->rows();
-
+        $this->view->products = $products = $model->get()->rows();
+        
+        $html = $this->view->render('api/products.phtml');
+        
         $res = array(
+            'html' => $html,
             'products'=>$products,
             'count'=> count($products)
         );
         
-        $this->json( $res, $code, $msg  );
+        $this->json( $res, $code, 'products returned'  );
     }
     
     /**
