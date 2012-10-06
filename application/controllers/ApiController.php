@@ -122,4 +122,14 @@ class ApiController extends My_Controller {
             $this->json(true, 400, 'style param not sent');
         }
     }
+    
+    public function getStylesAction(){
+        $styles = Jien::model('Product')->select('distinct(style)')->get()->rows();
+        
+        if($styles){
+            $this->json($styles, 200, 'styles returned');
+        }else{
+            $this->json(false, 400, 'the styles db is blank, talk to james');
+        }
+    }
 }
