@@ -30,7 +30,7 @@ class ApiController extends My_Controller {
             'count'=> count($products)
         );
         
-        $this->json( array($res, $code, $msg)  );
+        $this->json( $res, $code, $msg  );
     }
     
 }
