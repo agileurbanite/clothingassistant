@@ -41,7 +41,7 @@ $(document).ready(function(){
         $('#styles-btn').addClass('male-style').hide();
     });
     
-    // click handler to set mens styles
+    // click handler to set womens styles
     $('#mens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
         $('#search-bar').show();
@@ -50,27 +50,45 @@ $(document).ready(function(){
             url: 'api/set-user-style',
             type: 'post',
             dataType: 'json',
-            data: { "style" : style }
-        }).done(function(response) {
-            if(response) {
-                // hide mens styles chooser
-                $('#mens-styles').hide();
-                // get products based on selected styles
-                $.get('api/products', function(res){
-                   var $container = $('#products');
-                   $container.html(res.result.html).show().css({visibility:'hidden'});
-                   $container.imagesLoaded(function(){
+            data: {"style" : style}
+        }).done(function(response){
+            if(response){
+                // hide womens styles chooser
+                $('#womens-styles').hide();
+                update_products();
+                $.get('api/get-user', function(res){
+                    $active_filters = $('#active-filters');
+                    $active_filters.html('');
+                    
+                    $(res.result.brands).each( function(k,v){
+                        add_brand(v);
+                    });
+                    
+                    $type_filters = $('#type_filter');
+                    $type_filters.html('');
+                    $(res.result.availableTypes).each( function(k,v){
+                        html = '<a href="#">' + v + '</a> | ';
+                        $type_filters.append(html);
+                    });
+                }, 'json');
+            }
+        });
+        
+        //click handler to set user type
+        $('#type_filter').delegate('a', 'click', function(e){
+            e.preventDefault(); 
+           $this = $(this);
+           $.post('/api/set-user-type', {type: $this.text()}, function(res){
+               $.get('api/products', function(res){
+                    var $container = $('#products');
+                    $container.html(res.result.html).show().css({visibility:'hidden'});
+                    $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
                        $('#styles-btn').show();
-                   });
+                    });
                 });
-                
-                $.get('api/get-user', function(res){
-                    console.log(res);
-                    $('#active-filters').html();
-                }, 'json');
-            }
+           });
         });
     });
     
@@ -88,24 +106,13 @@ $(document).ready(function(){
             if(response){
                 // hide womens styles chooser
                 $('#womens-styles').hide();
-                // get products based on selected styles
-                $.get('api/products', function(res){
-                    var $container = $('#products');
-                    $container.html(res.result.html).show().css({visibility:'hidden'});
-                    $container.imagesLoaded(function(){
-                       $('.indicator').hide();
-                       $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn').show();
-                    });
-                });
-                
+                update_products();
                 $.get('api/get-user', function(res){
                     $active_filters = $('#active-filters');
                     $active_filters.html('');
                     
                     $(res.result.brands).each( function(k,v){
-                        html = "<li class='" + v + "'><span class='close'></span>" + v + "</li>";
-                        $('#active-filters').append(html);
+                        add_brand(v);
                     });
                     
                     $type_filters = $('#type_filter');
@@ -120,7 +127,7 @@ $(document).ready(function(){
         
         //click handler to set user type
         $('#type_filter').delegate('a', 'click', function(e){
-            e.preventDefault();
+            e.preventDefault(); 
            $this = $(this);
            $.post('/api/set-user-type', {type: $this.text()}, function(res){
                $.get('api/products', function(res){
@@ -158,20 +165,22 @@ $(document).ready(function(){
         });
     });
     
-    // add autocomplete to search
-    function log( message ) {
-            $( "<div/>" ).text( message ).prependTo( "#log" );
-            $( "#log" ).scrollTop( 0 );
-    }
-
     $.get('/api/get-brands', function(res){
         $( "#query" ).autocomplete({
             source: res,
             minLength: 2,
             select: function( event, ui ) {
-                    log( ui.item ?
-                            "Selected: " + ui.item.value + " aka " + ui.item.id :
-                            "Nothing selected, input was " + this.value );
+                var brand = ui.item.value
+                $.post('/api/add-user-brand', {brand: brand}, function(res){
+                    //add brand
+                    add_brand(brand);
+                    
+                    //update product
+                    update_products();
+                    
+                    //clear val
+                    $( "#query" ).val('');
+                });
             }
         });
     },'json');
@@ -191,6 +200,7 @@ $(document).ready(function(){
     });
     
     // add brands click handler
+    /*
     $('#search-btn').click(function(ev) {
         ev.preventDefault();
         var brand = $(this).siblings('#query').val();
@@ -215,5 +225,24 @@ $(document).ready(function(){
         } else {
             $('#query').val('');
         }
-    });
+    });*/
 });
+
+function update_products(){
+   $.get('api/products', function(res){
+        var $container = $('#products');
+        $container.html(res.result.html).show().css({visibility:'hidden'});
+        $container.imagesLoaded(function(){
+           $('.indicator').hide();
+           $container.masonry('reload').css({visibility:'visible'});
+           $('#styles-btn').show();
+        });
+    });
+}
+
+function add_brand(brand){
+    console.log(brand);
+    $active_filters = $('#active-filters');
+    html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
+    $active_filters.append(html);
+}

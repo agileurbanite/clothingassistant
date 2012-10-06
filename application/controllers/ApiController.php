@@ -104,8 +104,12 @@ class ApiController extends My_Controller {
         $brand = $this->params('brand');
         
         if( $brand ){
-            $this->addUserBrand($brand);
-            $this->json('', 200, 'brand added');
+            $res = $this->addUserBrand($brand);
+            if($res){
+                $this->json(true, 200, 'brand added');
+            }else{
+                $this->json(false, 400, 'brand already added');
+            }
         }else{
             $this->json(false, 400, 'brand param empty');
         }
