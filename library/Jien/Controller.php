@@ -8,15 +8,15 @@ class Jien_Controller extends Zend_Controller_Action {
 
     	// pass request params to view
     	$this->view->params = $this->params();
-		$this->view->auth = $this->auth = Zend_Auth::getInstance();
+        $this->view->auth = $this->auth = Zend_Auth::getInstance();
 
-		// if user logged in, create a user object to both actions and views
-		if(!empty($_SESSION['user'])){
-			$this->view->user = $this->user = $_SESSION['user'];
-		}
+        // if user logged in, create a user object to both actions and views
+        if(!empty($_SESSION['user'])){
+            $this->view->user = $this->user = $_SESSION['user'];
+        }
 
-		// activate access control
-		$this->initAcl();
+        // activate access control
+        $this->initAcl();
 
     }
 
