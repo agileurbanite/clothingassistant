@@ -110,7 +110,6 @@ $(document).ready(function(){
                     
                     $type_filters = $('#type_filter');
                     $type_filters.html('');
-                    console.log(res.result.availableTypes);
                     $(res.result.availableTypes).each( function(k,v){
                         html = '<a href="#">' + v + '</a> | ';
                         $type_filters.append(html);
@@ -120,10 +119,19 @@ $(document).ready(function(){
         });
         
         //click handler to set user type
-        $('#type_filter').delegate('a', 'click', function(){
+        $('#type_filter').delegate('a', 'click', function(e){
+            e.preventDefault();
            $this = $(this);
            $.post('/api/set-user-type', {type: $this.text()}, function(res){
-               console.log(res);
+               $.get('api/products', function(res){
+                    var $container = $('#products');
+                    $container.html(res.result.html).show().css({visibility:'hidden'});
+                    $container.imagesLoaded(function(){
+                       $('.indicator').hide();
+                       $container.masonry('reload').css({visibility:'visible'});
+                       $('#styles-btn').show();
+                    });
+                });
            });
         });
     });
