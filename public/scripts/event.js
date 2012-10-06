@@ -22,7 +22,7 @@ $(document).ready(function(){
        $('#womens-styles-cont').show();
        $('#search-bar').hide();
        $('#splash').hide();
-       $('#styles-btn').addClass('female-style').hide();
+       $('#styles-btn, #back-btn').addClass('female-style').hide();
     });
     
     // click handler for male gender screen
@@ -38,7 +38,7 @@ $(document).ready(function(){
         $('#mens-styles-cont').show();
         $('#search-bar').hide();
         $('#splash').hide();
-        $('#styles-btn').addClass('male-style').hide();
+        $('#styles-btn, #back-btn').addClass('male-style').hide();
     });
 
     // click handler to set womens styles
@@ -85,7 +85,7 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn').show();
+                       $('#styles-btn,#back-btn').show();
                     });
                 });
            });
@@ -98,7 +98,7 @@ $(document).ready(function(){
         $('#search-bar').show();
         $('.indicator').show();
         $('#type_filter').show();
-        $('#styles-btn').hide();
+        $('#styles-btn,#back-btn').hide();
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -137,7 +137,7 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn').show();
+                       $('#styles-btn,#back-btn').show();
                     });
                 });
            });
@@ -187,7 +187,7 @@ $(document).ready(function(){
     },'json');
     
     // styles button click handler
-    $('#styles-btn').click(function() {
+    $('#styles-btn,#back-btn').click(function() {
         $('#products').hide();
         $('#womens-styles-cont').show();
         if($(this).hasClass('female-style')){
@@ -252,7 +252,7 @@ function update_products(){
         $container.imagesLoaded(function(){
            $('.indicator').hide();
            $container.masonry('reload').css({visibility:'visible'});
-           $('#styles-btn').show();
+           $('#styles-btn,#back-btn').show();
         });
     });
 }
