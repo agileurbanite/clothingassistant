@@ -108,4 +108,15 @@ class ApiController extends My_Controller {
             $this->json( false, 400, 'brand param empty');
         }
     }
+    
+    public function setUserStyleAction(){
+        $style = $this->params('style');
+        
+        if($style){
+            $this->setUserStyle($style);
+            $this->json(true, 200, 'style added');
+        }else{
+            $this->json(true, 400, 'style param not sent');
+        }
+    }
 }
