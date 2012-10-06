@@ -39,13 +39,42 @@ $(document).ready(function(){
     // click handler to set mens styles
     $('#mens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
-        console.log(style);
+        $.ajax({
+            url: 'api/set-user-style',
+            type: 'post',
+            dataType: 'json',
+            data: { "style" : style }
+        }).done(function(response) {
+            if(response) {
+                // hide mens styles chooser
+                $('#mens-styles').hide();
+                // get products based on selected styles
+                $.get('api/get-products', function(res){
+                   $('#products').show(); 
+                });
+                
+            }
+        });
     });
     
     // click handler to set womens styles
     $('#womens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
-        console.log(style);
+        $.ajax({
+            url: 'api/set-user-style',
+            type: 'post',
+            dataType: 'json',
+            data: {"style" : style}
+        }).done(function(response){
+            if(response){
+                // hide womens styles chooser
+                $('#womens-styles').hide();
+                // get products based on selected styles
+                $.get('api/get-products', function(res){
+                    $('#products').show();
+                });
+            }
+        });
     })
     
 });
