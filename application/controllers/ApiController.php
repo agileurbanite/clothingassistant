@@ -11,6 +11,21 @@ class ApiController extends My_Controller {
     }
     
     /**
+     * Get All Brands
+     * return @param array $brands
+     */
+    public function getBrandsAction(){
+        $brands = Jien::model('Product')->select("distinct(brand)")->get()->rows();
+        
+        if($brands){
+            $this->json($brands, 200, 'brands returend');
+        }else{
+            $this->json(false, 400, 'no brands available, contact jamesL');
+        }
+    }
+    
+    
+    /**
      * 
      * @param array $brands
      * returns @param array $products
@@ -37,7 +52,7 @@ class ApiController extends My_Controller {
     
     
     /**
-     * @param 
+     * @param array 
      */
     public function setGenderAction(){
         $gender = $this->params('gender');
