@@ -36,6 +36,15 @@ class My_Controller extends Jien_Controller {
     
     public function setUserStyle($style){
         $_SESSION['user']['style'] = $style;
+        
+        $brands = Jien::model('Product')->select('distinct(brand)')->where("style ='$style'")->get()->rows();
+        if($brands){
+            $brands_arr = array();
+            foreach($brands as $brand){
+                $brands_arr[] = $brand['brand'];
+            }
+            $this->setUserBrands($brands_arr);
+        }
     }
     
     public function addUserBrand($brand){
