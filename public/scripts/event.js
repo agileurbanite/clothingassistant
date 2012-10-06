@@ -46,6 +46,7 @@ $(document).ready(function(){
         var style = $(this).attr('class');
         $('#search-bar').show();
         $('.indicator').show();
+        $('#type_filter').show();
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -97,6 +98,7 @@ $(document).ready(function(){
         var style = $(this).attr('class');
         $('#search-bar').show();
         $('.indicator').show();
+        $('#type_filter').show();
         $('#styles-btn').hide();
         $.ajax({
             url: 'api/set-user-style',

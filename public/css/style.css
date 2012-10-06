@@ -83,18 +83,19 @@ header {
 	left: 0;
 	bottom: 0;
 	z-index: 1;
-	background: #D1D2D4;
+	background: white;
 	width: 100%;
 	height: 24px;
 	opacity: 0.6;
 }
 #products li .item .current-rating {
 	position: absolute;
-	left: 4px;
-	bottom: 4px;
+	right: 27px;
+	bottom: 6px;
 	z-index: 3;
-	color: #333;
+	color: rgb(102, 102, 102);
 	font-size: 12px;
+	font-weight: 700;
 }
 #products li .item-overlay {
 	position: absolute;
@@ -141,23 +142,18 @@ header {
 .col4 img { max-width: 380px; }
 .col5 img { max-width: 480px; }
 
-button.like-button {
-	background: #FBAF3F url(/img/heart.png) 36px center no-repeat;
-	color: white;
-	font-size: 9px;
-	text-align: center;
-	border-radius: 4px;
-	padding-right: 18px;
-	border: none;
+.like-button {
+	background: url(/img/hearts.png) 0 0 no-repeat;
 	position: absolute;
 	z-index: 3;
-	right: 4px;
-	bottom: 4px;
-	height: 16px;
+	right: 6px;
+	bottom: 6px;
+	height: 15px;
+	width: 17px;
 	cursor: pointer;
 }
-button.like-button:hover {
-	background: #D29234 url(/img/heart.png) 36px center no-repeat;
+.like-button:hover {
+	background: url(/img/hearts.png) -17px 0 no-repeat;
 }
 #womens-styles-cont, #mens-styles-cont {
 	display: none;
@@ -243,7 +239,7 @@ header {
 	position: relative;
 }
 h1 {
-	margin-top: 80px;
+	margin-top: 40px;
 	font-size: 35px;
 	padding: 22px 0;
 	font-weight: normal;
@@ -282,7 +278,7 @@ h1 {
 	text-align: right;
 	position: absolute;
 	right: 0;
-	top: 5px;
+	bottom: 5px;
 	font-size: 14px;
 }
 #header-menu a {
@@ -334,7 +330,7 @@ h1 {
 	background: #eee;
 	float: left;
 	height: 20px;
-	margin-right: 5px;
+	font-size: 14px;
 	padding-left: 3px;
 	padding-right: 3px;
 }
@@ -349,7 +345,7 @@ h1 {
 }
 #styles-btn {
 	background: url(/img/styles-btn.png) 0 0 no-repeat;
-	width: 41px;
+	width: 41Fpx;
 	height: 124px;
 	position: fixed;
 	left:0;
@@ -366,4 +362,23 @@ h1 {
 /* override ui style */
 .ui-menu {
     z-index: 10 !important;
+}
+#type_filter {
+	font-family:'Rockwell W01';
+	display: none;
+}
+#type_filter a {
+	color: #333;
+	border-right: #ccc solid 1px;
+	padding: 0 6px;
+	font-size: 13px;
+}
+#type_filter a:hover {
+	color: #F47D31;
+}
+#type_filter a:last-child {
+	border-right: none;
+}
+#type_filter a:first-child {
+	padding-left: 0;
 }

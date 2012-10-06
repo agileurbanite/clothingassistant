@@ -2,12 +2,7 @@
 	<div class="container">
 		<a id="logo" href="/"></a>
 		<div id="header-menu">
-			<a href="#">My Account</a><br /><br />
-                        <div id="type_filter">
-                            <?php foreach($this->user['availableTypes'] as $type){ ?>
-                            <a href="#"><?php echo $type; ?></a> | 
-                            <?  } ?>
-                        </div>
+			<a href="#">About</a> | <a href="#">My Profile</a> | <a href="#">My Wishlist</a>
 		</div>
 	</div>
 </header>
@@ -25,6 +20,13 @@
 		</div>
 	</div>
 </div><!--#search-->
+<div class="container">
+	<div id="type_filter">
+        <?php foreach($this->user['availableTypes'] as $type){ ?>
+        <a href="#"><?php echo $type; ?></a> | 
+        <?  } ?>
+    </div>
+</div>
 
 <div class="clear"></div>
 
