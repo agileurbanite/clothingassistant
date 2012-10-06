@@ -1,5 +1,11 @@
+<header>
+	<a id="logo" href="/" /></a>
+</header>
+<div id="search">
+
+</div><!--#search-->
 <ul id="clothes">
-	<li class="col3">
+	<li class="col2">
 		<a href="#" class="item" target="_blank">
 			<img src="img/clothing/1.jpg" alt="" />
 			<div class="price">$10</div>
@@ -41,7 +47,7 @@
 			<div class="save-for-later"></div>
 		</div>
 	</li>
-	<li class="col3">
+	<li class="col2">
 		<a href="#" class="item" target="_blank">
 			<img src="img/clothing/4.jpg" alt="" />
 			<div class="price">$10</div>
@@ -55,10 +61,10 @@
 			<div class="save-for-later"></div>
 		</div>
 	</li>
-		<li class="col3">
+		<li class="col2">
 		<a href="#" class="item" target="_blank">
 			<img src="img/clothing/1.jpg" alt="" />
-			<div class="price">$10</div>
+			<div class="price">$1000</div>
 			<div class="rating up">33</div>
 		</a>
 		<div class="item-overlay">
@@ -69,7 +75,7 @@
 			<div class="save-for-later"></div>
 		</div>
 	</li>
-	<li class="col3">
+	<li class="col2">
 		<a href="#" class="item" target="_blank">
 			<img src="img/clothing/2.jpg" alt="" />
 			<div class="price">$10</div>
@@ -83,7 +89,7 @@
 			<div class="save-for-later"></div>
 		</div>
 	</li>
-	<li class="col1">
+	<li class="col2">
 		<a href="#" class="item" target="_blank">
 			<img src="img/clothing/3.jpg" alt="" />
 			<div class="price">$10</div>
@@ -117,6 +123,13 @@
   <a href="../pages/2.html"></a>
 </nav>
 
+<div id="lightbox">
+	<h2>PICK A GENDER TO BEGIN.</h2>
+	<div class="gender-option female"></div>
+	<div class="gender-option male"></div>
+</div>
+<div id="dimmer"></div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	var $container = $('#clothes');
@@ -124,29 +137,9 @@ $(document).ready(function(){
 	$container.imagesLoaded(function(){
 		$container.masonry({
 			itemSelector: 'li',
-			columnWidth: 100
+			columnWidth: 90
 		});
 	});
 	
-	$container.infinitescroll({
-		navSelector  : '#page-nav',	// selector for the paged navigation 
-		nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
-		itemSelector : '.box',	 // selector for all items you'll retrieve
-		loading: {
-			finishedMsg: 'No more pages to load.',
-			img: 'http://i.imgur.com/6RMhx.gif'
-		}
-	},
-	// trigger Masonry as a callback
-	function( newElements ) {
-		// hide new items while they are loading
-		var $newElems = $( newElements ).css({ opacity: 0 });
-		// ensure that images load before adding to masonry layout
-		$newElems.imagesLoaded(function(){
-			// show elems now they're ready
-		 	$newElems.animate({ opacity: 1 });
-			$container.masonry( 'appended', $newElems, true ); 
-		});
-	});
 });
 </script>
