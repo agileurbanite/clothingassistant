@@ -201,8 +201,10 @@ header {
 	margin: 82px auto 0;
 	padding-left: 12px;
 	padding-right: 12px;
+	padding-bottom: 2px;
 	color: white;
 	cursor: pointer;
+	line-height: 90%;
 }
 .style-choices li:hover button {
 	background: #3D3D3D;
@@ -288,7 +290,7 @@ h1 {
 	right: 0;
 	bottom: 4px;
 	font-size: 14px;
-	line-height: 100%;
+	line-height: 90%;
 }
 #header-menu a {
 	color: white;
@@ -424,4 +426,28 @@ h1 {
 	#back-btn {
 		display: none;
 	}
+}
+a#twitter-icon {
+	width: 16px;
+	height: 16px;
+	background: url(/img/twitter_16.png) 0 0 no-repeat;
+	display: block;
+	float: right;
+	margin-left: 6px;
+	margin-top:-2px;
+}
+a#twitter-icon:hover {
+	background: url(/img/twitter_16.png) -16px 0 no-repeat;
+}
+a#facebook-icon {
+	width: 16px;
+	height: 16px;
+	background: url(/img/facebook_16.png) 0 0 no-repeat;
+	display: block;
+	float: right;
+	margin-left: 6px;
+	margin-top:-2px;
+}
+a#facebook-icon:hover {
+	background: url(/img/facebook_16.png) -16px 0 no-repeat;
 }
