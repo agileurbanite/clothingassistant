@@ -83,7 +83,8 @@ class AuthController extends My_Controller {
 	}
 
 	public function loginOauthAction(){
-		// check if a user is already logged
+        // check if a user is already logged
+            
         if ($this->auth->hasIdentity()) {
             $this->flash('It seems you are already logged into the system ');
             $this->redir('/');
@@ -107,7 +108,7 @@ class AuthController extends My_Controller {
 
         // do the first query to an authentication provider
         if ($openid_identifier) {
-
+            error_log('oauth');
             if ('https://www.twitter.com' == $openid_identifier) {
                 $adapter = $this->_getTwitterAdapter();
             } else if ('https://www.facebook.com' == $openid_identifier) {
@@ -123,7 +124,7 @@ class AuthController extends My_Controller {
 
         } else if ($openid_mode || $code || $oauth_token) {
             // this will be exectued after provider redirected the user back to us
-
+error_log('oauth2');
             if ($code) {
                 // for facebook
                 $adapter = $this->_getFacebookAdapter();
@@ -139,7 +140,7 @@ class AuthController extends My_Controller {
                 $toStore = array('identity' => $this->auth->getIdentity());
 
                 if ($code) {
-
+                     error_log('facebook');
                     // for facebook
                     $msgs = $result->getMessages();
                     $toStore['properties'] = (array) $msgs['user'];
@@ -150,6 +151,8 @@ class AuthController extends My_Controller {
                             case 'male': $gender = 'male';break;
                             default: $gender = 'na';break;
                         }
+                    }else{
+                        $gender = 'm';
                     }
                     
                     // save it to our db if new, else update
@@ -199,11 +202,13 @@ class AuthController extends My_Controller {
                 $this->redir('/');
 
             } else {
-
+error_log('oauth3');
                 $this->flash('Failed authentication');
                 $this->redir('/');
 
             }
+        }else{
+            error_log('wtrf');
         }
 
         $this->view("login");

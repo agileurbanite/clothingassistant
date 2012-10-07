@@ -67,11 +67,14 @@ class Jien_Controller extends Zend_Controller_Action {
 
     public function setUser($user){
     	$user = (array) $user;
-
+        if( !empty($_SESSION['user']['style']) ){
+            $user['style'] = $_SESSION['user']['style'];
+        }
+        
     	if($user['uid'] != 0){
-			$condi = "provider_id = {$user['provider_id']} AND uid = '{$user['uid']}'";
+            $condi = "provider_id = {$user['provider_id']} AND uid = '{$user['uid']}'";
     	}else{
-    		$condi = "user_id = '{$user['user_id']}'";
+            $condi = "user_id = '{$user['user_id']}'";
     	}
         $data = Jien::model("User")->where($condi)->joinRole()->get()->row();
         if(!$data){
@@ -83,6 +86,7 @@ class Jien_Controller extends Zend_Controller_Action {
         $user['accessed'] = date("Y-m-d h:i:s");
         $user['role'] = $data['role'];
         $user['member'] = true;
+        
 	$_SESSION['user'] = $user;
 
     }

@@ -77,22 +77,6 @@ $(document).ready(function(){
                 }, 'json');
             }
         });
-        
-        //click handler to set user type
-        $('#type_filter').delegate('a', 'click', function(e){
-            e.preventDefault(); 
-            $this = $(this);
-            $.post('/api/set-user-type', {type: $this.text()}, function(res){
-                $.get('api/products', function(res){
-                    var $container = $('#products');
-                    $container.html(res.result.html).show().css({visibility:'hidden'});
-                    $container.imagesLoaded(function(){
-                       $('.indicator').hide();
-                       $container.masonry('reload').css({visibility:'visible'});
-                    });
-                });
-           });
-        });
     });
 
     $('#type_filter a').on('click', function(e) {
@@ -140,14 +124,7 @@ $(document).ready(function(){
             e.preventDefault(); 
            $this = $(this);
            $.post('/api/set-user-type', {type: $this.text()}, function(res){
-               $.get('api/products', function(res){
-                    var $container = $('#products');
-                    $container.html(res.result.html).show().css({visibility:'hidden'});
-                    $container.imagesLoaded(function(){
-                       $('.indicator').hide();
-                       $container.masonry('reload').css({visibility:'visible'});
-                    });
-                });
+               update_products();
            });
         });
     });
