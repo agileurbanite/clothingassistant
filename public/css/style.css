@@ -343,6 +343,7 @@ h1 {
 	margin-top: -62px;
 	cursor: pointer;
 	margin-left: -5px;
+	z-index: 90;
 }
 #styles-btn:hover {
 	margin-left: 0;
