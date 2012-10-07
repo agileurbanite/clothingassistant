@@ -50,6 +50,10 @@ class ApiController extends My_Controller {
             $model->style($user['style']);
         }
         
+        if( !empty($user['type']) ){
+            $model->type($user['type']);
+        }
+        
         $this->view->products = $products = $model->get()->rows();
         
         $html = $this->view->render('api/products.phtml');
@@ -128,7 +132,7 @@ class ApiController extends My_Controller {
             $this->setUserStyle($style);
             $this->json(true, 200, 'style added');
         }else{
-            $this->json(true, 400, 'style param not sent');
+            $this->json(false, 400, 'style param not sent');
         }
     }
     
@@ -141,4 +145,15 @@ class ApiController extends My_Controller {
             $this->json(false, 400, 'the styles db is blank, talk to james');
         }
     }
+    
+    public function setUserTypeAction(){
+        $type = $this->params('type');
+        
+        if($type){
+            $this->setUserType($type);
+            $this->json(true, 200, 'user type set');
+        }else{
+            $this->json(false, 400, 'type param not sent');
+        }
+    } 
 }

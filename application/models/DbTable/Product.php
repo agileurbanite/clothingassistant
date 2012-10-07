@@ -29,5 +29,11 @@ class Application_Model_DbTable_Product extends My_Model
     
     public function style($style){
         $this->andWhere("style like '%$style%'");
+        return $this;
+    }
+    
+    public function type($type){
+        $this->andWhere("type='$type'");
+        return $this;
     }
 }
