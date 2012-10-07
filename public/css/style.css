@@ -339,3 +339,18 @@ h1 {
 	margin-top:-1px;
 	cursor: pointer;
 }
+#styles-btn {
+	background: url(/img/styles-btn.png) 0 0 no-repeat;
+	width: 41px;
+	height: 124px;
+	position: fixed;
+	left:0;
+	top: 50%;
+	margin-top: -62px;
+	cursor: pointer;
+	margin-left: -5px;
+	z-index: 90;
+}
+#styles-btn:hover {
+	margin-left: 0;
+}
