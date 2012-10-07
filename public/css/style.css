@@ -276,8 +276,9 @@ h1 {
 	text-align: right;
 	position: absolute;
 	right: 0;
-	bottom: 5px;
+	bottom: 4px;
 	font-size: 14px;
+	line-height: 100%;
 }
 #header-menu a {
 	color: white;
@@ -374,11 +375,11 @@ h1 {
 }
 #type_filter a {
 	color: #333;
-	border-right: #eee solid 1px;
+	border-right: #ddd solid 1px;
 	padding: 0 6px;
 	font-size: 14px;
 }
-#type_filter a:hover {
+#type_filter a:hover, #type-filter a.hit {
 	color: #F47D31;
 }
 #type_filter a:last-child {

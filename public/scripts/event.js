@@ -81,9 +81,9 @@ $(document).ready(function(){
         //click handler to set user type
         $('#type_filter').delegate('a', 'click', function(e){
             e.preventDefault(); 
-           $this = $(this);
-           $.post('/api/set-user-type', {type: $this.text()}, function(res){
-               $.get('api/products', function(res){
+            $this = $(this);
+            $.post('/api/set-user-type', {type: $this.text()}, function(res){
+                $.get('api/products', function(res){
                     var $container = $('#products');
                     $container.html(res.result.html).show().css({visibility:'hidden'});
                     $container.imagesLoaded(function(){
@@ -93,6 +93,11 @@ $(document).ready(function(){
                 });
            });
         });
+    });
+
+    $('#type_filter a').on('click', function(e)) {
+        $('#type_filter a').removeClass('hit');
+        $(this).addClass('hit');
     });
     
     // click handler to set womens styles
