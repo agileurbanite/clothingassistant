@@ -27,29 +27,32 @@ class ApiController extends My_Controller {
     
     /**
      * 
-     * @param array $brands
      * returns @param array $products
      */
     public function productsAction(){
-        $brands = $this->params('brands');
+        $user = $this->getUser();
         $code = 200;
-        
         $model = Jien::model('Product');
-        
-        if($brands){
-            $model->whereBrands($brands);
+        if( !empty($user['gender'])){
+            $model->gender($user['gender']);
         }
         
-        $products = $model->get()->rows();
-
+        if( !empty($user['brands']) ){
+            $model->brands($user['brands']);
+        }
+        
+        $this->view->products = $products = $model->get()->rows();
+        
+        $html = $this->view->render('api/products.phtml');
+        
         $res = array(
+            'html' => $html,
             'products'=>$products,
             'count'=> count($products)
         );
         
-        $this->json( $res, $code, $msg  );
+        $this->json( $res, $code, 'products returned'  );
     }
-    
     
     /**
      * @param array 
@@ -80,16 +83,43 @@ class ApiController extends My_Controller {
             $this->setUserBrands($brands);
             $this->json('', 200, 'brands set');
         }else{
-            $this->json('', 400, 'brands param empty');
+            $this->json(false, 400, 'brands param empty');
         }
     }
     
-    public function getUserBrandsAction(){
-        $brands = $this->getUserBrands();
-        if($brands){
-            $this->json( $brands, 200, 'user brands retured');
+    public function addUserBrandAction(){
+        $brand = $this->params('brand');
+        
+        if( $brand ){
+            $this->addUserBrand($brand);
+            $this->json('', 200, 'brand added');
         }else{
-            $this->json ( false, 400, 'no user brands set');
+            $this->json(false, 400, 'brand param empty');
+        }
+    }
+    
+    public function removeUserBrandAction(){
+        $brand = $this->params('brand');
+        if( $brand ){
+            $res = $this->removeUserBrand($brand);
+            if($res){
+                $this->json(true, 200, 'brand removed');
+            }else{
+                $this->json(false, 400, 'brand not found in user');
+            }
+        }else{
+            $this->json( false, 400, 'brand param empty');
+        }
+    }
+    
+    public function setUserStyleAction(){
+        $style = $this->params('style');
+        
+        if($style){
+            $this->setUserStyle($style);
+            $this->json(true, 200, 'style added');
+        }else{
+            $this->json(true, 400, 'style param not sent');
         }
     }
 }

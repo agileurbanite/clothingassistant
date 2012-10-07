@@ -14,6 +14,14 @@ class My_Controller extends Jien_Controller {
     	$this->view->title = TITLE;
     }
 
+    public function getUser(){
+        if( empty($_SESSION['user']) ){
+            return false;
+        }else{
+            return $_SESSION['user'];
+        }
+    }
+    
     public function setGender($gender){
         $_SESSION['user']['gender'] = $gender;
     }
@@ -26,11 +34,25 @@ class My_Controller extends Jien_Controller {
         }
     }
     
-    public function getUser(){
-        if( empty($_SESSION['user']) ){
-            return false;
-        }else{
-            return $_SESSION['user'];
-        }
+    public function setUserStyle($style){
+        $_SESSION['user']['style'] = $style;
     }
+    
+    public function addUserBrand($brand){
+        $_SESSION['user']['brands'][] = $brand;
+    }
+    
+    public function removeUserBrand($remove_brand){
+        $res = false;
+        if( !empty($_SESSION['user']['brands']) ){
+            foreach( $_SESSION['user']['brands'] as $key=>$brand ){
+                if($brand == $remove_brand){
+                    unset($_SESSION['user']['brands'][$key]);
+                    $res = true;
+                }
+            }
+        }
+        return $res;
+    }
+    
 }
