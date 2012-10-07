@@ -1,7 +1,10 @@
-steal( 'jquery/controller',
-	   'jquery/view/ejs',
-	   'jquery/controller/view',
-	   'assistant/models' )
+steal( 
+   'jquery', 
+   'jquery/controller',
+   'jquery/view/ejs',
+   'jquery/controller/view',
+   'assistant/models')
+.then('jquery/jquery.masonry.js')
 .then( './views/init.ejs', 
        './views/product.ejs', 
        function($){
@@ -20,8 +23,10 @@ $.Controller('Assistant.Product.List',
 /** @Prototype */
 {
 	init : function(){
-		this.element.html(this.view('init',Assistant.Models.Product.findAll()) )
+            var self = this;
+            this.element.html(this.view('init',Assistant.Models.Product.findAll()));
 	},
+        
 	'.destroy click': function( el ){
 		if(confirm("Are you sure you want to destroy?")){
 			el.closest('.product').model().destroy();
