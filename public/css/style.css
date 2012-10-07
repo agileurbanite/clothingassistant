@@ -37,7 +37,6 @@ header {
 	margin: 5px;
 	position: relative;
 	height: auto;
-	width: 170px;
 }
 #products li .item {
 	display: block;
@@ -45,7 +44,6 @@ header {
 	border: 1px solid #A7A9AB;
 }
 #products li .item img {
-	width: 160px;
 	margin: 0;
 	margin: 5px;
 }
@@ -95,8 +93,8 @@ header {
 
 
 /* MASONRY */
-.col1 { width: 75px; }
-.col2 { width: 170px; }
+.col1 { width: 80px; }
+.col2 { width: 180px; }
 .col3 { width: 280px; }
 .col4 { width: 380px; }
 .col5 { width: 480px; }
