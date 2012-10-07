@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     // applying masonry to products grid
     var $container = $('#products');
     $container.imagesLoaded(function(){

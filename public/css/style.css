@@ -1,9 +1,12 @@
-/*
+input::-webkit-input-placeholder {
+    font-style: italic; 
+    text-align: right;
+}
 
-font-family:'Rockwell W01 Bold';
-font-family:'Rockwell W01';
-
-*/
+input:-moz-placeholder {  
+    font-style: italic;
+    text-align: right; 
+}
 :focus, a:active {
   -moz-outline-style: none;
   outline: none;
