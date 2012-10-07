@@ -197,10 +197,10 @@ h1 {
 	float: left;
 	cursor: pointer;
 }
-.gender-option.male { background: url(/img/male.png) 0 0 no-repeat; }
-.gender-option.male:hover { background: url(/img/male.png) -196px 0 no-repeat; }
-.gender-option.female { background: url(/img/female.png) 0 0 no-repeat; margin-right: 12px; }
-.gender-option.female:hover { background: url(/img/female.png) -196px 0 no-repeat; }
+.gender-option.male { background: white url(/img/male.png) 0 0 no-repeat; }
+.gender-option.male:hover { background: white url(/img/male.png) -196px 0 no-repeat; }
+.gender-option.female { background: white url(/img/female.png) 0 0 no-repeat; margin-right: 12px; }
+.gender-option.female:hover { background: white url(/img/female.png) -196px 0 no-repeat; }
 #header-menu {
 	text-align: right;
 	position: absolute;
