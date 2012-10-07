@@ -21,6 +21,7 @@ $(document).ready(function(){
            $('#products').hide();
            $('#womens-styles').show();
            $('#search-bar').hide();
+           $('#splash').hide();
         });
     });
     
@@ -36,6 +37,7 @@ $(document).ready(function(){
            $('#products').hide();
            $('#mens-styles').show();
            $('#search-bar').hide();
+           $('#splash').hide();
         });
     });
     
