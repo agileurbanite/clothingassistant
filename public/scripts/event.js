@@ -185,7 +185,7 @@ $(document).ready(function(){
     $('#products').on('click', '.like-button', function(e){
        e.preventDefault();
        var $this = $(this);
-       $this.toggleClass('hit');
+       $this.addClass('hit');
        var $rating = $this.parent().find('.current-rating');
        prod_id = $this.attr('data-prod_id');
        

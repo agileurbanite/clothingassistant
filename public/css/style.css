@@ -81,6 +81,7 @@ header {
 	color: white;
 	font-weight: bold;
 	padding: 7px 15px 7px 5px;
+	font-family: 'Rockwell W01';
 }
 .rating {
 	position: absolute;
@@ -342,6 +343,7 @@ h1 {
 	padding-left: 3px;
 	padding-right: 3px;
 	width: 200px;
+	box-shadow: inset 1px 1px 1px #ccc;
 }
 #search-btn {
 	background: url(/img/add-button.png) 0 0 no-repeat;
