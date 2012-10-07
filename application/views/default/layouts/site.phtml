@@ -14,17 +14,6 @@
 <div id="wrapper">
 <?php echo $this->layout()->content; ?>
 </div>
-    <script>
-        $(document).ready(function(){
-            var $container = $('#products');
-            $container.imagesLoaded(function(){
-		$container.masonry({
-			itemSelector: 'li',
-			columnWidth: 90
-		});
-            });
-        });
-        
-        </script>
+<script type="text/javascript" src="/scripts/event.js"></script>
 </body>
 </html>
