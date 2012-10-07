@@ -23,7 +23,7 @@ class ApiController extends My_Controller {
         }
 
         if($brands){
-            $this->json($brands_arr, 200, 'brands returend');
+            $this->json($brands_arr);
         }else{
             $this->json(false, 400, 'no brands available, contact jamesL');
         }
