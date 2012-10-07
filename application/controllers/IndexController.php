@@ -7,6 +7,7 @@ class IndexController extends My_Controller {
     }
 
     public function indexAction(){
+        $this->view->users = $this->getUser();
         $this->view->products = Jien::model('Product')->get()->rows();
     }
     

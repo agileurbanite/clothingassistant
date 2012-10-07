@@ -21,7 +21,6 @@ class Application_Model_DbTable_Product extends My_Model
             
             $this->andWhere("brand in ($csv)");
         }else{
-            
             $this->orWhere("brand = '$brand'");
         }
         
