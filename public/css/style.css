@@ -143,14 +143,14 @@ header {
 .like-button {
 	background: url(/img/hearts.png) 0 0 no-repeat;
 	position: absolute;
-	z-index: 3;
+	z-index: 10;
 	right: 6px;
 	bottom: 6px;
 	height: 15px;
 	width: 17px;
 	cursor: pointer;
 }
-.like-button:hover {
+.like-button:hover, .like-button.hit {
 	background: url(/img/hearts.png) -17px 0 no-repeat;
 }
 #womens-styles-cont, #mens-styles-cont {
@@ -334,6 +334,7 @@ h1 {
 	font-size: 14px;
 	padding-left: 3px;
 	padding-right: 3px;
+	width: 200px;
 }
 #search-btn {
 	background: url(/img/add-button.png) 0 0 no-repeat;
@@ -367,12 +368,13 @@ h1 {
 #type_filter {
 	font-family:'Rockwell W01';
 	display: none;
+	margin-top: 5px;
 }
 #type_filter a {
 	color: #333;
-	border-right: #ccc solid 1px;
+	border-right: #eee solid 1px;
 	padding: 0 6px;
-	font-size: 13px;
+	font-size: 14px;
 }
 #type_filter a:hover {
 	color: #F47D31;

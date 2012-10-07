@@ -22,7 +22,8 @@ $(document).ready(function(){
        $('#womens-styles-cont').show();
        $('#search-bar').hide();
        $('#splash').hide();
-       $('#styles-btn, #back-btn').addClass('female-style').hide();
+       $('#styles-btn').addClass('female-style').hide();
+       $('#back-btn').addClass('female-style').addClass('hide')
     });
     
     // click handler for male gender screen
@@ -38,7 +39,8 @@ $(document).ready(function(){
         $('#mens-styles-cont').show();
         $('#search-bar').hide();
         $('#splash').hide();
-        $('#styles-btn, #back-btn').addClass('male-style').hide();
+        $('#styles-btn').addClass('male-style').hide();
+        $('#back-btn').addClass('male-style').addClass('hide');
     });
 
     // click handler to set womens styles
@@ -85,7 +87,8 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn,#back-btn').show();
+                       $('#styles-btn').show();
+                       $('#back-btn').removeClass('hide');
                     });
                 });
            });
@@ -98,7 +101,8 @@ $(document).ready(function(){
         $('#search-bar').show();
         $('.indicator').show();
         $('#type_filter').show();
-        $('#styles-btn,#back-btn').hide();
+        $('#styles-btn').hide();
+        $('#back-btn').addClass('hide');
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -137,7 +141,8 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn,#back-btn').show();
+                       $('#styles-btn').show();
+                       $('#back-btn').removeClass('hide');
                     });
                 });
            });
@@ -199,6 +204,10 @@ $(document).ready(function(){
         }
         $(this).hide();
     });
+
+    $('.like-button').click(function(e){
+        $(this).toggleClass('hit');
+    });
     
     // add brands click handler
     /*
@@ -236,7 +245,8 @@ function update_products(){
         $container.imagesLoaded(function(){
            $('.indicator').hide();
            $container.masonry('reload').css({visibility:'visible'});
-           $('#styles-btn,#back-btn').show();
+           $('#styles-btn').show();
+           $('#back-btn').removeClass('hide');
         });
     });
 }
