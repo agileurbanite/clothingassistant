@@ -122,7 +122,7 @@ $(document).ready(function(){
                     });
                     
                     $type_filters = $('#type_filter');
-                    $type_filters.html('');
+                    $type_filters.html('<a href="">All</a>');
                     $(res.result.availableTypes).each( function(k,v){
                         add_filter_type(v);
                     });

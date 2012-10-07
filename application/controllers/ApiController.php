@@ -168,4 +168,8 @@ class ApiController extends My_Controller {
             Jien::model('Product')->addLike($prod_id);
         }
     }
+    
+    public function sessionTestAction(){
+        Jien::debug($_SESSION);
+    }
 }

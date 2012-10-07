@@ -96,6 +96,10 @@ class My_Controller extends Jien_Controller {
     }
     
     public function setUserType($type){
-        $_SESSION['user']['type'] = $type;
+        if($type == "All"){
+            unset($_SESSION['user']['type']);
+        }else{
+            $_SESSION['user']['type'] = $type;
+        }
     }
 }
