@@ -70,7 +70,12 @@ class My_Controller extends Jien_Controller {
     }
     
     public function addUserBrand($brand){
-        $_SESSION['user']['brands'][] = $brand;
+        if( !in_array($brand) ){
+            $_SESSION['user']['brands'][] = $brand;
+            return false;
+        }else{
+            return false;
+        }
     }
     
     public function removeUserBrand($remove_brand){
