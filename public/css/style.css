@@ -354,3 +354,7 @@ h1 {
 #styles-btn:hover {
 	margin-left: 0;
 }
+/* override ui style */
+.ui-menu {
+    z-index: 10 !important;
+}
