@@ -19,7 +19,7 @@ $(document).ready(function(){
         });
        $('#lightbox-gender, #dimmer').hide();
        $('#products').hide();
-       $('#womens-styles').show();
+       $('#womens-styles-cont').show();
        $('#search-bar').hide();
        $('#splash').hide();
        $('#styles-btn').addClass('female-style').hide();
@@ -35,7 +35,7 @@ $(document).ready(function(){
         });
         $('#lightbox-gender, #dimmer').hide(); 
         $('#products').hide();
-        $('#mens-styles').show();
+        $('#mens-styles-cont').show();
         $('#search-bar').hide();
         $('#splash').hide();
         $('#styles-btn').addClass('male-style').hide();
@@ -54,7 +54,7 @@ $(document).ready(function(){
         }).done(function(response) {
             if(response) {
                 // hide mens styles chooser
-                $('#mens-styles').hide();
+                $('#mens-styles-cont').hide();
                 // get products based on selected styles
                 $.get('api/products', function(res){
                    var $container = $('#products');
@@ -75,6 +75,7 @@ $(document).ready(function(){
         var style = $(this).attr('class');
         $('#search-bar').show();
         $('.indicator').show();
+        $('#styles-btn').hide();
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -83,7 +84,7 @@ $(document).ready(function(){
         }).done(function(response){
             if(response){
                 // hide womens styles chooser
-                $('#womens-styles').hide();
+                $('#womens-styles-cont').hide();
                 // get products based on selected styles
                 $.get('api/products', function(res){
                     var $container = $('#products');
@@ -141,13 +142,13 @@ $(document).ready(function(){
     // styles button click handler
     $('#styles-btn').click(function() {
         $('#products').hide();
-        $('#womens-styles').show();
+        $('#womens-styles-cont').show();
         if($(this).hasClass('female-style')){
-            $('#male-styles').hide();
-            $('#womens-styles').show();
+            $('#male-styles-cont').hide();
+            $('#womens-styles-cont').show();
         } else if($(this).hasClass('male-style')) {
-            $('#womens-styles').hide();
-            $('#mens-styles').show();
+            $('#womens-styles-cont').hide();
+            $('#mens-styles-cont').show();
         }
         $(this).hide();
     });
