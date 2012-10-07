@@ -36,7 +36,16 @@ $(document).ready(function(){
         });
     });
     
-    // set styles
+    // click handler to set mens styles
+    $('#mens-styles').delegate('li', 'click', function(){
+        var style = $(this).attr('class');
+        console.log(style);
+    });
     
+    // click handler to set womens styles
+    $('#womens-styles').delegate('li', 'click', function(){
+        var style = $(this).attr('class');
+        console.log(style);
+    })
     
 });
