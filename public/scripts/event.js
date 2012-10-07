@@ -4,7 +4,8 @@ $(document).ready(function(){
     $container.imagesLoaded(function(){
         $container.masonry({
                 itemSelector: 'li',
-                columnWidth: 90
+                columnWidth: 90,
+                gutterWidth: 5
         });
     });
     
