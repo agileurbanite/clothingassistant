@@ -68,8 +68,7 @@ $(document).ready(function(){
                     $type_filters = $('#type_filter');
                     $type_filters.html('');
                     $(res.result.availableTypes).each( function(k,v){
-                        html = '<a href="#">' + v + '</a> | ';
-                        $type_filters.append(html);
+                        add_type_filter(v);
                     });
                 }, 'json');
             }
@@ -121,8 +120,7 @@ $(document).ready(function(){
                     $type_filters = $('#type_filter');
                     $type_filters.html('');
                     $(res.result.availableTypes).each( function(k,v){
-                        html = '<a href="#">' + v + '</a> | ';
-                        $type_filters.append(html);
+                        add_filter_type(v);
                     });
                 }, 'json');
             }
@@ -244,8 +242,12 @@ function update_products(){
 }
 
 function add_brand(brand){
-    console.log(brand);
     $active_filters = $('#active-filters');
     html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
     $active_filters.append(html);
+}
+
+function add_filter_type(type){
+    html = '<a href="#">' + type + '</a>';
+    $type_filters.append(html);
 }
