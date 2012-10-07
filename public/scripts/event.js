@@ -78,11 +78,6 @@ $(document).ready(function(){
             }
         });
     });
-
-    $('#type_filter a').on('click', function(e) {
-        $('#type_filter a').removeClass('hit');
-        $(this).addClass('hit');
-    });
     
     // click handler to set womens styles
     $('#womens-styles').delegate('li', 'click', function(){
@@ -122,9 +117,11 @@ $(document).ready(function(){
         //click handler to set user type
         $('#type_filter').delegate('a', 'click', function(e){
             e.preventDefault(); 
-           $this = $(this);
-           $.post('/api/set-user-type', {type: $this.text()}, function(res){
-               update_products();
+            $this = $(this);
+            $('#type_filter a').removeClass('hit');
+            $this.addClass('hit');
+            $.post('/api/set-user-type', {type: $this.text()}, function(res){
+                update_products();
            });
         });
     });
@@ -188,7 +185,7 @@ $(document).ready(function(){
     $('#products').on('click', '.like-button', function(e){
        e.preventDefault();
        var $this = $(this);
-       $this.toggleClass('hit');
+       $this.addClass('hit');
        var $rating = $this.parent().find('.current-rating');
        prod_id = $this.attr('data-prod_id');
        

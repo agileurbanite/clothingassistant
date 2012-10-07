@@ -4,6 +4,10 @@ font-family:'Rockwell W01 Bold';
 font-family:'Rockwell W01';
 
 */
+:focus, a:active {
+  -moz-outline-style: none;
+  outline: none;
+}
 .clear {
 	clear: both;
 }
@@ -42,7 +46,9 @@ header {
 #products {
 	list-style-type: none;
 	padding: 0;
-	margin: 20px 10px;
+	margin: 20px auto;
+	width: 950px;
+	padding-left: 10px;
 }
 #products li {
 	padding: 0;
@@ -75,6 +81,7 @@ header {
 	color: white;
 	font-weight: bold;
 	padding: 7px 15px 7px 5px;
+	font-family: 'Rockwell W01';
 }
 .rating {
 	position: absolute;
@@ -316,7 +323,7 @@ h1 {
 	cursor: pointer;
 }
 #active-filters li:hover {
-	background: #333;
+	background: #555;
 }
 #search {
 	float: right;
@@ -336,6 +343,7 @@ h1 {
 	padding-left: 3px;
 	padding-right: 3px;
 	width: 200px;
+	box-shadow: inset 1px 1px 1px #ccc;
 }
 #search-btn {
 	background: url(/img/add-button.png) 0 0 no-repeat;
@@ -379,7 +387,7 @@ h1 {
 	padding: 0 6px;
 	font-size: 14px;
 }
-#type_filter a:hover, #type-filter a.hit {
+#type_filter a:hover, #type_filter a.hit {
 	color: #F47D31;
 }
 #type_filter a:last-child {
