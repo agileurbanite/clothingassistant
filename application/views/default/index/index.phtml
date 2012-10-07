@@ -26,7 +26,7 @@
 	</div>
 </div><!--#search-->
 <div class="container">
-	<div id="type_filter">
+	<div id="type_filter"><a href="#">All</a>
         <?php foreach($this->user['availableTypes'] as $type){ ?>
         <a href="#"><?php echo $type; ?></a>
         <?  } ?>
@@ -131,6 +131,7 @@
                 $container.masonry('reload').css({visibility:'visible'});
                 $('#styles-btn').show();
                 $('#back-btn').removeClass('hide');
+                $('#type_filter').show();
              });
          });
      }
