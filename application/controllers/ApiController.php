@@ -16,9 +16,14 @@ class ApiController extends My_Controller {
      */
     public function getBrandsAction(){
         $brands = Jien::model('Product')->select("distinct(brand)")->get()->rows();
-        
+        $brands_arr = array();
+
+        foreach($brands as $brand){
+            $brands_arr[] = $brand['brand'];
+        }
+
         if($brands){
-            $this->json($brands, 200, 'brands returend');
+            $this->json($brands_arr, 200, 'brands returend');
         }else{
             $this->json(false, 400, 'no brands available, contact jamesL');
         }

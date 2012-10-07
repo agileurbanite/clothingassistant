@@ -1,4 +1,35 @@
 $(document).ready(function(){
+
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+
+    $( "#query" ).autocomplete({
+            source: availableTags
+    });
+
+
     // applying masonry to products grid
     var $container = $('#products');
     $container.imagesLoaded(function(){
