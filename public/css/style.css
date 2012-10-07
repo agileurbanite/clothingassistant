@@ -117,11 +117,13 @@ button.orange {
 .style-choices {
 	list-style-type: none;
 	margin: 0 auto;
+	text-align: center;
+	display: none;
 }
 .style-choices li {
 	margin: 0;
 	padding: 0;
-	float: left;
+	display: inline-block;
 	position: relative;
 	text-align: center;
 	width: 170px;
