@@ -19,6 +19,11 @@ a {
 header {
 
 }
+#splash {
+	width: 100%;
+	height: 1018px;
+	background: url(/img/splash-bg.jpg) center center no-repeat;
+}
 #logo {
 	display: block;
 }
