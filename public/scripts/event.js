@@ -149,21 +149,6 @@ $(document).ready(function(){
         });
     });
     
-<<<<<<< HEAD
-    // get brands
-    var brandsList = '';
-    $.get('api/get-brands', function(res) {
-        brandsList = res.result;
-    }, 'json');
-=======
-    // methods for autocomplete
-    function split( val ) {
-            return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-            return split( term ).pop();
-    }
-    
     // add autocomplete to search
     function log( message ) {
             $( "<div/>" ).text( message ).prependTo( "#log" );
@@ -171,7 +156,6 @@ $(document).ready(function(){
     }
 
     $.get('/api/get-brands', function(res){
-        console.log(res);
         $( "#query" ).autocomplete({
             source: res,
             minLength: 2,
@@ -182,5 +166,4 @@ $(document).ready(function(){
             }
         });
     },'json');
->>>>>>> a94b792ead7f98c3bbf8e27f3a2396d14bda339f
 });
