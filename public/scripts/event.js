@@ -55,6 +55,7 @@ $(document).ready(function(){
                 $('#mens-styles').hide();
                 // get products based on selected styles
                 $.get('api/products', function(res){
+                    console.log(res.result.html);
                    $('#products').html(res.result.html).show().masonry('reload');
                    $('#search-bar').show();
                 });
