@@ -1,0 +1,104 @@
+<?php
+$params = $this->data;
+?>
+<div class="left" style="width:20%;">
+
+	<div class="content">
+
+		<div>
+			<h4><a href="/admin/categories"><-- Back to categories</a></h4>
+		</div>
+
+		<div class="row">
+		  <div class="span10">
+		  	<ul class="content_menu menu">
+		  		<!-- <li><a href="#basic_info">Basic <?php echo strtolower($this->model); ?> info</a></li> -->
+		  	</ul>
+
+		  </div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="left">
+
+	<div class="content">
+
+		<div class="page-header">
+		  <h3>
+		  	<?php if($this->params('id')){ ?>
+		  		Update <?php echo strtolower($this->model); ?>
+		  	<?php }else { ?>
+		  		Add <?php echo strtolower($this->model); ?>
+		  	<?php } ?>
+		  </h3>
+		</div>
+
+		<div class="row">
+		  	<div class="span12">
+		  		<form class="trig_save" action="/admin/data" method="POST">
+		  			<input type="hidden" name="model" value="<?php echo $this->model; ?>">
+		  			<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
+
+			        <fieldset>
+
+						<legend><a name="basic_info"></a> Basic info</legend>
+                                                
+                                                <div class="clearfix">
+							<label for="xlInput">Price</label>
+							<div class="input">
+								<input class='large disabled' name='price' value="<?php echo $params['price']; ?>" type='text'>
+							</div>
+						</div>
+                                                
+                                                <div class="clearfix">
+							<label for="xlInput">Style</label>
+							<div class="input">
+								<input class='large disabled' name='style' value="<?php echo $params['style']; ?>" type='text'>
+							</div>
+						</div>
+                                                
+                                                <div class="clearfix">
+							<label for="xlInput">Price</label>
+							<div class="input">
+								<input class='large disabled' name='price' value="<?php echo $params['price']; ?>" type='text'>
+							</div>
+						</div>
+                                                
+						<div class="clearfix">
+							<label for="xlInput">Type</label>
+							<div class="input">
+								<input class='large disabled' name='type' value="<?php echo $params['type']; ?>" type='text'>
+							</div>
+						</div>
+                                                
+                                                <div class="clearfix">
+							<label for="xlInput">Brand</label>
+							<div class="input">
+								<input class='large disabled' name='brand' value="<?php echo $params['brand']; ?>" type='text'>
+							</div>
+						</div>
+                                                
+                                                <div class="clearfix">
+							<label for="xlInput">Image Url</label>
+							<div class="input">
+								<input class='large disabled' name='image_url' value="<?php echo $params['image_url']; ?>" type='text'>
+                                                                <br/><img style="width: 200px;" src="<?php echo $params['image_url']; ?>" />
+							</div>
+						</div>
+                                        </fieldset>
+
+			        <fieldset>
+			          <div class="actions">
+			            <input type="submit" class="btn primary" value="Save changes">&nbsp;<button type="reset" class="btn back">Cancel</button>
+			          </div>
+			        </fieldset>
+			      </form>
+		  	</div>
+		</div>
+
+	</div>
+
+</div>
