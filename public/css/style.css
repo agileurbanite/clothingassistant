@@ -13,6 +13,12 @@ body {
 	padding: 0;
 	margin: 0;
 }
+.indicator {
+    background: url(/img/ajax-loader.gif) center 200px no-repeat;
+    display: none;
+    height: 1018px;
+    width: 100%;
+}
 a {
 	text-decoration: none;
 }

@@ -87,9 +87,11 @@ $(document).ready(function(){
                 // get products based on selected styles
                 $.get('api/products', function(res){
                    var $container = $('#products');
-                   $container.html(res.result.html).show();
+                   $('.indicator').show();
+                   $container.html(res.result.html).show().css({visibility:'hidden'});
                    $container.imagesLoaded(function(){
-                       $container.masonry('reload');
+                       $('.indicator').hide();
+                       $container.masonry('reload').css({visibility:'visible'});
                    });
                    $('#search-bar').show();
                 });
@@ -113,9 +115,11 @@ $(document).ready(function(){
                 // get products based on selected styles
                 $.get('api/products', function(res){
                     var $container = $('#products');
-                    $container.html(res.result.html).show();
+                    $('.indicator').show();
+                    $container.html(res.result.html).show().css({visibility:'hidden'});
                    $container.imagesLoaded(function(){
-                       $container.masonry('reload');
+                       $('.indicator').hide();
+                       $container.masonry('reload').css({visibility:'visible'});
                    });
                     $('#search-bar').show();
                 });
@@ -145,14 +149,6 @@ $(document).ready(function(){
         });
     });
     
-    // methods for autocomplete
-    function split( val ) {
-            return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-            return split( term ).pop();
-    }
-    
     // add autocomplete to search
     function log( message ) {
             $( "<div/>" ).text( message ).prependTo( "#log" );
@@ -160,7 +156,6 @@ $(document).ready(function(){
     }
 
     $.get('/api/get-brands', function(res){
-        console.log(res);
         $( "#query" ).autocomplete({
             source: res,
             minLength: 2,
