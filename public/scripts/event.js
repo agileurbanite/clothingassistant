@@ -151,4 +151,25 @@ $(document).ready(function(){
         }
         $(this).hide();
     });
+    
+    // add brands click handler
+    $('#search-btn').click(function(ev) {
+        ev.preventDefault();
+        var brand = $(this).siblings('#query').val();
+        $.ajax({
+            url: 'api/add-user-brand',
+            type: 'post',
+            dataType: 'json',
+            data: {'brand':brand}
+        }).done(function(response) {
+            if(response){
+               $('#active-filters').append('<li class="' + brand + '"><span class="close"></span>' + brand + '</li>');
+               $('#query').val('');
+                // get new products
+               $.get('api/products', function(res){
+                   $('#products').html(res.result.html).show().masonry('reload');
+               });
+            }
+        });
+    });
 });
