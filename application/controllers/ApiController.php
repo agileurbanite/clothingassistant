@@ -7,7 +7,7 @@ class ApiController extends My_Controller {
     	parent::init();
 
         $this->layout('blank');
-        
+        $this->_helper->viewRenderer->setNoRender(true);
     }
     
     /**
@@ -160,4 +160,12 @@ class ApiController extends My_Controller {
             $this->json(false, 400, 'type param not sent');
         }
     } 
+    
+    public function addLikeAction(){
+        $prod_id = $this->params('prod_id');
+        
+        if($prod_id){
+            Jien::model('Product')->addLike($prod_id);
+        }
+    }
 }

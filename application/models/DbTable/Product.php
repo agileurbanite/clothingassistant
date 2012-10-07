@@ -36,4 +36,8 @@ class Application_Model_DbTable_Product extends My_Model
         $this->andWhere("type='$type'");
         return $this;
     }
+    
+    public function addLike($product_id){
+        Jien::db()->fetchAll("UPDATE Product SET like_count=like_count+1 WHERE product_id = $product_id");
+    }
 }
