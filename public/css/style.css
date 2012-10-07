@@ -347,7 +347,7 @@ h1 {
 }
 #styles-btn {
 	background: url(/img/styles-btn.png) 0 0 no-repeat;
-	width: 41Fpx;
+	width: 41px;
 	height: 124px;
 	position: fixed;
 	left:0;
@@ -357,9 +357,11 @@ h1 {
 	margin-left: -5px;
 	z-index: 90;
 	display: none;
+	opacity: 0.8;
 }
 #styles-btn:hover {
 	margin-left: 0;
+	opacity: 1.0;
 }
 /* override ui style */
 .ui-menu {
@@ -396,10 +398,18 @@ h1 {
 	position: absolute;
 	top: 18px;
 	left: 12px;
-	display: none;
 	cursor: pointer;
+	display: block;
 }
 #back-btn:hover {
 	background: url(/img/back.png) -100px 0 no-repeat;
 	color: white;
+}
+#back-btn.hide {
+	display: none;
+}
+@media only screen and (max-width: 1150px) {
+	#back-btn {
+		display: none;
+	}
 }

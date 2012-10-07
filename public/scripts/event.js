@@ -23,7 +23,7 @@ $(document).ready(function(){
        $('#search-bar').hide();
        $('#splash').hide();
        $('#styles-btn').addClass('female-style').hide();
-       $('#back-btn').addClass('female-style').addClass('hide')
+       $('#back-btn').addClass('female-style').addClass('hide');
     });
     
     // click handler for male gender screen
@@ -49,6 +49,8 @@ $(document).ready(function(){
         $('#search-bar').show();
         $('.indicator').show();
         $('#type_filter').show();
+        $('#styles-btn').show();
+        $('#back-btn').removeClass('hide');
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -87,8 +89,6 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn').show();
-                       $('#back-btn').removeClass('hide');
                     });
                 });
            });
@@ -101,8 +101,8 @@ $(document).ready(function(){
         $('#search-bar').show();
         $('.indicator').show();
         $('#type_filter').show();
-        $('#styles-btn').hide();
-        $('#back-btn').addClass('hide');
+        $('#styles-btn').show();
+        $('#back-btn').removeClass('hide');
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -141,8 +141,6 @@ $(document).ready(function(){
                     $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                       $('#styles-btn').show();
-                       $('#back-btn').removeClass('hide');
                     });
                 });
            });
@@ -204,14 +202,11 @@ $(document).ready(function(){
         }
         $(this).hide();
     });
-
-    $('.like-button').click(function(e){
-        $(this).toggleClass('hit');
-    });
     
     $('#products').on('click', '.like-button', function(e){
        e.preventDefault();
        var $this = $(this);
+       $this.toggleClass('hit');
        var $rating = $this.parent().find('.current-rating');
        prod_id = $this.attr('data-prod_id');
        
