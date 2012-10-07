@@ -4,6 +4,10 @@ font-family:'Rockwell W01 Bold';
 font-family:'Rockwell W01';
 
 */
+:focus, a:active {
+  -moz-outline-style: none;
+  outline: none;
+}
 .clear {
 	clear: both;
 }
@@ -379,7 +383,7 @@ h1 {
 	padding: 0 6px;
 	font-size: 14px;
 }
-#type_filter a:hover, #type-filter a.hit {
+#type_filter a:hover, #type_filter a.hit {
 	color: #F47D31;
 }
 #type_filter a:last-child {
