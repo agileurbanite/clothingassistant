@@ -117,6 +117,7 @@ $(document).ready(function(){
         
         //click handler to set user type
         $('#type_filter').delegate('a', 'click', function(e){
+            alert('test');
             e.preventDefault(); 
             $this = $(this);
             $('#type_filter a').removeClass('hit');
