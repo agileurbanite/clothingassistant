@@ -76,6 +76,27 @@ $(document).ready(function(){
                 });
             }
         });
-    })
+    });
     
+    // click handler to remove brands
+    $('#active-filters').delegate('li', 'click', function(){
+        var self = $(this);
+        var brand = $(this).html().substr(27);
+        $.ajax({
+            url: 'api/remove-user-brand',
+            type: 'post',
+            dataType: 'json',
+            data: {'brand':brand}
+        }).done(function(response){
+           if(response){
+               // remove brand
+               self.remove();
+               
+               // get new products
+               $.get('api/products', function(res){
+                   $('#products').html(res.result.html).show().masonry('reload');
+               });
+           }
+        });
+    });
 });
