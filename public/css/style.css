@@ -86,6 +86,16 @@ header {
 	width: 100%;
 	height: 100%;
 }
+#products li .brand-prod-name {
+	font-size: 12px;
+	color: #555;
+	position: absolute;
+	bottom: 30px;
+	left: 9px;
+	z-index: 3;
+	text-shadow: 0.5px 0.5px black;
+	font-weight: bold;
+}
 #products li .item-overlay .like-buttons {
 
 }
@@ -126,6 +136,10 @@ button.like-button {
 	right: 4px;
 	bottom: 4px;
 	height: 16px;
+	cursor: pointer;
+}
+button.like-button:hover {
+	background: #D29234 url(/img/heart.png) 34px center no-repeat;
 }
 .style-choices {
 	list-style-type: none;
@@ -269,6 +283,7 @@ h1 {
 	padding: 4px 6px 4px 6px;
 	color: white;
 	font-size: 11px;
+	cursor: pointer;
 }
 #active-filters li span.close {
 	display: block;
@@ -278,6 +293,9 @@ h1 {
 	float: left;
 	margin-right: 3px;
 	cursor: pointer;
+}
+#active-filters li:hover {
+	background: #333;
 }
 #search {
 	float: right;
@@ -294,6 +312,8 @@ h1 {
 	float: left;
 	height: 20px;
 	margin-right: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 #search-btn {
 	background: url(/img/add-button.png) 0 0 no-repeat;
