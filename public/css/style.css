@@ -284,6 +284,9 @@ h1 {
 #header-menu a {
 	color: white;
 }
+#header-menu a:hover {
+	color: #FAAF3E;
+}
 #search-bar {
 	background: url(/img/search-bg.png) 0 0 repeat-x;
 	height: 28px;
@@ -381,4 +384,22 @@ h1 {
 }
 #type_filter a:first-child {
 	padding-left: 0;
+}
+#back-btn {
+	background: url(/img/back.png) 0 0 no-repeat;
+	height: 17px;
+	padding: 3px 0 5px 30px;
+	font-family:'Rockwell W01';
+	font-size: 17px;
+	line-height: 17px;
+	color: #eee;
+	position: absolute;
+	top: 18px;
+	left: 12px;
+	display: none;
+	cursor: pointer;
+}
+#back-btn:hover {
+	background: url(/img/back.png) -100px 0 no-repeat;
+	color: white;
 }
