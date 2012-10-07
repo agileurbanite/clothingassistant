@@ -29,7 +29,7 @@
 	</div>
 </div><!--#search-->
 <div class="container">
-	<div id="type_filter">
+	<div id="type_filter"><a href="#">All</a>
         <?php foreach($this->user['availableTypes'] as $type){ ?>
         <a href="#"><?php echo $type; ?></a>
         <?  } ?>
@@ -123,7 +123,7 @@
         }
     }
 
-    app.init();
+    //app.init();
     
     function update_products(){
         $.get('api/products', function(res){
@@ -134,6 +134,7 @@
                 $container.masonry('reload').css({visibility:'visible'});
                 $('#styles-btn').show();
                 $('#back-btn').removeClass('hide');
+                $('#type_filter').show();
              });
          });
      }
