@@ -50,9 +50,8 @@ $(document).ready(function(){
                 // hide mens styles chooser
                 $('#mens-styles').hide();
                 // get products based on selected styles
-                $.get('api/get-products', function(res){
-                    console.log(res);
-                   $('#products').show(); 
+                $.get('api/products', function(res){
+                   $('#products').html(res.result.html).show().masonry('reload'); 
                 });
                 
             }
@@ -72,8 +71,8 @@ $(document).ready(function(){
                 // hide womens styles chooser
                 $('#womens-styles').hide();
                 // get products based on selected styles
-                $.get('api/get-products', function(res){
-                    $('#products').show();
+                $.get('api/products', function(res){
+                    $('#products').html(res.result.html).show().masonry('reload');
                 });
             }
         });
