@@ -445,7 +445,7 @@ a#facebook-icon {
 	background: url(/img/facebook_16.png) 0 0 no-repeat;
 	display: block;
 	float: right;
-	margin-left: 6px;
+	margin-left: 10px;
 	margin-top:-2px;
 }
 a#facebook-icon:hover {
