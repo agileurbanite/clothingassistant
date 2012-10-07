@@ -22,6 +22,7 @@ $(document).ready(function(){
        $('#womens-styles').show();
        $('#search-bar').hide();
        $('#splash').hide();
+       $('#styles-btn').addClass('female-style').hide();
     });
     
     // click handler for male gender screen
@@ -37,11 +38,13 @@ $(document).ready(function(){
         $('#mens-styles').show();
         $('#search-bar').hide();
         $('#splash').hide();
+        $('#styles-btn').addClass('male-style').hide();
     });
     
     // click handler to set mens styles
     $('#mens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
+        $('#search-bar').show();
         $('.indicator').show();
         $.ajax({
             url: 'api/set-user-style',
@@ -59,8 +62,8 @@ $(document).ready(function(){
                    $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
+                       $('#styles-btn').show();
                    });
-                   $('#search-bar').show();
                 });
                 
             }
@@ -70,6 +73,7 @@ $(document).ready(function(){
     // click handler to set womens styles
     $('#womens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
+        $('#search-bar').show();
         $('.indicator').show();
         $.ajax({
             url: 'api/set-user-style',
@@ -84,11 +88,11 @@ $(document).ready(function(){
                 $.get('api/products', function(res){
                     var $container = $('#products');
                     $container.html(res.result.html).show().css({visibility:'hidden'});
-                   $container.imagesLoaded(function(){
+                    $container.imagesLoaded(function(){
                        $('.indicator').hide();
                        $container.masonry('reload').css({visibility:'visible'});
-                   });
-                    $('#search-bar').show();
+                       $('#styles-btn').show();
+                    });
                 });
             }
         });
@@ -133,4 +137,18 @@ $(document).ready(function(){
             }
         });
     },'json');
+    
+    // styles button click handler
+    $('#styles-btn').click(function() {
+        $('#products').hide();
+        $('#womens-styles').show();
+        if($(this).hasClass('female-style')){
+            $('#male-styles').hide();
+            $('#womens-styles').show();
+        } else if($(this).hasClass('male-style')) {
+            $('#womens-styles').hide();
+            $('#mens-styles').show();
+        }
+        $(this).hide();
+    });
 });
