@@ -1,35 +1,4 @@
 $(document).ready(function(){
-
-    var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-    ];
-
-    $( "#query" ).autocomplete({
-            source: availableTags
-    });
-
-
     // applying masonry to products grid
     var $container = $('#products');
     $container.imagesLoaded(function(){
@@ -47,13 +16,12 @@ $(document).ready(function(){
             type: 'post',
             dataType: 'json',
             data: {'gender':'f'}
-        }).done(function(response) {
-           $('#lightbox-gender, #dimmer').hide();
-           $('#products').hide();
-           $('#womens-styles').show();
-           $('#search-bar').hide();
-           $('#splash').hide();
         });
+       $('#lightbox-gender, #dimmer').hide();
+       $('#products').hide();
+       $('#womens-styles').show();
+       $('#search-bar').hide();
+       $('#splash').hide();
     });
     
     // click handler for male gender screen
@@ -63,18 +31,18 @@ $(document).ready(function(){
             type: 'post',
             dataType: 'json',
             data: {'gender':'m'}
-        }).done(function(response) {
-           $('#lightbox-gender, #dimmer').hide(); 
-           $('#products').hide();
-           $('#mens-styles').show();
-           $('#search-bar').hide();
-           $('#splash').hide();
         });
+        $('#lightbox-gender, #dimmer').hide(); 
+        $('#products').hide();
+        $('#mens-styles').show();
+        $('#search-bar').hide();
+        $('#splash').hide();
     });
     
     // click handler to set mens styles
     $('#mens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
+        $('.indicator').show();
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -87,7 +55,6 @@ $(document).ready(function(){
                 // get products based on selected styles
                 $.get('api/products', function(res){
                    var $container = $('#products');
-                   $('.indicator').show();
                    $container.html(res.result.html).show().css({visibility:'hidden'});
                    $container.imagesLoaded(function(){
                        $('.indicator').hide();
@@ -103,6 +70,7 @@ $(document).ready(function(){
     // click handler to set womens styles
     $('#womens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
+        $('.indicator').show();
         $.ajax({
             url: 'api/set-user-style',
             type: 'post',
@@ -115,7 +83,6 @@ $(document).ready(function(){
                 // get products based on selected styles
                 $.get('api/products', function(res){
                     var $container = $('#products');
-                    $('.indicator').show();
                     $container.html(res.result.html).show().css({visibility:'hidden'});
                    $container.imagesLoaded(function(){
                        $('.indicator').hide();
