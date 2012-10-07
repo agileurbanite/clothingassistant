@@ -55,8 +55,11 @@ $(document).ready(function(){
                 $('#mens-styles').hide();
                 // get products based on selected styles
                 $.get('api/products', function(res){
-                    console.log(res.result.html);
-                   $('#products').html(res.result.html).show().masonry('reload');
+                   var $container = $('#products');
+                   $container.html(res.result.html).show();
+                   $container.imagesLoaded(function(){
+                       $container.masonry('reload');
+                   });
                    $('#search-bar').show();
                 });
                 
@@ -78,7 +81,11 @@ $(document).ready(function(){
                 $('#womens-styles').hide();
                 // get products based on selected styles
                 $.get('api/products', function(res){
-                    $('#products').html(res.result.html).show().masonry('reload');
+                    var $container = $('#products');
+                    $container.html(res.result.html).show();
+                   $container.imagesLoaded(function(){
+                       $container.masonry('reload');
+                   });
                     $('#search-bar').show();
                 });
             }
@@ -116,37 +123,18 @@ $(document).ready(function(){
     }
     
     // add autocomplete to search
-    $('#query').bind('keydown', function(event){
-        if ( event.keyCode === $.ui.keyCode.TAB && $( this ).data( "autocomplete" ).menu.active ) {
-            event.preventDefault();
-        }
-    }).autocomplete({
-            source: function( request, response ) {
-                    $.getJSON( "api/get-brands", {
-                            term: extractLast( request.term )
-                    }, response );
-            },
-            search: function() {
-                    // custom minLength
-                    var term = extractLast( this.value );
-                    if ( term.length < 2 ) {
-                            return false;
-                    }
-            },
-            focus: function() {
-                    // prevent value inserted on focus
-                    return false;
-            },
+    function log( message ) {
+            $( "<div/>" ).text( message ).prependTo( "#log" );
+            $( "#log" ).scrollTop( 0 );
+    }
+
+    $( "#query" ).autocomplete({
+            source: "api/get-brands",
+            minLength: 2,
             select: function( event, ui ) {
-                    var terms = split( this.value );
-                    // remove the current input
-                    terms.pop();
-                    // add the selected item
-                    terms.push( ui.item.value );
-                    // add placeholder to get the comma-and-space at the end
-                    terms.push( "" );
-                    this.value = terms.join( ", " );
-                    return false;
+                    log( ui.item ?
+                            "Selected: " + ui.item.value + " aka " + ui.item.id :
+                            "Nothing selected, input was " + this.value );
             }
     });
 });
