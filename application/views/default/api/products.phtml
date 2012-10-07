@@ -1,6 +1,6 @@
 <?php foreach($this->products as $product){ ?>
 	<li class="col2">
-                <a href="#" class="item" target="_blank">
+                <a href="<?php echo $product['product_url']; ?>" class="item" target="_blank">
                         <img src="<?php echo $product['image_url']; ?>" alt="" />
                         <div class="price">$10</div>
                         <div class="rating up">33</div>
