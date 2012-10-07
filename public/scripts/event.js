@@ -159,13 +159,16 @@ $(document).ready(function(){
             $( "#log" ).scrollTop( 0 );
     }
 
-    $( "#query" ).autocomplete({
-            source: "api/get-brands",
+    $.get('/api/get-brands', function(res){
+        console.log(res);
+        $( "#query" ).autocomplete({
+            source: res,
             minLength: 2,
             select: function( event, ui ) {
                     log( ui.item ?
                             "Selected: " + ui.item.value + " aka " + ui.item.id :
                             "Nothing selected, input was " + this.value );
             }
-    });
+        });
+    },'json');
 });
