@@ -10,9 +10,9 @@
 <div id="search-bar">
 	<div class="container">
 		<ul id="active-filters">
-			<li><span class="close"></span>Nike</li>
-			<li><span class="close"></span>J Crew</li>
-			<li><span class="close"></span>Banana Republic</li>
+                    <?php foreach($this->users['brands'] as $brand){ ?>
+			<li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li>
+                    <? } ?>
 		</ul>
 		<div id="search" class="ui-widget">
 			<form>

@@ -41,6 +41,10 @@ class ApiController extends My_Controller {
             $model->brands($user['brands']);
         }
         
+        if( !empty($user['style']) ){
+            $model->style($user['style']);
+        }
+        
         $this->view->products = $products = $model->get()->rows();
         
         $html = $this->view->render('api/products.phtml');
