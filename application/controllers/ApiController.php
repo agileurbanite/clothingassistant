@@ -54,7 +54,7 @@ class ApiController extends My_Controller {
             $model->type($user['type']);
         }
         
-        $this->view->products = $products = $model->get()->rows();
+        $this->view->products = $products = $model->orderBy('like_count DESC')->get()->rows();
         
         $html = $this->view->render('api/products.phtml');
         
