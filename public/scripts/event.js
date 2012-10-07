@@ -20,6 +20,7 @@ $(document).ready(function(){
            $('#lightbox-gender, #dimmer').hide();
            $('#products').hide();
            $('#womens-styles').show();
+           $('#search-bar').hide();
         });
     });
     
@@ -34,6 +35,7 @@ $(document).ready(function(){
            $('#lightbox-gender, #dimmer').hide(); 
            $('#products').hide();
            $('#mens-styles').show();
+           $('#search-bar').hide();
         });
     });
     
