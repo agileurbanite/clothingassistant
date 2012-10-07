@@ -2,8 +2,12 @@
 	<div class="container">
 		<a id="logo" href="/"></a>
 		<div id="header-menu">
+                    <?php if($this->users['member'] != 1){ ?>
                         <a href="https://www.facebook.com/dialog/oauth?client_id=<?php echo FACEBOOK_APPID; ?>&redirect_uri=<?php echo FACEBOOK_REDIRECTURI;?>&scope=<?php echo FACEBOOK_SCOPE; ?>"><strong>Login / Register</strong></a><br /><br />
-			<a href="#">About</a> &middot;&nbsp; <a href="#">My Profile</a> &middot;&nbsp; <a href="#">My Wishlist</a>
+                    <?}else{?>
+                        <a href="/user/logout">Logout</a><br><br>
+                    <?}?>
+                    <a href="#">About</a> &middot;&nbsp; <a href="#">My Profile</a> &middot;&nbsp; <a href="#">My Wishlist</a>
 		</div>
 	</div>
 </header>
@@ -103,7 +107,31 @@
 <script>
     
     var app = {
-        user: <?php echo json_encode($_SESSION['user']); ?>
+        user: <?php echo json_encode($_SESSION['user']); ?>,
+        init: function(){
+            if(typeof this.user.gender != 'undefined' && typeof this.user.style != 'undefined'){
+                $('#dimmer').hide();
+                $('#lightbox-gender').hide();
+                $('#splash').hide();
+                $('.indicator').show();
+                update_products();
+            }else{
+            }
+        }
     }
 
+    app.init();
+    
+    function update_products(){
+        $.get('api/products', function(res){
+             var $container = $('#products');
+             $container.html(res.result.html).show().css({visibility:'hidden'});
+             $container.imagesLoaded(function(){
+                $('.indicator').hide();
+                $container.masonry('reload').css({visibility:'visible'});
+                $('#styles-btn').show();
+                $('#back-btn').removeClass('hide');
+             });
+         });
+     }
 </script>

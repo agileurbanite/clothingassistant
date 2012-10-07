@@ -12,6 +12,15 @@ class My_Controller extends Jien_Controller {
 
     	// set title
     	$this->view->title = TITLE;
+        
+        $user = $this->getUser();
+        if($user){
+            if( !empty($user['style']) ){
+                if( !isset($user['brands']) ){
+                    $this->setUserStyle($user['style']);
+                }
+            }
+        }
     }
 
     public function getUser(){

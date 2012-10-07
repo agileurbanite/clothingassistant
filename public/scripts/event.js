@@ -230,19 +230,6 @@ $(document).ready(function(){
     });*/
 });
 
-function update_products(){
-   $.get('api/products', function(res){
-        var $container = $('#products');
-        $container.html(res.result.html).show().css({visibility:'hidden'});
-        $container.imagesLoaded(function(){
-           $('.indicator').hide();
-           $container.masonry('reload').css({visibility:'visible'});
-           $('#styles-btn').show();
-           $('#back-btn').removeClass('hide');
-        });
-    });
-}
-
 function add_brand(brand){
     $active_filters = $('#active-filters');
     html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
