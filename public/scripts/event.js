@@ -95,7 +95,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#type_filter a').on('click', function(e)) {
+    $('#type_filter a').on('click', function(e) {
         $('#type_filter a').removeClass('hit');
         $(this).addClass('hit');
     });
