@@ -17,6 +17,8 @@ $(document).ready(function(){
             data: {'gender':'f'}
         }).done(function(response) {
            $('#lightbox-gender, #dimmer').hide();
+           $('#products').hide();
+           $('#womens-styles').show();
         });
     });
     
@@ -29,6 +31,12 @@ $(document).ready(function(){
             data: {'gender':'m'}
         }).done(function(response) {
            $('#lightbox-gender, #dimmer').hide(); 
+           $('#products').hide();
+           $('#mens-styles').show();
         });
     });
+    
+    // set styles
+    
+    
 });
