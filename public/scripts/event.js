@@ -1,4 +1,35 @@
 $(document).ready(function(){
+
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+
+    $( "#query" ).autocomplete({
+            source: availableTags
+    });
+
+
     // applying masonry to products grid
     var $container = $('#products');
     $container.imagesLoaded(function(){
@@ -118,9 +149,38 @@ $(document).ready(function(){
         });
     });
     
+<<<<<<< HEAD
     // get brands
     var brandsList = '';
     $.get('api/get-brands', function(res) {
         brandsList = res.result;
     }, 'json');
+=======
+    // methods for autocomplete
+    function split( val ) {
+            return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+            return split( term ).pop();
+    }
+    
+    // add autocomplete to search
+    function log( message ) {
+            $( "<div/>" ).text( message ).prependTo( "#log" );
+            $( "#log" ).scrollTop( 0 );
+    }
+
+    $.get('/api/get-brands', function(res){
+        console.log(res);
+        $( "#query" ).autocomplete({
+            source: res,
+            minLength: 2,
+            select: function( event, ui ) {
+                    log( ui.item ?
+                            "Selected: " + ui.item.value + " aka " + ui.item.id :
+                            "Nothing selected, input was " + this.value );
+            }
+        });
+    },'json');
+>>>>>>> a94b792ead7f98c3bbf8e27f3a2396d14bda339f
 });

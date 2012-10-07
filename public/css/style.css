@@ -47,6 +47,9 @@ header {
 	height: auto;
 	margin-bottom: 10px;
 }
+#products li:hover a.item {
+	border: 1px solid #999;
+}
 #products li a.item {
 	display: block;
 	position: relative;
@@ -136,7 +139,7 @@ header {
 .col5 img { max-width: 480px; }
 
 button.like-button {
-	background: #FBAF3F url(/img/heart.png) 34px center no-repeat;
+	background: #FBAF3F url(/img/heart.png) 36px center no-repeat;
 	color: white;
 	font-size: 9px;
 	text-align: center;
@@ -151,7 +154,7 @@ button.like-button {
 	cursor: pointer;
 }
 button.like-button:hover {
-	background: #D29234 url(/img/heart.png) 34px center no-repeat;
+	background: #D29234 url(/img/heart.png) 36px center no-repeat;
 }
 .style-choices {
 	list-style-type: none;
