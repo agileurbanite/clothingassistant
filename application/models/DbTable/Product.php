@@ -28,7 +28,9 @@ class Application_Model_DbTable_Product extends My_Model
     }
     
     public function style($style){
-        $this->andWhere("style like '%$style%'");
+        if($style != 'all'){
+            $this->andWhere("style like '%$style%'");
+        }
         return $this;
     }
     
