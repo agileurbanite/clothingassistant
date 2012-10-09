@@ -46,7 +46,7 @@ $(document).ready(function(){
         $(document).endlessScroll({
           inflowPixels: 100,
           fireDelay: true,
-          ceaseFireOnEmpty: false,
+          ceaseFireOnEmpty: true,
           callback: function(i, x, direction) {
             if (direction == 'prev') {
                 return false;
