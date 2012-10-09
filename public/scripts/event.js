@@ -28,10 +28,12 @@ $(document).ready(function(){
             data: { 'page': productPage },
             success: function(res){
                 var $container = $('#products');
-                $container.append(res.result.html).show().css({visibility:'hidden'});
+                //$container.append(res.result.html).show().css({visibility:'hidden'});
+                $html = $(res.result.html);
+                $container.append($html);
                  $container.imagesLoaded(function(){
                     $('.indicator').hide();
-                    $container.masonry('reload').css({visibility:'visible'});
+                    $container.masonry('appended', $html);
                     $('#styles-btn').show();
                     $('#back-btn').removeClass('hide');
                     $('#type_filter').show();
