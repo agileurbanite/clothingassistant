@@ -249,6 +249,7 @@ $(document).ready(function(){
         $('#lightbox-product,#dimmer').hide();
     });
 
+/* disabled till we polish the popup
     $('#products').on('click', '.item', function(e){
         link = $(this).attr('href');
         img = $(this).find('img').attr('src');
@@ -262,7 +263,7 @@ $(document).ready(function(){
         changeCommentsUrl(link);
         e.preventDefault();
     });
-
+*/
     $('#ls-close').on('click', function(e){
         $('#lightbox-subscribe,#dimmer').hide();
     });
