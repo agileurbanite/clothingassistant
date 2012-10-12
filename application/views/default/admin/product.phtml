@@ -6,18 +6,8 @@ $params = $this->data;
 	<div class="content">
 
 		<div>
-			<h4><a href="/admin/categories"><-- Back to categories</a></h4>
+			<h4><a href="/admin/products"><-- Back to products</a></h4>
 		</div>
-
-		<div class="row">
-		  <div class="span10">
-		  	<ul class="content_menu menu">
-		  		<!-- <li><a href="#basic_info">Basic <?php echo strtolower($this->model); ?> info</a></li> -->
-		  	</ul>
-
-		  </div>
-		</div>
-
 	</div>
 
 </div>
@@ -47,9 +37,9 @@ $params = $this->data;
 						<legend><a name="basic_info"></a> Basic info</legend>
                                                 
                                                 <div class="clearfix">
-							<label for="xlInput">Price</label>
+							<label for="xlInput">Style</label>
 							<div class="input">
-								<input class='large disabled' name='price' value="<?php echo $params['price']; ?>" type='text'>
+								<input class='large disabled' name='style' value="<?php echo $params['style']; ?>" type='text'>
 							</div>
 						</div>
                                                 
@@ -86,6 +76,12 @@ $params = $this->data;
 							<div class="input">
 								<input class='large disabled' name='image_url' value="<?php echo $params['image_url']; ?>" type='text'>
                                                                 <br/><img style="width: 200px;" src="<?php echo $params['image_url']; ?>" />
+							</div>
+						</div>
+                                                <div class="clearfix">
+							<label for="xlInput">Product Url</label>
+							<div class="input">
+								<input class='large disabled' name='image_url' value="<?php echo $params['product_url']; ?>" type='text'>
 							</div>
 						</div>
                                         </fieldset>
