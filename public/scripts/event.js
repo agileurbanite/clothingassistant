@@ -26,6 +26,7 @@ function update_products(){
          });
      });
  }
+
 $(document).ready(function(){
 
     // applying masonry to products grid
@@ -101,7 +102,7 @@ $(document).ready(function(){
                     $type_filters = $('#type_filter');
                     $type_filters.html('');
                     $(res.result.availableTypes).each( function(k,v){
-                        add_type_filter(v);
+                        add_filter_type(v);
                     });
                 }, 'json');
             }
