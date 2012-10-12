@@ -35,11 +35,17 @@ $params = $this->data;
 			        <fieldset>
 
 						<legend><a name="basic_info"></a> Basic info</legend>
+                                                <div class="clearfix">
+							<label for="xlInput">Gender</label>
+							<div class="input">
+								<input class='large disabled' name='gender' value="<?php echo $params['gender']; ?>" type='text'>
+							</div>
+						</div>
                                                 
                                                 <div class="clearfix">
 							<label for="xlInput">Theme</label>
 							<div class="input">
-								<input class='large disabled' name='style' value="<?php echo $params['theme']; ?>" type='text'>
+								<input class='large disabled' name='theme' value="<?php echo $params['theme']; ?>" type='text'>
 							</div>
 						</div>
                                                 
@@ -81,7 +87,7 @@ $params = $this->data;
                                                 <div class="clearfix">
 							<label for="xlInput">Product Url</label>
 							<div class="input">
-								<input class='large disabled' name='image_url' value="<?php echo $params['product_url']; ?>" type='text'>
+								<input class='large disabled' name='product_url' value="<?php echo $params['product_url']; ?>" type='text'>
 							</div>
 						</div>
                                         </fieldset>
