@@ -19,12 +19,6 @@ steal(
 	            var self = this;
 	            this.element.html(this.view('init',Assistant.Models.Product.findAll()));
 		},
-	        
-		'.destroy click': function( el ){
-			if(confirm("Are you sure you want to destroy?")){
-				el.closest('.product').model().destroy();
-			}
-		},
 		"{Assistant.Models.Product} destroyed" : function(Product, ev, product) {
 			product.elements(this.element).remove();
 		},
