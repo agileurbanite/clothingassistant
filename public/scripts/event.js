@@ -1,3 +1,32 @@
+var app = {
+    user: <?php echo json_encode($_SESSION['user']); ?>,
+    init: function(){
+        if(typeof this.user.gender != 'undefined' && typeof this.user.style != 'undefined'){
+            $('#dimmer').hide();
+            $('#lightbox-gender').hide();
+            $('#splash').hide();
+            $('.indicator').show();
+            update_products();
+        }else{
+        }
+    }
+}
+
+//app.init();
+function update_products(){
+    $.get('api/products', function(res){
+         var $container = $('#products');
+         $container.html(res.result.html).show().css({visibility:'hidden'});
+         $container.imagesLoaded(function(){
+            $('.indicator').hide();
+            $container.masonry('reload').css({visibility:'visible'});
+            $('#styles-btn').show();
+            $('#back-btn').removeClass('hide');
+            $('#type_filter').show();
+         });
+     });
+ }
+
 $(document).ready(function(){
 
     // applying masonry to products grid
@@ -73,7 +102,7 @@ $(document).ready(function(){
                     $type_filters = $('#type_filter');
                     $type_filters.html('');
                     $(res.result.availableTypes).each( function(k,v){
-                        add_type_filter(v);
+                        add_filter_type(v);
                     });
                 }, 'json');
             }

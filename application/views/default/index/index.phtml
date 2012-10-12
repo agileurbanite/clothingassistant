@@ -106,36 +106,7 @@
 <div id="dimmer"></div>
 <div id="styles-btn"></div>
 <div id="back-btn" class="hide">BACK</div>
-
-<script>
-    
-    var app = {
-        user: <?php echo json_encode($_SESSION['user']); ?>,
-        init: function(){
-            if(typeof this.user.gender != 'undefined' && typeof this.user.style != 'undefined'){
-                $('#dimmer').hide();
-                $('#lightbox-gender').hide();
-                $('#splash').hide();
-                $('.indicator').show();
-                update_products();
-            }else{
-            }
-        }
-    }
-
-    //app.init();
-    
-    function update_products(){
-        $.get('api/products', function(res){
-             var $container = $('#products');
-             $container.html(res.result.html).show().css({visibility:'hidden'});
-             $container.imagesLoaded(function(){
-                $('.indicator').hide();
-                $container.masonry('reload').css({visibility:'visible'});
-                $('#styles-btn').show();
-                $('#back-btn').removeClass('hide');
-                $('#type_filter').show();
-             });
-         });
-     }
-</script>
+<div class="container">
+	<div id="footer">
+		&copy; 2012 99styles. All rights reserved. 
+	</div>

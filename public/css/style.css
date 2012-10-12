@@ -452,3 +452,12 @@ a#facebook-icon {
 a#facebook-icon:hover {
 	background: url(/img/facebook_16.png) -16px 0 no-repeat;
 }
+#footer {
+	border-top: #eee solid 1px;
+	padding-top: 6px;
+	margin-bottom: 20px;
+	margin-top: 40px;
+	text-align: center;
+	font-size: 11px;
+	color: #666;
+}
