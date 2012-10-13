@@ -137,7 +137,9 @@ class AdminController extends My_Controller {
         
     	if($id){
     		$this->view->data = Jien::model($this->view->model)->get($id)->row();
-    	}
+    	}else{
+            $this->view->data = false;
+        }
     }
     
     public function contactsAction(){

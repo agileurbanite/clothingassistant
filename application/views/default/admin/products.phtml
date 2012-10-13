@@ -23,9 +23,10 @@
 			        <thead>
 			          <tr>
 			            <th class="header" rel="product.product_id">#</th>
+                                    <th class="header" rel="product.style">Theme</th>
+                                    <th class="header" rel="product.style">Style</th>
 			            <th class="header" rel="product.type">Type</th>
 			            <th class="header" rel="product.gender">Gender</th>
-			            <th class="header" rel="product.style">Style</th>
                                     <th class="header" rel="product.price">Price</th>
                                     <th class="header" rel="product.brand">Brand</th>
                                     <th class="header" rel="product.image_url">Image</th>
@@ -36,13 +37,14 @@
 			        <?php foreach($this->data->rows() AS $key=>$value){ ?>
 			        <tr>
 			            <td><?php echo $value['product_id']; ?></td>
+                                    <td><?php echo $value['theme']; ?></td>
+                                    <td><?php echo $value['style']; ?></td>
 			            <td><?php echo $value['type']; ?></td>
 			            <td><?php echo $value['gender']; ?></td>
-                                    <td><?php echo $value['style']; ?></td>
+                                    
                                     <td><?php echo $value['price']; ?></td>
                                     <td><?php echo $value['brand']; ?></td>
-                                    <td><img style="width: 200px" src="<?php echo $value['image_url']; ?>"/></td>
-			            <td><?php echo date("m/d/y", strtotime($value['created'])); ?></td>
+                                    <td><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></td>
 			            <td>
 			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>" class="btn blue">Edit</a>
 			            	<a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_delete" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Remove</a>
