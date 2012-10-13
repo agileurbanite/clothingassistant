@@ -38,6 +38,16 @@ class ApiController extends My_Controller {
         $user = $this->getUser();
         $code = 200;
         $model = Jien::model('Product');
+        $products_per_page = 30;
+        $page = $this->params('page');
+        $offet = $products_per_page * $page;
+        
+        if(!$offset){
+            $offset = 30;
+        }
+        
+        $type = $this->params('type');
+        
         if( !empty($user['gender'])){
             $model->gender($user['gender']);
         }
@@ -54,14 +64,20 @@ class ApiController extends My_Controller {
             $model->type($user['type']);
         }
         
-        $this->view->products = $products = $model->orderBy('like_count DESC')->get()->rows();
+        
+        
+        $this->view->products = $products = $model->orderBy('like_count DESC')->limit($products_per_page,$offset)->get()->rows();
         
         $html = $this->view->render('api/products.phtml');
         
         $res = array(
             'html' => $html,
             'products'=>$products,
-            'count'=> count($products)
+            'count'=> count($products),
+            'wtf' => array(
+                'offset' => $offset,
+                'products_per_page' => $products_per_page
+            )
         );
         
         $this->json( $res, $code, 'products returned'  );
