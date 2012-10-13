@@ -2,7 +2,26 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 
-	protected function _initView(){
+        protected function _initRouter(){
+		if (PHP_SAPI == 'cli')
+		{
+			$this->bootstrap ('frontcontroller');
+			$front = $this->getResource('frontcontroller');
+			$front->setRouter (new Application_Router_Cli ());
+			$front->setRequest (new Zend_Controller_Request_Simple ());
+		}
+	}
+        
+	protected function _initRoutes ()
+	{
+		$router = Zend_Controller_Front::getInstance ()->getRouter ();
+		if ($router instanceof Zend_Controller_Router_Rewrite)
+		{
+			// put your web-interface routes here, so they do not interfere
+		}
+	}	
+    
+        protected function _initView(){
 
 		// Initialize view
 		$view = new Zend_View();

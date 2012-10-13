@@ -43,7 +43,7 @@ class ApiController extends My_Controller {
         $offet = $products_per_page * $page;
         
         if(!$offset){
-            $offset = 30;
+            $offset = 0;
         }
         
         $type = $this->params('type');
