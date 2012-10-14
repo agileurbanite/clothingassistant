@@ -9,6 +9,25 @@ $(document).ready(function(){
             data: { 'page': productPage },
             success: function(res){
                 var $container = $('#products');
+                $container.html(res.result.html).show().css({visibility:'hidden'});
+                 $container.imagesLoaded(function(){
+                    $('.indicator').hide();
+                    $container.masonry('reload').css({visibility:'visible'});
+                    $('#styles-btn').show();
+                    $('#back-btn').removeClass('hide');
+                    $('#type_filter').show();
+                 });
+            }
+        });
+    }
+
+    function append_products(){
+        $.ajax({
+            url: 'api/products',
+            type: 'post',
+            data: { 'page': productPage },
+            success: function(res){
+                var $container = $('#products');
                 $container.append(res.result.html).show().css({visibility:'hidden'});
                  $container.imagesLoaded(function(){
                     $('.indicator').hide();
@@ -27,7 +46,7 @@ $(document).ready(function(){
           bottomPixels: 500,
           callback: function(i) {
             productPage++
-            update_products();
+            append_products();
           }
         });
     }
@@ -267,8 +286,6 @@ function add_brand(brand){
 }
 
 function add_filter_type(type, user_type){
-    console.log(type);
-    console.log(user_type);
     if(user_type == type){
         hit = 'class="hit"';
     }else{

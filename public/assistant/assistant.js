@@ -2,7 +2,7 @@ steal(
 	'css/style.css'
 	, 'css/ui-lightness/jquery-ui-1.8.24.custom.css'
 )
-.then('jquery/jquery-1.8.2.min.js')
+.then('jquery')
 .then('jquery/jquery-ui-1.8.24.custom.min.js'
 	, 'jquery/endlessScroll/jquery.endless-scroll.js'
 	, 'jquery/jquery.masonry.js')
