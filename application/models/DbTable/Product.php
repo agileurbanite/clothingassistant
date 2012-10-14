@@ -100,4 +100,14 @@ class Application_Model_DbTable_Product extends My_Model
             }
             return $this;
     }
+    
+    /*
+     * set product status to rejected
+     */
+    public function reject($id){
+        $data = array('product_id'=>$id, 'status'=>'rejected');
+        $update = Jien::model('Product')->save($data);
+        return $update;
+    }
+    
 }
