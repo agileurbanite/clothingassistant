@@ -11,10 +11,38 @@ class Application_Model_DbTable_Product extends My_Model
         return $this;
     }
     
+    /*
+     * Adds filter for approved products
+     */
     public function approved(){
         $this->andWhere("status = 'approved'");
         return $this;
     }
+    
+    /*
+     * Adds filter for rejected products
+     */
+    public function rejected(){
+        $this->andWhere("status = 'rejected'");
+        return $this;
+    }
+
+    /*
+     * Adds filter for pending products
+     */
+    public function pending(){
+        $this->andWhere("status = 'pending'");
+        return $this;
+    }
+    
+    /*
+     * Adds filter for new products
+     */
+    public function newP(){
+        $this->andWhere("status = 'new'");
+        return $this;
+    }
+   
     
     public function brands($brands){
         if( is_array($brands) ){
@@ -46,5 +74,30 @@ class Application_Model_DbTable_Product extends My_Model
     
     public function addLike($product_id){
         Jien::db()->fetchAll("UPDATE Product SET like_count=like_count+1 WHERE product_id = $product_id");
+    }
+    
+    // enables filtering
+    public function filter($filters = array()){
+            if(!empty($filters)){
+
+                    foreach($filters AS $filter=>$value){
+                            switch($filter){
+                                    case "order_by":
+                                            $sort_by = 'desc';
+                                            if(!empty($filters['sort_by'])){
+                                                    $sort_by = $filters['sort_by'];
+                                            }
+                                            $order_clause = $value . ' ' . $sort_by;
+                                            $this->orderBy($order_clause);
+                                    break;
+                                    case "gender":
+                                        if(!empty($value)){
+                                            $this->gender($value);
+                                        }
+                                    break;
+                            }
+                    }
+            }
+            return $this;
     }
 }

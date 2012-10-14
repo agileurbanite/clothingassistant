@@ -30,6 +30,7 @@ $params = $this->data;
 		  	<div class="span12">
 		  		<form class="trig_save" action="/admin/data" method="POST">
 		  			<input type="hidden" name="model" value="<?php echo $this->model; ?>">
+                                        <input type="hidden" name="redir" value="<?php echo $this->params('redir'); ?>">
 		  			<input type="hidden" name="id" value="<?php echo $this->params('id'); ?>">
 
 			        <fieldset>
@@ -88,6 +89,20 @@ $params = $this->data;
 							<label for="xlInput">Product Url</label>
 							<div class="input">
 								<input class='large disabled' name='product_url' value="<?php echo $params['product_url']; ?>" type='text'>
+							</div>
+						</div>
+                                                <div class="clearfix">
+							<label for="xlInput">Status</label>
+							<div class="input">
+                                                            <select name="status">
+                                                            <?php 
+                                                                $statuses = array("new", "pending", "rejected", "approved");
+                                                                foreach($statuses as $status){
+                                                            ?>
+                                                                <option value="<?php echo $status; ?>" <?php echo ($status == $params['status'] ? "selected": ''); ?>><?php echo $status; ?></option>
+                                                            <?  } ?>
+                                                            </select>
+								
 							</div>
 						</div>
                                         </fieldset>

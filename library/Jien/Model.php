@@ -376,7 +376,6 @@ class Jien_Model extends Zend_Db_Table_Abstract {
 							$this->andWhere("{$this->_alias}.category_id IN ({$in})");
 						}
 					break;
-
 				}
 			}
 		}

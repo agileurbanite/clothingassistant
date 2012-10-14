@@ -7,11 +7,22 @@
 
 		<div class="page-header">
 			<h3>
-		  		Listing all <?php echo $this->model; ?>s <small></small> <span class='right'><a href='/admin/<?php echo strtolower($this->model); ?>?type=<?php echo $this->params('type'); ?>'>Add a <?php echo strtolower($this->model); ?></a></span>
+		  		Listing '<?php echo ($this->filter? $this->filter: 'All');?>' <?php echo $this->model; ?>s <small></small> <span class='right'><a href='/admin/<?php echo strtolower($this->model); ?>?type=<?php echo $this->params('type'); ?>'>Add a <?php echo strtolower($this->model); ?></a></span>
 		  	</h3>
 		</div>
 
 		<div class="row">
+                    <div>
+                    <form id="filter" action="/admin/products/filter/<?php echo $this->filter; ?>">
+                        <select id="gender_filter" name="gender">
+                            <option value="">None</option>
+                            <option value="m" <?php echo ( $this->params('gender') == 'm' ? "selected" : ''); ?>>Male</option>
+                            <option value="f" <?php echo ( $this->params('gender') == 'f' ? "selected" : ''); ?>>Female</option>
+                        </select>
+                        <input type="submit" class="btn secondary" value="filter">
+                    </form>
+                        
+                    </div>
 		  	<div class="span12">
 		    	<?php echo $this->pager($this->data->pager(), 'partials/pager/text_only.phtml'); ?>
 		  	</div>
@@ -46,7 +57,7 @@
                                     <td><?php echo $value['brand']; ?></td>
                                     <td><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></td>
 			            <td>
-			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>" class="btn blue">Edit</a>
+			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>?redir=<?php echo $this->redir; ?>" class="btn blue">Edit</a>
 			            	<a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_delete" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Remove</a>
 			            </td>
 			          </tr>
@@ -65,3 +76,10 @@
 
 </div>
 
+<script>
+    $('#gender_filter').change( function(e){
+        $this = $(this);
+        gender = $this.val();
+        window.location('?gender=') 
+    });
+</script>

@@ -6,23 +6,27 @@
 
 	<!-- libs -->
 	<script src="/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/js/plugins/ui/jquery-ui.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="/js/plugins/ui/jquery-ui.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="/js/plugins/ui/ui.theme.css" type="text/css" media="all" />
 	<script src="/js/jien.js" type="text/javascript"></script>
+	<script src="/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+	<script src="/js/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 	<!-- plugins -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
- 
-	<!-- admin -->
-	<script src="/js/bootstrap-combined.js" type="text/javascript"></script>
-	<script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-modal.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<script src="/js/admin.js" type="text/javascript"></script>
-	<script src="/js/timepicker.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="/css/pagination.css">
-	<link rel="stylesheet" href="/css/admin.css">
+	<script src="/js/plugins/toastmessage/jquery.toastmessage.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/js/plugins/toastmessage/css/jquery.toastmessage.css">
 
+	<!-- bootstrap css -->
+	<script src="/themes/admin/js/bootstrap-combined.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/themes/admin/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/themes/admin/css/docs.css">
+
+	<!-- admin -->
+	<script src="/themes/admin/js/admin.php" type="text/javascript"></script>
+	<link rel="stylesheet" href="/themes/admin/css/admin.css">
+	<link rel="stylesheet" href="/css/pagination.css">
 </head>
 
  <body>
@@ -45,6 +49,10 @@
                  <ul class="dropdown-menu">
                     <li>
                         <a href="/admin/products">List All Products</a>
+                        <a href="/admin/products/filter/new">New Products</a>
+                        <a href="/admin/products/filter/approved">Approved Products</a>
+                        <a href="/admin/products/filter/rejected">Rejected Products</a>
+                        <a href="/admin/products/filter/pending">Marked as Pending</a>
                     </li>
                  </ul>
             </li>
