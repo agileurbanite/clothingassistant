@@ -31,24 +31,53 @@ class CronController extends My_Controller {
         $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('Small,Images')->search("halloween sexy costumes");
         
         $page = 1;
-        
         $items = $response['Items'];
-        
-        foreach($items['Item'] as $item){
-            Jien::debug($item);
-        }
         
         $total_results = $items['TotalResults'];
         $total_pages = $items['TotalPages'];
         
-        echo $total_pages . ' - ' . $page;;
+        echo $total_pages . "\r\n\r\n";
         
-        for($page = 1; $page < $total_pages; $page++){
-           // echo 'Page: ' . $page . ' \n\r';
+        for($page = 1; $page <= $total_pages; $page++){
+            $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
+            $items = $response['Items'];
+            foreach($items['Item'] as $item){
+                if( !empty($item['SmallImage']) ){
+                    
+                    if( !empty($item['ItemAttributes']['Department']) ){
+                        if( $item['ItemAttributes']['Department'] == 'womens' ){
+                            $gender = 'f';
+                        }else if( $item['ItemAttributes']['Department'] == "mens" ){
+                            $gender = 'm';
+                        }
+                    }else{
+                        $gender = '';
+                    }
+                    
+                    $data = array(
+                        'product_url' => $item['DetailPageURL'],
+                        'image_url' => $item['LargeImage']['URL'],
+                        'brand' => $item['ItemAttributes']['Manufacturer'],
+                        'status' => 'new',
+                        'source' => 'amazon',
+                        'color' => $item['ItemAttributes']['Color'],
+                        'gender' => $gender,
+                        'title' => $item['ItemAttributes']['Title'],
+                        'price' => ltrim($item['ItemAttributes']['ListPrice']['FormattedPrice'],'$')
+                    );
+                    
+                    try{
+                        $id = Jien::model('Product')->save($data);
+                        echo $id;
+                    }catch(Exception $e){
+                        echo $e->getMessage();
+                    }
+                    
+                    echo "\r\n";
+                }
+            }
+            echo 'Page: ' . $page . "\n\r\n\r";
         }
-        
-        
-        
         exit;
     }
     
