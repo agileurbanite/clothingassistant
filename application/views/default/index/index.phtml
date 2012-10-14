@@ -16,24 +16,25 @@
 </header>
 <div id="search-bar">
 	<div class="container">
+            <div id="type_filter"><a href="#">All</a>
+                <?php foreach($this->user['availableTypes'] as $type){ ?>
+                <a href="#"><?php echo $type; ?></a>
+                <?  } ?>
+            </div>
 		<ul id="active-filters">
                     <?php foreach($this->users['brands'] as $brand){ ?>
 			<!-- <li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li> -->
                     <? } ?>
 		</ul>
-		<div id="search" class="ui-widget">
+		<!-- <div id="search" class="ui-widget">
 			<form>
 				<input type="text" name="query" id="query" placeholder="Add a Brand" />
 			</form>
-		</div>
+		</div> -->
 	</div>
 </div><!--#search-->
 <div class="container">
-	<div id="type_filter"><a href="#">All</a>
-        <?php foreach($this->user['availableTypes'] as $type){ ?>
-        <a href="#"><?php echo $type; ?></a>
-        <?  } ?>
-    </div>
+    
 </div>
 
 <div class="clear"></div>
