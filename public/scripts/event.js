@@ -1,4 +1,34 @@
 $(document).ready(function(){
+    var productPage = 0;
+
+    // update products
+    function update_products(){
+        $.ajax({
+            url: 'api/products',
+            type: 'post',
+            data: { 'page': productPage },
+            success: function(res){
+                var $container = $('#products');
+                $container.append(res.result.html).show().css({visibility:'hidden'});
+                 $container.imagesLoaded(function(){
+                    $('.indicator').hide();
+                    $container.masonry('reload').css({visibility:'visible'});
+                    $('#styles-btn').show();
+                    $('#back-btn').removeClass('hide');
+                    $('#type_filter').show();
+                 });
+            }
+        });
+    }
+
+    // implement endless scroll
+    /*$(document).endlessScroll({
+      bottomPixels: 500,
+      fireDelay: 10,
+      callback: function(i) {
+        update_products();
+      }
+    });*/
 
     // applying masonry to products grid
     var $container = $('#products');
