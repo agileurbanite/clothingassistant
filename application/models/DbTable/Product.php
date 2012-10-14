@@ -11,6 +11,11 @@ class Application_Model_DbTable_Product extends My_Model
         return $this;
     }
     
+    public function approved(){
+        $this->andWhere("status = 'approved'");
+        return $this;
+    }
+    
     public function brands($brands){
         if( is_array($brands) ){
             $csv = '';

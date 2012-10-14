@@ -20,16 +20,36 @@ class CronController extends My_Controller {
         defined('AWS_API_KEY') or define('AWS_API_KEY', 'AKIAIVI63PJFFKN255NQ');
         defined('AWS_API_SECRET_KEY') or define('AWS_API_SECRET_KEY', '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');
         defined('AWS_ASSOCIATE_TAG') or define('AWS_ASSOCIATE_TAG', '99styles0d-20');
-        $amz = new AmazonECS(AWS_API_KEY, AWS_API_SECRET_KEY, 'com', AWS_ASSOCIATE_TAG);
-        $amz->returnType(AmazonECS::RETURN_TYPE_ARRAY);
-        $response = $amz->category('Apparel')->responseGroup('Images')->page(1)->search("halloween costumes", 1040660);
         
-        Jien::debug($response);
+        //initialize amz object
+        $amz = new AmazonECS(AWS_API_KEY, AWS_API_SECRET_KEY, 'com', AWS_ASSOCIATE_TAG);
+        
+        //return array
+        $amz->returnType(AmazonECS::RETURN_TYPE_ARRAY);
+        
+        //set query and get response
+        $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('Small,Images')->search("halloween sexy costumes");
+        
+        $page = 1;
+        
+        $items = $response['Items'];
+        
+        foreach($items['Item'] as $item){
+            Jien::debug($item);
+        }
+        
+        $total_results = $items['TotalResults'];
+        $total_pages = $items['TotalPages'];
+        
+        echo $total_pages . ' - ' . $page;;
+        
+        for($page = 1; $page < $total_pages; $page++){
+           // echo 'Page: ' . $page . ' \n\r';
+        }
         
         
         
         exit;
-        
     }
     
     public function testAction(){
