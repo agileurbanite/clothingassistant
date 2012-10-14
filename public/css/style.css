@@ -385,7 +385,7 @@ h1 {
 #type_filter {
 	font-family:'Rockwell W01';
 	display: none;
-	margin-top: 5px;
+	padding-top: 5px;
 }
 #type_filter a {
 	color: #333;
