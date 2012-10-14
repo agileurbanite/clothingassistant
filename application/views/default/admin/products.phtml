@@ -10,9 +10,8 @@
 		  		Listing '<?php echo ($this->filter? $this->filter: 'All');?>' <?php echo $this->model; ?>s <small></small> <span class='right'><a href='/admin/<?php echo strtolower($this->model); ?>?type=<?php echo $this->params('type'); ?>'>Add a <?php echo strtolower($this->model); ?></a></span>
 		  	</h3>
 		</div>
-
-		<div class="row">
-                    <div>
+                <div class="row">
+                    <div class="span8">
                     <form id="filter" action="/admin/products/filter/<?php echo $this->filter; ?>">
                         <select id="gender_filter" name="gender">
                             <option value="">None</option>
@@ -21,8 +20,10 @@
                         </select>
                         <input type="submit" class="btn secondary" value="filter">
                     </form>
-                        
                     </div>
+                </div>
+		<div class="row">
+                    
 		  	<div class="span12">
 		    	<?php echo $this->pager($this->data->pager(), 'partials/pager/text_only.phtml'); ?>
 		  	</div>
@@ -58,7 +59,9 @@
                                     <td><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></td>
 			            <td>
 			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>?redir=<?php echo $this->redir; ?>" class="btn blue">Edit</a>
-			            	<a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_delete" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Remove</a>
+                                        <?php if( $this->params('filter') != 'rejected' ){ ?>
+                                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_reject" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Reject</a>
+                                        <?php } ?>
 			            </td>
 			          </tr>
 			          <?php } ?>
@@ -77,9 +80,21 @@
 </div>
 
 <script>
-    $('#gender_filter').change( function(e){
-        $this = $(this);
-        gender = $this.val();
-        window.location('?gender=') 
+    $('a.trig_reject').click(function(e){
+        e.preventDefault();
+        var c = confirm('Are you sure?');
+        if(c){
+            var opts = jien.util.parseRel($(this).attr('rel'));
+            opts.cmd = 'reject';
+            var self = this;
+            $.post("/admin/data", opts, function(res){
+                if(res.status.code == 200){
+                        jien.ui.growl('Rejected');
+                        $(self).parent().parent().slideUp();
+                }else{
+                        jien.ui.growl(res.status.text, 'error');
+                }
+            });
+        }
     });
 </script>

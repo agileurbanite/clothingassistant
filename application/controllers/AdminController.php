@@ -42,16 +42,21 @@ class AdminController extends My_Controller {
     	try {
     		switch($cmd){
     			case "save":
-    				$id = Jien::model($model)->save($data);
-		    		$primary = Jien::model($model)->getPrimary();
-		    		$this->json(array($primary=>$id), 200, 'saved');
-    				break;
-
+                            $id = Jien::model($model)->save($data);
+                            $primary = Jien::model($model)->getPrimary();
+                            $this->json(array($primary=>$id), 200, 'saved');
+                            break;
     			case "delete":
-    				$id = $this->params('id');
-    				$affected = Jien::model($model)->delete($id);
-    				$this->json(array("affected"=>$affected), 200, 'deleted');
-    				break;
+                            $id = $this->params('id');
+                            $affected = Jien::model($model)->delete($id);
+                            $this->json(array("affected"=>$affected), 200, 'deleted');
+                            break;
+                        case "reject":
+                            $id = $this->params('id');
+                            $affected = Jien::model($model)->reject($id);
+                            $this->json(array("affected"=>$affected), 200, 'rejected');
+                            break;
+                            
     		}
     	}catch(Exception $e){
 			$this->json(array(), 405, $e->getMessage());
