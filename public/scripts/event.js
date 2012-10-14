@@ -22,13 +22,15 @@ $(document).ready(function(){
     }
 
     // implement endless scroll
-    /*$(document).endlessScroll({
-      bottomPixels: 500,
-      fireDelay: 10,
-      callback: function(i) {
-        update_products();
-      }
-    });*/
+    if($('#products').is(':visible')) {
+        $(document).endlessScroll({
+          bottomPixels: 500,
+          callback: function(i) {
+            productPage++
+            update_products();
+          }
+        });
+    }
 
     // applying masonry to products grid
     var $container = $('#products');
