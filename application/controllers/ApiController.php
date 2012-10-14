@@ -23,7 +23,8 @@ class ApiController extends My_Controller {
         }
 
         if($brands){
-            $this->json($brands_arr);
+            //$this->json($brands_arr);
+            $this->json(false, 400, 'no brands available, contact jamesL');
         }else{
             $this->json(false, 400, 'no brands available, contact jamesL');
         }
@@ -53,7 +54,7 @@ class ApiController extends My_Controller {
         }
         
         if( !empty($user['brands']) ){
-            $model->brands($user['brands']);
+            //$model->brands($user['brands']);
         }
         
         if( !empty($user['style']) ){
@@ -64,9 +65,7 @@ class ApiController extends My_Controller {
             $model->type($user['type']);
         }
         
-        
-        
-        $this->view->products = $products = $model->orderBy('like_count DESC')->limit($products_per_page,$offset)->get()->rows();
+        $this->view->products = $products = $model->orderBy('like_count DESC')->approved()->limit($products_per_page,$offset)->get()->rows();
         
         $html = $this->view->render('api/products.phtml');
         
@@ -99,6 +98,7 @@ class ApiController extends My_Controller {
     public function getUserAction(){
         $user = $this->getUser();
         if($user){
+            unset($user['brands']);
             $this->json( $user, 200, 'user returned' );
         }else{
             $this->json(false, 400, 'no user attributes have been set');

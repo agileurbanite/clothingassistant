@@ -128,7 +128,26 @@ class AdminController extends My_Controller {
     public function productsAction(){
         $this->view->model = "Product";
     	$this->view->primary = Jien::model($this->view->model)->getPrimary();
-    	$this->view->data = Jien::model($this->view->model)->orderBy("product.product_id DESC")->withPager($this->params('page', 1))->filter($this->params())->get();
+        
+        $this->view->filter = $filter = $this->params('filter');
+        
+        if($filter){
+            $this->view->redir = '/admin/products/redir/' . $filter;
+        }else{
+            $this->view->redir = '';
+        }
+        
+        $model = Jien::model($this->view->model);
+        
+        switch($filter){
+            case 'new': $model->newP(); break;
+            case 'approved': $model->approved(); break;
+            case 'pending': $model->pending(); break;
+            case 'rejected': $model->rejected(); break;
+            default: break;
+        }
+        
+    	$this->view->data = $model->orderBy("product.product_id DESC")->withPager($this->params('page', 1))->filter($this->params())->get();
     }
     
     public function productAction(){
