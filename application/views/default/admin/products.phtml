@@ -56,7 +56,7 @@
                                     
                                     <td><?php echo $value['price']; ?></td>
                                     <td><?php echo $value['brand']; ?></td>
-                                    <td><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></td>
+                                    <td><a href="<?php echo $value['image_url']; ?>" target="_prod"><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></a></td>
 			            <td>
 			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>?redir=<?php echo $this->redir; ?>" class="btn blue">Edit</a>
                                         <?php if( $this->params('filter') != 'rejected' ){ ?>

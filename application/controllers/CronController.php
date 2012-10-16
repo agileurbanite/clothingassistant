@@ -7,13 +7,17 @@ class CronController extends My_Controller {
     }
 
     public function indexAction(){
-        $client = new Zend_Http_Client('http://www.calvinklein.com/family/index.jsp?categoryId=3249851', array(
+        $client = new Zend_Http_Client('http://www.amazon.com/Sexy-Wild-West-Sheriff-Costume/dp/B006ZAV73I%3FSubscriptionId%3DAKIAIVI63PJFFKN255NQ%26tag%3D99styles0d-20%26linkCode%3Dsp1%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB006ZAV73I', array(
             'maxredirects' => 0,
             'timeout'      => 30)
         );
-        
         $response = $client->request('GET');
-        echo $response->getBody();exit;
+        $html = $response->getBody();
+        
+        phpQuery::newDocument($html);
+        $test = pq('#main-image');
+        echo $test->attr('src');
+        exit;
     }
     
     public function amazonAction(){
@@ -37,12 +41,12 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
         $searches = array(
             array(
                 'sort' => '-launch-date',
-                'keyword' => "",
+                'keyword' => "halloween",
                 727629011 //men costumes
             ),
             array(
-                'sort' => '-launch-date',
-                'keyword' => "",
+                'sort' => '-salesrank',
+                'keyword' => "halloween",
                 727629011 //men costumes
             ),
             array(
@@ -96,23 +100,18 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
 
             $page = 1;
             $items = $response['Items'];
-
-            $total_results = $items['TotalResults'];
-            $total_pages = $items['TotalPages'];
-
-            echo $total_pages . "\r\n\r\n";
-
+            $dupe = 0;
             for($page = 1; $page <= 10; $page++){
                 try{
                     $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
                 }catch(Exception $e){
                     echo $e->getMessage();
+                    exit;
                 }
                 $items = $response['Items'];
                 if( count($items > 0 ) ){
                     foreach($items['Item'] as $item){
                         if( !empty($item['SmallImage']) ){
-
                             if( !empty($item['ItemAttributes']['Department']) ){
                                 if( $item['ItemAttributes']['Department'] == 'womens' ){
                                     $gender = 'f';
@@ -139,17 +138,56 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                                 $id = Jien::model('Product')->save($data);
                                 echo $id;
                             }catch(Exception $e){
+                                $dupe++;
                                 echo $e->getMessage();
                             }
 
                             echo "\r\n";
+                        }else{
+                            $prod_url = $item['DetailPageURL'];
+                            
+                            $client = new Zend_Http_Client($prod_url, array(
+                                'maxredirects' => 0,
+                                'timeout'      => 30)
+                            );
+                            $response = $client->request('GET');
+                            $html = $response->getBody();
+
+                            phpQuery::newDocument($html);
+                            $img = pq('#main-image');
+                            $img_url = $img->attr('src');
+                            
+                            $data = array(
+                                'product_url' => $item['DetailPageURL'],
+                                'image_url' => $img_url,
+                                'brand' => ( !empty($item['ItemAttributes']['Manufacturer'])? $item['ItemAttributes']['Manufacturer']: '') ,
+                                'status' => 'new',
+                                'source' => 'amazon',
+                                'color' => ( !empty($item['ItemAttributes']['Color'])? $item['ItemAttributes']['Color']:''),
+                                'gender' => $gender,
+                                'title' => $item['ItemAttributes']['Title'],
+                                'price' => ( !empty($item['ItemAttributes']['ListPrice']['FormattedPrice'])? ltrim($item['ItemAttributes']['ListPrice']['FormattedPrice'],'$'): '')
+                            );
+                            
+                            try{
+                                $id = Jien::model('Product')->save($data);
+                                echo $id;
+                            }catch(Exception $e){
+                                $dupe++;
+                                echo $e->getMessage();
+                            }
                         }
                     }
                 }
-                echo 'Page: ' . $page . "\n\r\n\r";
-                sleep(800);
+                echo 'Page: ' . $page . " - " . $dupe . "\n\r\n\r";
+                ob_flush();
+                sleep(1);
+                
+                if($dupe >= 10){
+                    $dupe = 0;
+                    break;
+                }
             }
-            sleep(300);
         }}catch(Exception $e){echo $e->getMessage(); }
         
         
