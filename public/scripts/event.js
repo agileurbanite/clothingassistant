@@ -40,10 +40,11 @@ $(document).ready(function(){
         });
     }
 
-    // implement endless scroll
-    if($('#products').is(':visible')) {
+    function endless_scroll() {
         $(document).endlessScroll({
-          bottomPixels: 500,
+          inflowPixels: 100,
+          fireDelay: true,
+          ceaseFireOnEmpty: false,
           callback: function(i) {
             productPage++
             append_products();
@@ -127,6 +128,9 @@ $(document).ready(function(){
                         add_filter_type(v,res.result.type);
                     });
                 }, 'json');
+
+                // instantiate endless scroll
+                endless_scroll();
             }
         });
     });
@@ -163,6 +167,9 @@ $(document).ready(function(){
                         add_filter_type(v,res.result.type);
                     });
                 }, 'json');
+
+                // instantiate endless scroll
+                endless_scroll();
             }
         });
     });
