@@ -52,6 +52,7 @@ header {
 	margin: 20px auto;
 	width: 950px;
 	padding-left: 10px;
+	display: none;
 }
 #products li {
 	padding: 0;

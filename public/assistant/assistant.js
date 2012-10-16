@@ -7,8 +7,7 @@ steal(
 	, 'jquery/endlessScroll/jquery.endless-scroll.js'
 	, 'jquery/jquery.masonry.js')
 .then('scripts/event.js');
-/*.then(
-	'jquery/class'
+/*.then('jquery/class'
 	, 'jquery/controller'
 	, 'jquery/controller/route'
 	, 'jquery/controller/subscribe'

@@ -6,20 +6,18 @@
  */
 $.Model('Assistant.Models.Product',
 /* @Static */
-{},
-/* @Prototype */
 {
-  findAll: function(params, success) {
-      $.ajax({
+  findAll: function(params, success, error) {
+      return $.ajax({
          url: 'api/products',
          type: 'post',
          dataType: 'json',
          data: params,
-         success: function(response) {
-            // success();
-            console.log(response.result.products);
-            // success(response.result.products);
-         }
+         success: success,
+         error: error
       });
   }
-});
+},
+/* @Prototype */
+{});
+var Product = Assistant.Models.Product;
