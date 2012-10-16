@@ -172,7 +172,7 @@ $(document).ready(function(){
             $this = $(this);
             $('#type_filter a').removeClass('hit');
             $this.addClass('hit');
-            $.post('/api/set-user-type', {type: $this.text()}, function(res){
+            $.post('/api/set-user-style', {style: $this.text()}, function(res){
                 update_products();
            });
         });
