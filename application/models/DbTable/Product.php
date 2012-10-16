@@ -110,4 +110,13 @@ class Application_Model_DbTable_Product extends My_Model
         return $update;
     }
     
+    /*
+     * set product status to pending
+     */
+    
+    public function pend($id){
+        $data = array('product_id'=>$id, 'status'=>'pending');
+        $update = Jien::model('Product')->save($data);
+        return $update;
+    }
 }

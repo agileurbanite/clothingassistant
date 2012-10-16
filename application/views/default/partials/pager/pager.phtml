@@ -8,20 +8,20 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 
 	<!-- First page link -->
     <?php if (isset($this->previous)): ?>
-		<!--<li><a href="<?php echo $this->url(array('page' => $this->first)); ?>">First</a></li>-->
+		<!--<li><a href="<?php echo $this->url(array('page' => $this->first)); ?>?<?php echo http_build_query($_REQUEST);?>">First</a></li>-->
     <?php else: ?>
     <?php endif; ?>
 
     <!-- Previous page link -->
 	<?php if (isset($this->previous)): ?>
-	  <li><a href="<?php echo $this->url(array('page' => $this->previous)); ?>">Prev </a></li>
+	  <li><a href="<?php echo $this->url(array('page' => $this->previous)); ?>?<?php echo http_build_query($_REQUEST);?>">Prev </a></li>
 	<?php else: ?>
 	<?php endif; ?>
 	 
 	<!-- Numbered page links -->
 	<?php foreach ($this->pagesInRange as $page): ?>
 	  <?php if ($page != $this->current): ?>
-	    <li><a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a> </li>
+	    <li><a href="<?php echo $this->url( array('page'=>$page) ); ?>?<?php echo http_build_query($_REQUEST);?>"><?php echo $page; ?></a> </li>
 	  <?php else: ?>
 	  <li><a class="current" href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a> </li>
 	  <?php endif; ?>
@@ -29,13 +29,13 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 	
 	<!-- Next page link -->
 	<?php if (isset($this->next)): ?>
-	  <li><a href="<?php echo $this->url(array('page' => $this->next)); ?>"> Next</a></li>
+	  <li><a href="<?php echo $this->url(array('page' => $this->next)); ?>?<?php echo http_build_query($_REQUEST);?>"> Next</a></li>
 	<?php else: ?>
 	<?php endif; ?>
 	 
 	<!-- Last page link -->
 	<?php if (isset($this->next)): ?>
-	    <!--<li><a href="<?php echo $this->url(array('page' => $this->last)); ?>">Last</a></li>-->
+	    <!--<li><a href="<?php echo $this->url(array('page' => $this->last)); ?>?<?php echo http_build_query($_REQUEST);?>">Last</a></li>-->
 	<?php else: ?>
 	   
 	<?php endif; ?>

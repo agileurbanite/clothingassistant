@@ -56,6 +56,11 @@ class AdminController extends My_Controller {
                             $affected = Jien::model($model)->reject($id);
                             $this->json(array("affected"=>$affected), 200, 'rejected');
                             break;
+                        case "pending":
+                            $id = $this->params('id');
+                            $affected = Jien::model($model)->pend($id);
+                            $this->json(array("affected"=>$affected), 200, 'pending');
+                            break;
                             
     		}
     	}catch(Exception $e){
