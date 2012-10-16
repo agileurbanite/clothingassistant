@@ -6,11 +6,10 @@
 			<a href="http://www.facebook.com/99styles" target="_blank" title="Like Us" id="facebook-icon"></a> 
                     <?php if($this->users['member'] != 1){ ?>
                         <a href="https://www.facebook.com/dialog/oauth?client_id=<?php echo FACEBOOK_APPID; ?>&redirect_uri=<?php echo FACEBOOK_REDIRECTURI;?>&scope=<?php echo FACEBOOK_SCOPE; ?>"><strong>Login / Register</strong></a> 
-                        <br /><br />
                     <?}else{?>
-                        <a href="/user/logout">Logout</a><br><br>
+                        <a href="/user/logout">Logout</a>
                     <?}?>
-                    <a href="#">About</a> &middot;&nbsp; <a href="#">My Profile</a> &middot;&nbsp; <a href="#">My Wishlist</a>
+                    <a href="#">About</a>
 		</div>
 	</div>
 </header>
