@@ -1,0 +1,9 @@
+<li class="col2" data-product_id="<?php echo $this->product['product_id']; ?>">
+        <a href="<?php echo $this->product['product_url']; ?>" class="item" target="_blank">
+                <img src="<?php echo $this->product['image_url']; ?>" alt="" />
+                <div class="price">$<?php echo $this->product['price']; ?></div>
+        </a>
+        <div class="rating"></div>
+        <span class="current-rating"><?php echo $this->product['like_count']; ?></span>
+        <div data-prod_id="<?php echo $this->product['product_id']; ?>" class="like-button"></div>
+</li>

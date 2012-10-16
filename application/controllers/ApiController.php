@@ -83,6 +83,27 @@ class ApiController extends My_Controller {
     }
     
     /**
+     * get product
+     * @param int id
+     */
+    public function productAction(){
+        $id = $this->params('id');
+        
+        if($id){
+            $this->view->$product = Jien::model('Product')->get($id)->row();
+            $html = $this->view->render('api/product.phtml');
+            $res = array(
+                'html' => $html,
+                'product' => $product
+            );
+            
+            $this->json( $res, 200, 'product returned');
+        }else{
+            $this->json( '', 400, 'id not sent' );
+        }
+    }
+    
+    /**
      * @param array 
      */
     public function setGenderAction(){
