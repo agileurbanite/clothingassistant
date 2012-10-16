@@ -165,17 +165,17 @@ $(document).ready(function(){
                 }, 'json');
             }
         });
-        
-        //click handler to set user type
-        $('#type_filter').delegate('a', 'click', function(e){
-            e.preventDefault(); 
-            $this = $(this);
-            $('#type_filter a').removeClass('hit');
-            $this.addClass('hit');
-            $.post('/api/set-user-style', {style: $this.text()}, function(res){
-                update_products();
-           });
-        });
+    });
+
+    //click handler to set user type
+    $('#type_filter').delegate('a', 'click', function(e){
+        e.preventDefault(); 
+        $this = $(this);
+        $('#type_filter a').removeClass('hit');
+        $this.addClass('hit');
+        $.post('/api/set-user-style', {style: $this.text()}, function(res){
+            update_products();
+       });
     });
     
     // click handler to remove brands
