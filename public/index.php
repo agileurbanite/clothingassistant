@@ -1,5 +1,4 @@
 <?php
-
 // increase it as needed
 ini_set("memory_limit", "512M");
 
@@ -25,12 +24,11 @@ $application = new Zend_Application(
     APPLICATION_ENV,
     APPLICATION_PATH . '/configs/application.ini'
 );
-
 $autoloader = Zend_Loader_Autoloader::getInstance();
 $autoloader->setFallbackAutoloader(true);
-$application->bootstrap();
+try{$application->bootstrap();}catch(Exception $e){ echo $e->getMessage(); }
+
 $db = Zend_Db_Table::getDefaultAdapter();
 Zend_Registry::set('db',$db);
 Zend_Registry::set('application_env', APPLICATION_ENV);
-
 $application->run();

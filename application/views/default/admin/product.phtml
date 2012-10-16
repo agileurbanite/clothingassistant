@@ -82,13 +82,14 @@ $params = $this->data;
 							<label for="xlInput">Image Url</label>
 							<div class="input">
 								<input class='large disabled' name='image_url' value="<?php echo $params['image_url']; ?>" type='text'>
-                                                                <br/><img style="width: 200px;" src="<?php echo $params['image_url']; ?>" />
+                                                                <br/><a href="<?php echo $params['image_url']; ?>"><img style="width: 200px;" src="<?php echo $params['image_url']; ?>" /></a>
 							</div>
 						</div>
                                                 <div class="clearfix">
 							<label for="xlInput">Product Url</label>
 							<div class="input">
 								<input class='large disabled' name='product_url' value="<?php echo $params['product_url']; ?>" type='text'>
+                                                                <a href="<?php echo $params['product_url']; ?>">Link</a>
 							</div>
 						</div>
                                                 <div class="clearfix">
@@ -119,3 +120,10 @@ $params = $this->data;
 	</div>
 
 </div>
+
+<script>
+    
+    $('input[name=theme]').autocomplete( {source: <?php echo json_encode($this->themes); ?>} );
+    $('input[name=style]').autocomplete( {source: <?php echo json_encode($this->styles); ?>} );
+    $('input[name=tpye]').autocomplete( {source: <?php echo json_encode($this->types); ?>} );
+</script>

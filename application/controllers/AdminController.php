@@ -135,7 +135,7 @@ class AdminController extends My_Controller {
     	$this->view->primary = Jien::model($this->view->model)->getPrimary();
         
         $this->view->filter = $filter = $this->params('filter');
-        
+                
         if($filter){
             $this->view->redir = '/admin/products/redir/' . $filter;
         }else{
@@ -158,6 +158,10 @@ class AdminController extends My_Controller {
     public function productAction(){
         $this->view->model = "Product";
     	$id = $this->params('id');
+        
+        $this->view->themes = array_map( function($n){ return $n['theme']; }, Jien::model('Product')->select("distinct(theme)")->get()->rows() );
+        $this->view->styles = array_map( function($n){ return $n['style']; }, Jien::model('Product')->select("distinct(style)")->get()->rows() );
+        $this->view->types = array_map( function($n){ return $n['type']; }, Jien::model('Product')->select("distinct(type)")->get()->rows() );
         
     	if($id){
     		$this->view->data = Jien::model($this->view->model)->get($id)->row();

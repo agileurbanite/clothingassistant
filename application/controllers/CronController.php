@@ -20,6 +20,7 @@ class CronController extends My_Controller {
         defined('AWS_API_KEY') or define('AWS_API_KEY', 'AKIAIVI63PJFFKN255NQ');
         defined('AWS_API_SECRET_KEY') or define('AWS_API_SECRET_KEY', '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');
         defined('AWS_ASSOCIATE_TAG') or define('AWS_ASSOCIATE_TAG', '99styles0d-20');
+        ini_set('output_buffer', 0);
         
         //initialize amz object
         $amz = new AmazonECS(AWS_API_KEY, AWS_API_SECRET_KEY, 'com', AWS_ASSOCIATE_TAG);
@@ -27,56 +28,80 @@ class CronController extends My_Controller {
         //return array
         $amz->returnType(AmazonECS::RETURN_TYPE_ARRAY);
         
-        //set query and get response
-        $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('Small,Images')->search("halloween sexy costumes");
+        $searches = array(
+            array(
+                'sort' => '-launch-date',
+                'keyword' => 'halloween sexy costumes'
+           ),
+            array(
+                'sort' => 'salesrank',
+                'keyword' => 'halloween sexy costumes'
+            )
+        );
         
-        $page = 1;
-        $items = $response['Items'];
-        
-        $total_results = $items['TotalResults'];
-        $total_pages = $items['TotalPages'];
-        
-        echo $total_pages . "\r\n\r\n";
-        
-        for($page = 1; $page <= $total_pages; $page++){
-            $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
-            $items = $response['Items'];
-            foreach($items['Item'] as $item){
-                if( !empty($item['SmallImage']) ){
-                    
-                    if( !empty($item['ItemAttributes']['Department']) ){
-                        if( $item['ItemAttributes']['Department'] == 'womens' ){
-                            $gender = 'f';
-                        }else if( $item['ItemAttributes']['Department'] == "mens" ){
-                            $gender = 'm';
-                        }
-                    }else{
-                        $gender = '';
-                    }
-                    
-                    $data = array(
-                        'product_url' => $item['DetailPageURL'],
-                        'image_url' => $item['LargeImage']['URL'],
-                        'brand' => $item['ItemAttributes']['Manufacturer'],
-                        'status' => 'new',
-                        'source' => 'amazon',
-                        'color' => $item['ItemAttributes']['Color'],
-                        'gender' => $gender,
-                        'title' => $item['ItemAttributes']['Title'],
-                        'price' => ltrim($item['ItemAttributes']['ListPrice']['FormattedPrice'],'$')
-                    );
-                    
-                    try{
-                        $id = Jien::model('Product')->save($data);
-                        echo $id;
-                    }catch(Exception $e){
-                        echo $e->getMessage();
-                    }
-                    
-                    echo "\r\n";
-                }
+        foreach($searches as $search){
+            //set query and get response
+            $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>$search['sort']))->responseGroup('Small,Images');
+            if( !empty($search['node']) ){
+                $response = $response->search($search['keyword'], $search['node']);
+            }else{
+                $response = $response->search($search['keyword']);
             }
-            echo 'Page: ' . $page . "\n\r\n\r";
+
+            $page = 1;
+            $items = $response['Items'];
+
+            $total_results = $items['TotalResults'];
+            $total_pages = $items['TotalPages'];
+
+            echo $total_pages . "\r\n\r\n";
+
+            for($page = 1; $page <= 10; $page++){
+                try{
+                    $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
+                }catch(Exception $e){
+                    echo $e->getMessage();
+                }
+                $items = $response['Items'];
+                if( count($items > 0 ) ){
+                    foreach($items['Item'] as $item){
+                        if( !empty($item['SmallImage']) ){
+
+                            if( !empty($item['ItemAttributes']['Department']) ){
+                                if( $item['ItemAttributes']['Department'] == 'womens' ){
+                                    $gender = 'f';
+                                }else if( $item['ItemAttributes']['Department'] == "mens" ){
+                                    $gender = 'm';
+                                }
+                            }else{
+                                $gender = '';
+                            }
+
+                            $data = array(
+                                'product_url' => $item['DetailPageURL'],
+                                'image_url' => $item['LargeImage']['URL'],
+                                'brand' => ( !empty($item['ItemAttributes']['Manufacturer'])? $item['ItemAttributes']['Manufacturer']: '') ,
+                                'status' => 'new',
+                                'source' => 'amazon',
+                                'color' => ( !empty($item['ItemAttributes']['Color'])? $item['ItemAttributes']['Color']:''),
+                                'gender' => $gender,
+                                'title' => $item['ItemAttributes']['Title'],
+                                'price' => ( !empty($item['ItemAttributes']['ListPrice']['FormattedPrice'])? ltrim($item['ItemAttributes']['ListPrice']['FormattedPrice'],'$'): '')
+                            );
+
+                            try{
+                                $id = Jien::model('Product')->save($data);
+                                echo $id;
+                            }catch(Exception $e){
+                                echo $e->getMessage();
+                            }
+
+                            echo "\r\n";
+                        }
+                    }
+                }
+                echo 'Page: ' . $page . "\n\r\n\r";
+            }
         }
         exit;
     }

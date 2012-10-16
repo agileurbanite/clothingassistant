@@ -17,12 +17,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 		$router = Zend_Controller_Front::getInstance ()->getRouter ();
 		if ($router instanceof Zend_Controller_Router_Rewrite)
 		{
-			// put your web-interface routes here, so they do not interfere
+                        // put your web-interface routes here, so they do not interfere
 		}
 	}	
     
         protected function _initView(){
-
 		// Initialize view
 		$view = new Zend_View();
 		$view->env = APPLICATION_ENV;
@@ -43,16 +42,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 	}
 
 	protected function _initConfig(){
-
 	    $config = new Zend_Config($this->getOptions(), true);
 	    Zend_Registry::set('config', $config);
 	    Zend_Registry::set('params', array());
-
 	    // set all settings to global
 	    foreach($config->settings AS $name=>$value){
 	    	define(strtoupper($name), $value);
 	    }
-
 	    /** MEM CACHE **/
 		 // try to set caching via memcache
 		try {
@@ -93,9 +89,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 		}catch(Exception $e){
 			$memcache_enabled = 0;
 		}
-
 		if($memcache_enabled == 0){
-
 			/** FILE CACHE **/
 	    	// set caching via files
 		    $frontendOptions = array(
@@ -103,12 +97,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 			    'lifetime'	=>	500,
 			);
 			$backendOptions  = array(
-			    'cache_dir' => '../cache'
+			    'cache_dir' => APPLICATION_PATH . '/../cache'
 			);
-			$cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
-
+                        try{
+                            $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
+                        }catch(Exception $e){
+                            echo $e->getMessage();
+                            echo $backendOptions['cache_dir'];
+                        }
 		}else{
-
 			// save session to memcache
 		    ini_set('session.save_handler', 'memcache');
 		    $memcachePaths = array();
@@ -116,15 +113,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 		    	$memcachePaths[] = "tcp://{$server['host']}:{$server['port']}?persistent=1";
 		    }
 			ini_set('session.save_path', implode(", ", $memcachePaths));
-
 		}
 
 	    // set cache to registry
 	    Zend_Registry::set('cache', $cache);
 
 	    // for Titan::startTimer() & Titan::endTimer() , time benchmarking
-        Zend_Registry::set('timers', array());
-
+            Zend_Registry::set('timers', array());
 	    return $config;
 	}
 
@@ -133,7 +128,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 	}
 
 	protected function _initController(){
-
 	}
 
 	protected function _initDb(){
@@ -148,7 +142,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 
         // for time benchmarking
         Zend_Registry::set('timers', array());
-
 	}
 
 	protected function _initAttributeExOpenIDPath() {
