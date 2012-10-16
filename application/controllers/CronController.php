@@ -28,17 +28,53 @@ class CronController extends My_Controller {
         //return array
         $amz->returnType(AmazonECS::RETURN_TYPE_ARRAY);
         
+        /*node               
+1036592:
+Keywords
+Rubie's Costume Co, Fun World Costumes, Disguise adult
+*/
+        
         $searches = array(
             array(
                 'sort' => '-launch-date',
                 'keyword' => 'halloween sexy costumes'
-           ),
+            ),
             array(
                 'sort' => 'salesrank',
                 'keyword' => 'halloween sexy costumes'
+            ),
+            array(
+                'sort' => 'salesrank',
+                'keyword' => "Rubie's Costume Co",
+                1036592
+            ),
+            array(
+                'sort' => '-launch-date',
+                'keyword' => "Rubie's Costume Co",
+                1036592
+            ),
+            array(
+                'sort' => 'salesrank',
+                'keyword' => "Fun World Costumes",
+                1036592
+            ),
+            array(
+                'sort' => '-launch-date',
+                'keyword' => "Fun World Costumes",
+                1036592
+            ),
+            array(
+                'sort' => 'salesrank',
+                'keyword' => "Disguise adult",
+                1036592
+            ),
+            array(
+                'sort' => '-launch-date',
+                'keyword' => "Disguise adult",
+                1036592
             )
         );
-        
+        try{
         foreach($searches as $search){
             //set query and get response
             $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>$search['sort']))->responseGroup('Small,Images');
@@ -101,8 +137,12 @@ class CronController extends My_Controller {
                     }
                 }
                 echo 'Page: ' . $page . "\n\r\n\r";
+                sleep(100);
             }
-        }
+            sleep(500);
+        }}catch(Exception $e){echo $e->getMessage(); }
+        
+        
         exit;
     }
     

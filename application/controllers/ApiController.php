@@ -41,8 +41,7 @@ class ApiController extends My_Controller {
         $model = Jien::model('Product');
         $products_per_page = 30;
         $page = $this->params('page');
-        $offet = $products_per_page * $page;
-        
+        $offset = $products_per_page * $page;
         if(!$offset){
             $offset = 0;
         }
