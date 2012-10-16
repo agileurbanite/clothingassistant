@@ -25,6 +25,11 @@
 <div id="wrapper">
 <?php echo $this->layout()->content; ?>
 </div>
-<script type='text/javascript' src='/steal/steal.js?assistant'></script>
+
+<?php if(APPLICATION_ENV == "prod"){ ?>
+    <script type='text/javascript' src='/steal/steal.production.js?assistant'></script>
+<? }else{ ?>
+    <script type='text/javascript' src='/steal/steal.js?assistant'></script>
+<?  }   ?>
 </body>
 </html>
