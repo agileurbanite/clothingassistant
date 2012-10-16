@@ -41,13 +41,11 @@ $(document).ready(function(){
     }
 
     function endless_scroll() {
-        console.log('endless scrolling');
         $(document).endlessScroll({
           inflowPixels: 100,
-          fireDelay: false,
+          fireDelay: true,
           ceaseFireOnEmpty: false,
           callback: function(i) {
-            console.log('endless scroll callback');
             productPage++
             append_products();
           }
