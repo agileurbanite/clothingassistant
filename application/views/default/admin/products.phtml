@@ -24,9 +24,12 @@
                 </div>
 		<div class="row">
                     
-		  	<div class="span12">
-		    	<?php echo $this->pager($this->data->pager(), 'partials/pager/text_only.phtml'); ?>
-		  	</div>
+                    <div class="span6">
+                        <?php echo $this->pager($this->data->pager(), 'partials/pager/text_only.phtml'); ?>
+                    </div>
+                    <div class="span6 right">
+                        <?php echo $this->pager($this->data->pager(), 'partials/pager/pager.phtml'); ?>
+                    </div>
 		</div>
 
 		<div class="row">

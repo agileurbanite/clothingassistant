@@ -45,7 +45,7 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                 727629011 //men costumes
             ),
             array(
-                'sort' => '-salesrank',
+                'sort' => 'salesrank',
                 'keyword' => "halloween",
                 727629011 //men costumes
             ),
@@ -103,12 +103,17 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
             $dupe = 0;
             for($page = 1; $page <= 10; $page++){
                 try{
-                    $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>'-launch-date'))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
+                    $response = $amz->category('Apparel')->optionalParameters( array('Sort'=>$search['sort']))->responseGroup('ItemAttributes,Images')->page($page)->search("halloween sexy costumes");
                 }catch(Exception $e){
                     echo $e->getMessage();
                     exit;
                 }
                 $items = $response['Items'];
+                
+                if( empty($items['Item']) ){
+                    //Jien::debug($items);exit;
+                }
+                
                 if( count($items > 0 ) ){
                     foreach($items['Item'] as $item){
                         if( !empty($item['SmallImage']) ){
@@ -179,11 +184,11 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                         }
                     }
                 }
-                echo 'Page: ' . $page . " - " . $dupe . "\n\r\n\r";
+                echo 'key: ' . $search['keyword'] . ' Page: ' . $page . " - " . $dupe . "\n\r\n\r";
                 ob_flush();
                 sleep(1);
                 
-                if($dupe >= 10){
+                if($dupe >= 40){
                     $dupe = 0;
                     break;
                 }
