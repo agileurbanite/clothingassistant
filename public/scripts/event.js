@@ -45,9 +45,13 @@ $(document).ready(function(){
           inflowPixels: 100,
           fireDelay: true,
           ceaseFireOnEmpty: false,
-          callback: function(i) {
-            productPage++
-            append_products();
+          callback: function(i, x, direction) {
+            if (direction == 'prev') {
+                return false;
+            } else {
+                productPage++
+                append_products();
+            }
           }
         });
     }
