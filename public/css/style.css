@@ -34,8 +34,9 @@ header {
 }
 #splash {
 	width: 100%;
-	height: 1018px;
-	background: url(/img/splash-bg.jpg) center center no-repeat;
+	height: 1198px;
+	margin-top: 10px;
+	background: url(/img/splash-bg-halloween.jpg) center center no-repeat;
 }
 #logo {
 	display: block;
@@ -51,7 +52,7 @@ header {
 	list-style-type: none;
 	padding: 0;
 	margin: 20px auto;
-	width: 950px;
+	width: 90%;
 	padding-left: 10px;
 	display: none;
 }
@@ -389,11 +390,18 @@ h1 {
 	display: none;
 	padding-top: 5px;
 }
+@-moz-document url-prefix() {
+	#type_filter {
+		padding-top: 0px;
+	}
+}
 #type_filter a {
 	color: #333;
-	border-right: #ddd solid 1px;
+	border-right: #999 solid 1px;
 	padding: 0 6px;
 	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
 }
 #type_filter a:hover, #type_filter a.hit {
 	color: #F47D31;
@@ -470,4 +478,19 @@ a#facebook-icon:hover {
 	background: url(/img/halloween-banner.png) 0 0 no-repeat;
 	margin-left: 90px;
 	margin-top: 8px;
+}
+#mens-styles-cont .Random {
+	width: 203px;
+}
+#mens-styles-cont .Scary {
+	width: 193px;
+}
+#mens-styles-cont .Role {
+	width: 193px;
+}
+#mens-styles-cont .Movie {
+	width: 237px;
+}
+#mens-styles-cont .Funny {
+	width: 201px;
 }
