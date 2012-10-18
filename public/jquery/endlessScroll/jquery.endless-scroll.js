@@ -174,7 +174,7 @@ EndlessScroll = (function() {
     if (currentScrollTop > this.lastScrollTop) {
       this.scrollDirection = 'next';
     } else {
-      this.scrollDirection = 'prev';
+      //this.scrollDirection = 'prev';
     }
     return this.lastScrollTop = currentScrollTop;
   };

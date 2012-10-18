@@ -61,13 +61,14 @@
                                     <td><?php echo $value['brand']; ?></td>
                                     <td><a href="<?php echo $value['image_url']; ?>" target="_prod"><img style="width: 180px" src="<?php echo $value['image_url']; ?>"/></a></td>
 			            <td>
-			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>?redir=<?php echo $this->redir; ?>" class="btn blue">Edit</a>
+			            	<a href="/admin/<?php echo strtolower($this->model); ?>/id/<?php echo $value[strtolower($this->model).'_id']; ?>?redir=<?php echo $this->redir; ?>" class="btn blue">Edit</a><br>
                                         <?php if( $this->params('filter') != 'rejected' ){ ?>
-                                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_reject" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Reject</a>
+                                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_reject" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Reject</a><br>
                                         <?php } ?>
                                         <?php if( $this->params('filter') != 'pending' ){ ?>
-                                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_pending" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Pending</a>
-                                        <?php } ?>
+                                            <a href="/admin/delete/?model=<?php echo $this->model; ?>&id=<?php echo $value[strtolower($this->model).'_id'];; ?>" class="btn red trig_pending" rel="model=<?php echo $this->model; ?>|id=<?php echo $value[$this->primary]; ?>">Pending</a><br>
+                                        <?php } ?> <br>
+                                        <a href="<?php echo $value['product_url']?>">Product Url</a>
 			            </td>
 			          </tr>
 			          <?php } ?>
