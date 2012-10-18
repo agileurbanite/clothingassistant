@@ -50,6 +50,16 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                 727629011 //men costumes
             ),
             array(
+                'sort' => 'inverseprice',
+                'keyword' => "halloween",
+                727629011 //men costumes
+            ),
+            array(
+                'sort' => 'pricerank',
+                'keyword' => "halloween",
+                727629011 //men costumes
+            ),
+            array(
                 'sort' => '-launch-date',
                 'keyword' => 'halloween sexy costumes'
             ),
@@ -111,7 +121,7 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                 $items = $response['Items'];
                 
                 if( empty($items['Item']) ){
-                    //Jien::debug($items);exit;
+                    Jien::debug($items);
                 }
                 
                 if( count($items > 0 ) ){
@@ -188,7 +198,7 @@ Rubie's Costume Co, Fun World Costumes, Disguise adult
                 ob_flush();
                 sleep(1);
                 
-                if($dupe >= 40){
+                if($dupe >= 20){
                     $dupe = 0;
                     break;
                 }
