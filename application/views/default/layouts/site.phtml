@@ -17,14 +17,34 @@
 
 </script>
 
-
 </head>
 <body>
 
 <div id="wrapper">
-<?php echo $this->layout()->content; ?>
+  <header>
+    <div class="container">
+      <a id="logo" href="/"></a>
+      <div id="halloween-banner"></div>
+      <div id="header-menu">
+        <?php /* if($this->users['member'] != 1){ ?>
+          <a href="https://www.facebook.com/dialog/oauth?client_id=<?php echo FACEBOOK_APPID; ?>&redirect_uri=<?php echo FACEBOOK_REDIRECTURI;?>&scope=<?php echo FACEBOOK_SCOPE; ?>"><strong>Login / Register</strong></a> 
+        <? } else { ?>
+          <a href="/user/logout">Logout</a>
+        <? } ?><br><br> */ ?>
+        <a href="http://twitter.com/99stylescom" target="_blank" title="Follow Us" id="twitter-icon"></a>
+        <a href="http://www.facebook.com/99styles" target="_blank" title="Like Us" id="facebook-icon"></a> <br /> <br />
+        <a href="/about">About</a> &middot; <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </header>
+  <?php echo $this->layout()->content; ?>
+</div><!-- #wrapper -->
+<div class="clear"></div>
+<div class="container">
+  <div id="footer">
+    &copy; 2012 99styles. All rights reserved. 
+  </div>
 </div>
-
 <?php if(APPLICATION_ENV == "prod"){ ?>
     <script type='text/javascript' src='/steal/steal.production.js?assistant'></script>
 <? }else{ ?>

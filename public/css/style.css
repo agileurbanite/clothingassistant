@@ -291,13 +291,14 @@ h1 {
 #header-menu {
 	text-align: right;
 	position: absolute;
+	top: 12px;
 	right: 0;
 	bottom: 4px;
 	font-size: 14px;
 	line-height: 90%;
 }
 #header-menu a {
-	color: white;
+	color: #eee;
 }
 #header-menu a:hover {
 	color: #FAAF3E;
@@ -466,7 +467,7 @@ a#facebook-icon:hover {
 	border-top: #eee solid 1px;
 	padding-top: 6px;
 	margin-bottom: 20px;
-	margin-top: 40px;
+	margin-top: 60px;
 	text-align: center;
 	font-size: 11px;
 	color: #666;
@@ -478,6 +479,9 @@ a#facebook-icon:hover {
 	background: url(/img/halloween-banner.png) 0 0 no-repeat;
 	margin-left: 90px;
 	margin-top: 8px;
+}
+#womens-styles-cont .Sexy .gray-large {
+	margin-top: 229px;
 }
 #mens-styles-cont .Random {
 	width: 203px;
@@ -493,4 +497,53 @@ a#facebook-icon:hover {
 }
 #mens-styles-cont .Funny {
 	width: 201px;
+}
+div#page-cont {
+	width: 800px;
+	margin: 75px auto;
+	color: #404040;
+}
+#page-content {
+	float: left;
+	width: 480px;
+	margin-right: 60px;
+	font-size: 12px;
+}
+#page-cont h1 {
+	font-family: 'Rockwell W01';
+	font-size: 29px;
+	line-height: 29px;
+	text-transform: lowercase;
+	text-align: left;
+	font-weight: normal;
+	color: #404040;
+}
+#page-content h2 {
+	font-family: 'Rockwell W01';
+	font-size: 25px;
+	color: #404040;
+}
+div#contact-sidebar {
+	float: left;
+	border-left: 1px solid #808284;
+	height: 340px;
+	padding-left: 39px;
+	padding-top: 108px;
+	width: 220px;
+}
+#contact-sidebar h2 {
+	margin-top: 0;
+	font-family: 'Rockwell W01';
+	text-transform: lowercase;
+	font-weight: normal;
+}
+#contact-sidebar p {
+	margin-top: 0;
+	color: #808284;
+	font-size: 13px;
+	line-height: 1.8em;
+}
+#contact-sidebar a {
+	color: #808284;
+	text-decoration: none;
 }
