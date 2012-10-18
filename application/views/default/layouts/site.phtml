@@ -21,6 +21,7 @@
 <body>
 
 <div id="wrapper">
+<<<<<<< HEAD
   <header>
     <div class="container">
       <a id="logo" href="/"></a>
@@ -44,6 +45,44 @@
   <div id="footer">
     &copy; 2012 99styles. All rights reserved. 
   </div>
+=======
+    <header>
+	<div class="container">
+		<a id="logo" href="/"></a>
+		<div id="halloween-banner"></div>
+		<div id="header-menu">
+                     <?php if($this->users['member'] != 1){ ?>
+                        <a href="https://www.facebook.com/dialog/oauth?client_id=<?php echo FACEBOOK_APPID; ?>&redirect_uri=<?php echo FACEBOOK_REDIRECTURI;?>&scope=<?php echo FACEBOOK_SCOPE; ?>"><strong>Login / Register</strong></a> 
+                    <?}else{?>
+                        <a href="/user/logout">Logout</a>
+                    <?}?><br><br>
+                    <a href="http://twitter.com/99stylescom" target="_blank" title="Follow Us" id="twitter-icon"></a>
+                    <a href="http://www.facebook.com/99styles" target="_blank" title="Like Us" id="facebook-icon"></a> 
+                    <a href="#">About</a>
+		</div>
+	</div>
+</header>
+<div id="search-bar">
+	<div class="container">
+            <div id="type_filter"><a href="#">All</a>
+                <?php foreach($this->user['availableTypes'] as $type){ ?>
+                <a href="#"><?php echo $type; ?></a>
+                <?  } ?>
+            </div>
+		<ul id="active-filters">
+                    <?php foreach($this->users['brands'] as $brand){ ?>
+			<!-- <li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li> -->
+                    <? } ?>
+		</ul>
+		<!-- <div id="search" class="ui-widget">
+			<form>
+				<input type="text" name="query" id="query" placeholder="Add a Brand" />
+			</form>
+		</div> -->
+	</div>
+</div><!--#search-->
+<?php echo $this->layout()->content; ?>
+>>>>>>> 8b960bfdabe643835ecaa8b97e4b0a3cddd2c01d
 </div>
 <?php if(APPLICATION_ENV == "prod"){ ?>
     <script type='text/javascript' src='/steal/steal.production.js?assistant'></script>

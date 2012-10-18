@@ -147,11 +147,11 @@ header {
 .col4 { width: 360px; }
 .col5 { width: 450px; }
 
-.col1 img { max-width: 80px; }
-.col2 img { max-width: 160px; }
-.col3 img { max-width: 240px; }
-.col4 img { max-width: 320px; }
-.col5 img { max-width: 400px; }
+.col1 img { width: 80px; }
+.col2 img { width: 160px; }
+.col3 img { width: 240px; }
+.col4 img { width: 320px; }
+.col5 img { width: 400px; }
 
 .like-button {
 	background: url(/img/hearts.png) 0 0 no-repeat;
