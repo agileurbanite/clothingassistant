@@ -141,17 +141,17 @@ header {
 
 
 /* MASONRY */
-.col1 { width: 80px; }
+.col1 { width: 90px; }
 .col2 { width: 180px; }
-.col3 { width: 280px; }
-.col4 { width: 380px; }
-.col5 { width: 480px; }
+.col3 { width: 270px; }
+.col4 { width: 360px; }
+.col5 { width: 450px; }
 
 .col1 img { max-width: 80px; }
-.col2 img { max-width: 170px; }
-.col3 img { max-width: 280px; }
-.col4 img { max-width: 380px; }
-.col5 img { max-width: 480px; }
+.col2 img { max-width: 160px; }
+.col3 img { max-width: 240px; }
+.col4 img { max-width: 320px; }
+.col5 img { max-width: 400px; }
 
 .like-button {
 	background: url(/img/hearts.png) 0 0 no-repeat;

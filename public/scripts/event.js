@@ -49,6 +49,7 @@ $(document).ready(function(){
           ceaseFireOnEmpty: false,
           callback: function(i, x, direction) {
             if (direction == 'prev') {
+                $(document)
                 return false;
             } else {
                 productPage++
@@ -62,9 +63,9 @@ $(document).ready(function(){
     var $container = $('#products');
     $container.imagesLoaded(function(){
         $container.masonry({
-                itemSelector: 'li',
-                columnWidth: 90,
-                gutterWidth: 5
+            itemSelector: 'li',
+            columnWidth: 90,
+            gutterWidth: 5
         });
     });
     
