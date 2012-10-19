@@ -41,8 +41,11 @@
           <a href="/user/logout">Logout</a>
         <? } ?><br><br> */ ?>
         <strong style="color: orange;">Beta</strong>
+        
         <a href="http://twitter.com/99stylescom" target="_blank" title="Follow Us" id="twitter-icon"></a>
-        <a href="http://www.facebook.com/99styles" target="_blank" title="Like Us" id="facebook-icon"></a> <br /> <br />
+        <a href="http://www.facebook.com/99styles" target="_blank" title="Like Us" id="facebook-icon"></a> 
+        <div class="g-plusone" data-size="small" data-annotation="none" data-href="https://plus.google.com/107564780614634093842" style="float:right;"></div>
+        <br /> <br />
         <a href="/about">About / Contact</a>
       </div>
     </div>
@@ -55,5 +58,12 @@
 <? }else{ ?>
     <script type='text/javascript' src='/steal/steal.js?assistant'></script>
 <?  }   ?>
+    <script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 </body>
 </html>
