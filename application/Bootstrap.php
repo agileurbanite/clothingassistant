@@ -72,6 +72,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
                     $router->addRoute('auth', $route);
                     
                     $route = new Zend_Controller_Router_Route(
+                        "female",
+                        array(
+                            "controller" => "index",
+                            "action" => "index",
+                            "gender" => "female"
+                        )
+                    );
+                    $router->addRoute('female', $route);
+                    
+                    $route = new Zend_Controller_Router_Route(
+                        "male",
+                        array(
+                            "controller" => "index",
+                            "action" => "index",
+                            "gender" => "male"
+                        )
+                    );
+                    $router->addRoute('male', $route);
+                    
+                    $route = new Zend_Controller_Router_Route(
                         "api/:action",
                         array(
                             "controller" => "api",
