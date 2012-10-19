@@ -70,10 +70,25 @@ $(document).ready(function(){
         });
     });
     
+    // click handler for gender toggle in nav
+    $('#gender-toggle a').click( function(e){
+        e.preventDefault();
+        $this = $(this);
+        gender = $this.attr('data-gender');
+        if(gender){
+            $this.parent().find('.active').removeClass('active');
+            $this.addClass('active');
+            $.post('/api/set-gender', {gender: gender}, function(e){
+                app.update_products();
+                
+            });
+        }
+    });
+    
     // click handler for female gender screen
     $('#lightbox-gender .female').click(function(){
         $.ajax({
-            url: 'api/set-gender',
+            url: '/api/set-gender',
             type: 'post',
             dataType: 'json',
             data: {'gender':'f'}
@@ -90,7 +105,7 @@ $(document).ready(function(){
     // click handler for male gender screen
     $('#lightbox-gender .male').click(function(){
         $.ajax({
-            url: 'api/set-gender',
+            url: '/api/set-gender',
             type: 'post',
             dataType: 'json',
             data: {'gender':'m'}
@@ -115,24 +130,8 @@ $(document).ready(function(){
             data: {"style" : style}
         }).done(function(response){
             if(response){
-                // hide womens styles chooser
                 $('#mens-styles-cont').hide();
-                update_products();
-                $.get('api/get-user', function(res){
-                    $active_filters = $('#active-filters');
-                    $active_filters.html('');
-                    
-                    $(res.result.brands).each( function(k,v){
-                        add_brand(v);
-                    });
-                    
-                    $type_filters = $('#type_filter');
-                    $type_filters.html('');
-                    $(res.result.availableTypes).each( function(k,v){
-                        add_filter_type(v,res.result.type);
-                    });
-                }, 'json');
-
+                app.update_products();
                 // instantiate endless scroll
                 app.endless_scroll();
             }
@@ -153,21 +152,6 @@ $(document).ready(function(){
                 // hide womens styles chooser
                 $('#womens-styles-cont').hide();
                 app.update_products();
-                $.get('api/get-user', function(res){
-                    $active_filters = $('#active-filters');
-                    $active_filters.html('');
-                    
-                    $(res.result.brands).each( function(k,v){
-                        add_brand(v);
-                    });
-                    
-                    $type_filters = $('#type_filter');
-                    $type_filters.html('<a href="">All</a>');
-                    $(res.result.availableTypes).each( function(k,v){
-                        add_filter_type(v,res.result.type);
-                    });
-                }, 'json');
-
                 // instantiate endless scroll
                 app.endless_scroll();
             }
@@ -191,7 +175,7 @@ $(document).ready(function(){
         var self = $(this);
         var brand = $(this).html().substr(27);
         $.ajax({
-            url: 'api/remove-user-brand',
+            url: '/api/remove-user-brand',
             type: 'post',
             dataType: 'json',
             data: {'brand':brand}
@@ -201,7 +185,7 @@ $(document).ready(function(){
                self.remove();
                
                // get new products
-               $.get('api/products', function(res){
+               $.get('/api/products', function(res){
                    $('#products').html(res.result.html).show().masonry('reload');
                });
            }
@@ -303,22 +287,6 @@ $(document).ready(function(){
     });*/
     app.init();
 });
-
-function add_brand(brand){
-    $active_filters = $('#active-filters');
-    html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
-    $active_filters.append(html);
-}
-
-function add_filter_type(type, user_type){
-    if(user_type == type){
-        hit = 'class="hit"';
-    }else{
-        hit = '';
-    }
-    html = '<a href="#"' + hit + '>' + type + '</a>';
-    $type_filters.append(html);
-}
 
 function changeCommentsUrl(newUrl){
     // should refresh fb comments plugin for the "newUrl" variable

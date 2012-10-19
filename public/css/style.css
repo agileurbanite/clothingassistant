@@ -392,6 +392,7 @@ h1 {
 	font-family:'Rockwell W01';
 	display: none;
 	padding-top: 5px;
+        float: left;
 }
 @-moz-document url-prefix() {
 	#type_filter {
@@ -415,6 +416,22 @@ h1 {
 #type_filter a:first-child {
 	padding-left: 0;
 }
+
+#gender-toggle{
+    float: right;
+}
+
+#gender-toggle a{
+    font-family: 'Rockwell W01';
+    font-size: 14px;
+    color: #333;
+}
+
+#gender-toggle a.active{
+    color: #F47D31;
+    font-weight: bold;
+}
+
 #back-btn {
 	background: url(/img/back.png) 0 0 no-repeat;
 	height: 17px;

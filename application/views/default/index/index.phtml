@@ -1,15 +1,21 @@
 <div id="search-bar">
 	<div class="container">
-            <div id="type_filter"><a href="#">All</a>
+            <div id="type_filter">
+                <a href="#">All</a>
                 <?php foreach($this->user['availableTypes'] as $type){ ?>
-                <a href="#"><?php echo $type; ?></a>
+                    <a href="#"><?php echo $type; ?></a>
                 <?  } ?>
             </div>
-		<ul id="active-filters">
-                    <?php foreach($this->users['brands'] as $brand){ ?>
-			<!-- <li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li> -->
-                    <? } ?>
-		</ul>
+            <ul id="active-filters">
+                <?php foreach($this->users['brands'] as $brand){ ?>
+                    <!-- <li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li> -->
+                <? } ?>
+            </ul>
+            <div id="gender-toggle" class="right">
+                <a href="/female" class="<?php if($_SESSION['user']['gender'] == 'f'){ echo "active"; } ?>" data-gender="f">Female</a>
+                |
+                <a href="/male" class="<?php if($_SESSION['user']['gender'] == 'm'){ echo "active"; } ?>" data-gender="m">Male</a>
+            </div>    
 		<!-- <div id="search" class="ui-widget">
 			<form>
 				<input type="text" name="query" id="query" placeholder="Add a Brand" />
@@ -124,13 +130,17 @@
 	    user: <?php echo json_encode($_SESSION['user']); ?>,
             skip_wizard: <?php echo ($this->skip_wizard)? $this->skip_wizard: 0; ?>,
             productPage: 0,
+            type_fitlers: '',
 	    init: function(){
+                this.type_filters = $('#type_filter');
                 if( this.skip_wizard ){
 	            this.hide_wizard();
 	            this.update_products();
                     this.endless_scroll();
-                }else if( this.user.gender != 'undefined' ){
-                    
+                }else if( typeof this.user.gender != 'undefined' && typeof this.user.style != 'undefined' ){
+                    this.hide_wizard();
+                    this.update_products();
+                    this.endless_scroll();
                 }
 	    },
             hide_wizard: function(){
@@ -146,6 +156,7 @@
                 $('#back-btn').removeClass('hide');
             },
             update_products: function(){
+                var t = this;
                 $.ajax({
                     url: '/api/products',
                     type: 'post',
@@ -162,6 +173,23 @@
                          });
                     }
                 });
+                $.get('/api/get-user', function(res){
+                    t.active_filters = $('#active-filters');
+                    t.active_filters.html('');
+                    
+                    $(res.result.brands).each( function(k,v){
+                        t.add_brand(v);
+                    });
+                    
+                    t.type_filters = $('#type_filter');
+                    t.type_filters.html('');
+                    res.result.availableStyles.unshift('All');
+                    $(res.result.availableStyles).each( function(k,v){
+                        t.add_filter_type(v,res.result.style);
+                        console.log(v);
+                        console.log(res.result.type);
+                    });
+                }, 'json');
             },
             endless_scroll: function(){
                 var t = this;
@@ -199,6 +227,20 @@
                          });
                     }
                 });
+            },
+            add_filter_type: function(type, user_type){
+                if(user_type == type){
+                    hit = 'class="hit"';
+                }else{
+                    hit = '';
+                }
+                html = '<a href="#"' + hit + '>' + type + '</a>';
+                this.type_filters.append(html);
+            },
+            add_brand: function(brand){
+                $active_filters = $('#active-filters');
+                html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
+                $active_filters.append(html);
             }
 	}
 </script>
