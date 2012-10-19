@@ -32,4 +32,10 @@ class PageController extends My_Controller {
         return $this->render($script);
     }
 
+    public function privacyPolicyAction(){
+    }
+
+    public function aboutAction(){
+    }
+
 }

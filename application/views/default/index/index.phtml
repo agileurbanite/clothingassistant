@@ -1,3 +1,22 @@
+<div id="search-bar">
+	<div class="container">
+            <div id="type_filter"><a href="#">All</a>
+                <?php foreach($this->user['availableTypes'] as $type){ ?>
+                <a href="#"><?php echo $type; ?></a>
+                <?  } ?>
+            </div>
+		<ul id="active-filters">
+                    <?php foreach($this->users['brands'] as $brand){ ?>
+			<!-- <li class="<?php echo $brand; ?>"><span class="close"></span><?php echo $brand; ?></li> -->
+                    <? } ?>
+		</ul>
+		<!-- <div id="search" class="ui-widget">
+			<form>
+				<input type="text" name="query" id="query" placeholder="Add a Brand" />
+			</form>
+		</div> -->
+	</div>
+</div><!--#search-->
 <div class="container">
     
 </div>
@@ -81,13 +100,25 @@
 	<div class="gender-option female"></div>
 	<div class="gender-option male"></div>
 </div>
+<div id="lightbox-product">
+	<div class="close" id="lp-close"></div>
+	<div class="lp-img-full"><a href=""><img src="" alt="test" /></a></div>
+	<div class="lp-content-right">
+		<div class="lp-name"></div>
+		<div class="lp-brand"></div>
+		<div class="lp-price-cont">
+			<div class="lp-price-left"></div>
+			<div class="lp-price"></div>
+			<div class="clear"></div>
+		</div>
+		<p class="lp-desc"></p>
+		<a href="" target="_blank"><button class="lp-buy">BUY IT</button></a>
+	</div>
+	<div id="lp-comments"></div>
+</div>
 <div id="dimmer"></div>
 <div id="styles-btn"></div>
 <div id="back-btn" class="hide">BACK</div>
-<div class="container">
-	<div id="footer">
-		&copy; 2012 99styles. All rights reserved. 
-	</div>
 <script type="text/javascript">
 	var app = {
 	    user: <?php echo json_encode($_SESSION['user']); ?>,

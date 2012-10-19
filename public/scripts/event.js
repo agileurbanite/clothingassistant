@@ -264,6 +264,22 @@ $(document).ready(function(){
            }
        });
     });
+
+    $('#lp-close').on('click', function(e){
+        $('#lightbox-product,#dimmer').hide();
+    });
+
+    $('#products').on('click', '.item', function(e){
+        link = $(this).attr('href');
+        img = $(this).find('img').attr('src');
+        price = $(this).find('.price').text();
+        $('#lightbox-product a').attr('href', link);
+        $('.lp-price').text(price);
+        $('.lp-img-full img').attr('src', img);
+        $('#lightbox-product, #dimmer').show();
+        changeCommentsUrl(link);
+        e.preventDefault();
+    });
     
     // add brands click handler
     /*
@@ -308,4 +324,12 @@ function add_filter_type(type, user_type){
     }
     html = '<a href="#"' + hit + '>' + type + '</a>';
     $type_filters.append(html);
+}
+
+function changeCommentsUrl(newUrl){
+    // should refresh fb comments plugin for the "newUrl" variable
+    document.getElementById('lp-comments').innerHTML='';
+    parser=document.getElementById('lp-comments');
+    parser.innerHTML='<div class="fb-comments" data-href="'+newUrl+'" data-num-posts="2" data-width="392"></div>';
+    FB.XFBML.parse(parser);
 }
