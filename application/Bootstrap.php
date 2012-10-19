@@ -54,7 +54,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
                         )
                     );
                     $router->addRoute('privacy', $route);
-
+                    
+                    $route = new Zend_Controller_Router_Route(
+                        "admin/:action",
+                        array(
+                            "controller" => "admin",
+                        )
+                    );
+                    $router->addRoute('admin', $route);
+                    
+                    $route = new Zend_Controller_Router_Route(
+                        "auth/:action",
+                        array(
+                            "controller" => "auth",
+                        )
+                    );
+                    $router->addRoute('auth', $route);
+                    
                     $route = new Zend_Controller_Router_Route(
                         "api/:action",
                         array(
