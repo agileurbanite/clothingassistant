@@ -632,7 +632,7 @@ div#contact-sidebar {
 #lp-comments {
 	width: 412px;
 	height: 310px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 	float: left;
 	margin-top: 20px;
