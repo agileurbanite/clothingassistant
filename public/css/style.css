@@ -633,6 +633,7 @@ div#contact-sidebar {
 	width: 412px;
 	height: 310px;
 	overflow-y: scroll;
+	overflow-x: hidden;
 	float: left;
 	margin-top: 20px;
 }
