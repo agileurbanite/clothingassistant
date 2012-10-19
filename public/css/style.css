@@ -70,9 +70,11 @@ header {
 	
 	padding-bottom: 24px;
 	z-index: 5;
+	text-align: center;
 }
 #products li .item img {
 	margin: 0;
+	width: 260px;
 	margin: 5px 5px 2px 5px;
 }
 #products li .item .price {
@@ -546,4 +548,108 @@ div#contact-sidebar {
 #contact-sidebar a {
 	color: #808284;
 	text-decoration: none;
+}
+#lightbox-product {
+	background: white;
+	box-shadow: 0 0 6px 2px #aaa;
+	width: 726px;
+	height: 460px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -383px;
+	margin-top: -250px;
+	padding: 20px;
+	z-index: 1000;
+	display: none;
+}
+.lp-img-full {
+	float: left;
+	margin-right: 14px;
+	width: 300px;
+	text-align: center;
+}
+.lp-img-full img {
+	height: 460px;
+}
+.lp-content-right {
+	float: left;
+	width: 312px;
+}
+.lp-name {
+	color: #808284;
+	font-size: 24px;
+	margin-top: 1.5em;
+}
+.lp-brand {
+	color: #231F20;
+	font-size: 24px;
+}
+.lp-price-cont {
+	margin: 18px 0;
+}
+.lp-price-left {
+	background: url(/img/price-tag-large-left.png) 0 0 no-repeat;
+	width: 2px;
+	height: 37px;
+	float: left;
+}
+.lp-price {
+	height: 28px;
+	line-height: 18px;
+	background: url(/img/price-tag-large.png) right top no-repeat;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+	padding: 9px 20px 0 10px;
+	font-family: 'Rockwell W01';
+	float: left;
+}
+.lp-buy {
+	background: #FBAF3F;
+	border-radius: 6px;
+	color: white;
+	font-weight: bold;
+	height: 36px;
+	text-align: center;
+	margin: 20px 0 0 0;
+	display: block;
+	width: 140px;
+	border: none;
+	cursor: pointer;
+	font-size: 18px;
+	box-shadow: 1px 1px 3px 0 #ccc;
+	text-shadow: 1px 1px 2px #666;
+}
+.lp-buy:hover {
+	background: #F89B39;
+}
+.lp-desc {
+	font-family: "Myriad Pro", sans-serif;
+	font-size: 14px;
+	color: #231F20;
+}
+#lp-comments {
+	width: 412px;
+	height: 310px;
+	overflow-y: scroll;
+	float: left;
+	margin-top: 20px;
+}
+.close {
+	position: fixed;
+	top: 50%;
+	left:50%;
+	z-index: 1001;
+	width: 30px;
+	height: 30px;
+	background: url(/img/close.png) 0 0 no-repeat;
+	cursor: pointer;
+}
+.close:hover {
+	background: url(/img/close.png) -30px 0 no-repeat;
+}
+#lp-close {
+	margin-left: 345px;
+	margin-top: -242px;
 }
