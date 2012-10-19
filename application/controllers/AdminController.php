@@ -110,7 +110,7 @@ class AdminController extends My_Controller {
     public function postsAction(){
     	$this->view->model = "Post";
     	$this->view->primary = Jien::model($this->view->model)->getPrimary();
-    	$this->view->data = Jien::model($this->view->model)->orderBy("p.post_id DESC")->joinCategory()->joinUser()->withPager($this->params('page', 1))->filter($this->params())->get();
+    	$this->view->data = Jien::model($this->view->model)->orderBy("p.post_id DESC")->joinCategory("category.category_id,category.type,category.category,category.parent_id,category.path")->joinUser('u.user_id,u.username')->withPager($this->params('page', 1))->filter($this->params())->get();
     }
 
     public function postAction(){

@@ -17,7 +17,52 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
 		$router = Zend_Controller_Front::getInstance ()->getRouter ();
 		if ($router instanceof Zend_Controller_Router_Rewrite)
 		{
-                        // put your web-interface routes here, so they do not interfere
+                    // put your web-interface routes here, so they do not interfere
+                    $route = new Zend_Controller_Router_Route(
+                        ":theme/:gender",
+                        array(
+                            "controller" => "index",
+                            "action" => "index"
+                        )
+                    );
+                    $router->addRoute('index', $route);
+                    
+                    // put your web-interface routes here, so they do not interfere
+                    $route = new Zend_Controller_Router_Route(
+                        ":theme",
+                        array(
+                            "controller" => "index",
+                            "action" => "index"
+                        )
+                    );
+                    $router->addRoute('theme', $route);
+                    
+                    $route = new Zend_Controller_Router_Route(
+                        "about",
+                        array(
+                            "controller" => "page",
+                            "action" => "about"
+                        )
+                    );
+                    $router->addRoute('about', $route);
+                    
+                    $route = new Zend_Controller_Router_Route(
+                        "privacy-policy",
+                        array(
+                            "controller" => "page",
+                            "action" => "privacy-policy"
+                        )
+                    );
+                    $router->addRoute('privacy', $route);
+
+                    $route = new Zend_Controller_Router_Route(
+                        "api/:action",
+                        array(
+                            "controller" => "api",
+                        )
+                    );
+                    $router->addRoute('api', $route);
+                    
 		}
 	}	
     

@@ -122,7 +122,6 @@ $params = $this->data;
 </div>
 
 <script>
-    
     $('input[name=theme]').autocomplete( {source: <?php echo json_encode($this->themes); ?>} );
     $('input[name=style]').autocomplete( {source: <?php echo json_encode($this->styles); ?>} );
     $('input[name=tpye]').autocomplete( {source: <?php echo json_encode($this->types); ?>} );

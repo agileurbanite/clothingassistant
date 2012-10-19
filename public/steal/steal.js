@@ -2073,10 +2073,11 @@ if (support.interactive) {
 			}
 			else {
 				if (options.loadDev !== false) {
-					steals.unshift({
+					/*disabled causing issues with build
+                                         *steals.unshift({
 						src: 'steal/dev/dev.js',
 						ignore: true
-					});
+					});*/
 				}
 				
 				if (options.startFile) {

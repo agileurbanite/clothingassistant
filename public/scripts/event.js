@@ -2,6 +2,7 @@ $(document).ready(function(){
     var productPage = 0;
 
     // update products
+    /*
     function update_products(){
         $.ajax({
             url: 'api/products',
@@ -57,7 +58,7 @@ $(document).ready(function(){
             }
           }
         });
-    }
+    }*/
 
     // applying masonry to products grid
     var $container = $('#products');
@@ -106,13 +107,9 @@ $(document).ready(function(){
     // click handler to set womens styles
     $('#mens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
-        $('#search-bar').show();
-        $('.indicator').show();
-        $('#type_filter').show();
-        $('#styles-btn').show();
-        $('#back-btn').removeClass('hide');
+        app.hide_wizard();
         $.ajax({
-            url: 'api/set-user-style',
+            url: '/api/set-user-style',
             type: 'post',
             dataType: 'json',
             data: {"style" : style}
@@ -137,7 +134,7 @@ $(document).ready(function(){
                 }, 'json');
 
                 // instantiate endless scroll
-                endless_scroll();
+                app.endless_scroll();
             }
         });
     });
@@ -145,13 +142,9 @@ $(document).ready(function(){
     // click handler to set womens styles
     $('#womens-styles').delegate('li', 'click', function(){
         var style = $(this).attr('class');
-        $('#search-bar').show();
-        $('.indicator').show();
-        $('#type_filter').show();
-        $('#styles-btn').show();
-        $('#back-btn').removeClass('hide');
+        app.hide_wizard();
         $.ajax({
-            url: 'api/set-user-style',
+            url: '/api/set-user-style',
             type: 'post',
             dataType: 'json',
             data: {"style" : style}
@@ -159,7 +152,7 @@ $(document).ready(function(){
             if(response){
                 // hide womens styles chooser
                 $('#womens-styles-cont').hide();
-                update_products();
+                app.update_products();
                 $.get('api/get-user', function(res){
                     $active_filters = $('#active-filters');
                     $active_filters.html('');
@@ -176,7 +169,7 @@ $(document).ready(function(){
                 }, 'json');
 
                 // instantiate endless scroll
-                endless_scroll();
+                app.endless_scroll();
             }
         });
     });
@@ -189,7 +182,7 @@ $(document).ready(function(){
         $('#type_filter a').removeClass('hit');
         $this.addClass('hit');
         $.post('/api/set-user-style', {style: $this.text()}, function(res){
-            update_products();
+            app.update_products();
        });
     });
     
@@ -226,7 +219,7 @@ $(document).ready(function(){
                     add_brand(brand);
                     
                     //update product
-                    update_products();
+                    app.update_products();
                     
                     //clear val
                     $( "#query" ).val('');
@@ -308,6 +301,7 @@ $(document).ready(function(){
             $('#query').val('');
         }
     });*/
+    app.init();
 });
 
 function add_brand(brand){

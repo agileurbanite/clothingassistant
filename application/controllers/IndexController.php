@@ -7,6 +7,21 @@ class IndexController extends My_Controller {
     }
 
     public function indexAction(){
+        $theme = $this->params('theme');
+        if($theme){
+            $gender = $this->params('gender');
+            if($gender){
+                switch($gender){
+                    case 'female': $gender = 'f';break;
+                    case 'male': $gender = 'm';break;
+                    default: $gender = 'f';break;
+                }
+                
+                $this->setGender($gender);
+                $this->view->skip_wizard = true;
+            }
+        }
+        
         $this->view->users = $this->getUser();
         $this->view->products = Jien::model('Product')->approved()->limit(30,0)->get()->rows();
     }
