@@ -66,7 +66,8 @@ $(document).ready(function(){
         $container.masonry({
             itemSelector: 'li',
             columnWidth: 90,
-            gutterWidth: 5
+            gutterWidth: 5,
+            isAnimatedFromBottom: true
         });
     });
     

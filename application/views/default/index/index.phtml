@@ -200,11 +200,13 @@
                   inflowPixels: 100,
                   fireDelay: true,
                   ceaseFireOnEmpty: false,
+                  loader: '<div class="indicator"></div>',
                   callback: function(i, x, direction) {
                     if (direction == 'prev') {
                         return false;
                     } else {
                         t.productPage++
+                        $('.indicator').show();
                         t.append_products();
                     }
                   }
@@ -219,13 +221,16 @@
                         var $container = $('#products');
                         //$container.append(res.result.html).show().css({visibility:'hidden'});
                         $html = $(res.result.html);
+                        $html.css('visibility','hidden');
                         $container.append($html);
                          $container.imagesLoaded(function(){
+                            $html.css('visibility','visible');
                             $('.indicator').hide();
                             $container.masonry('appended', $html);
                             $('#styles-btn').show();
                             $('#back-btn').removeClass('hide');
                             $('#type_filter').show();
+                            
                          });
                     }
                 });
