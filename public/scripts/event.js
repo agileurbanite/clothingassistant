@@ -66,7 +66,8 @@ $(document).ready(function(){
         $container.masonry({
             itemSelector: 'li',
             columnWidth: 90,
-            gutterWidth: 5
+            gutterWidth: 5,
+            isAnimatedFromBottom: true
         });
     });
     
@@ -252,7 +253,9 @@ $(document).ready(function(){
         link = $(this).attr('href');
         img = $(this).find('img').attr('src');
         price = $(this).find('.price').text();
+        title = $('img',this).attr('alt');
         $('#lightbox-product a').attr('href', link);
+        $('.lp-name').text(title)
         $('.lp-price').text(price);
         $('.lp-img-full img').attr('src', img);
         $('#lightbox-product, #dimmer').show();
