@@ -430,6 +430,7 @@ h1 {
 #gender-toggle a.active{
     color: #F47D31;
     font-weight: bold;
+    cursor: none;
 }
 
 #back-btn {
