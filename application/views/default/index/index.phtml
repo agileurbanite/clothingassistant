@@ -127,7 +127,7 @@
 <div id="back-btn" class="hide">BACK</div>
 <script type="text/javascript">
 	var app = {
-	    user: <?php echo json_encode($_SESSION['user']); ?>,
+	    user: <?php if( !empty($_SESSION['user']) ){ echo json_encode($_SESSION['user']); }else{ echo "{}"; } ?>,
             skip_wizard: <?php echo ($this->skip_wizard)? $this->skip_wizard: 0; ?>,
             productPage: 0,
             type_fitlers: '',
@@ -137,7 +137,7 @@
 	            this.hide_wizard();
 	            this.update_products();
                     this.endless_scroll();
-                }else if( typeof this.user.gender != 'undefined' && typeof this.user.style != 'undefined' ){
+                }else if( this.user.gender !== undefined && this.user.style !== undefined ){
                     this.hide_wizard();
                     this.update_products();
                     this.endless_scroll();
