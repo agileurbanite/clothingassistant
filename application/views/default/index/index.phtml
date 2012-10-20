@@ -233,6 +233,9 @@
                         t.productPage++
                         $('.indicator').show();
                         t.append_products();
+                        if (t.productPage == 2) {
+                            $('#lightbox-subscribe,#dimmer').show();
+                        }
                     }
                   }
                 });
