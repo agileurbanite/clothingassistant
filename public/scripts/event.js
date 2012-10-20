@@ -259,6 +259,10 @@ $(document).ready(function(){
         changeCommentsUrl(link);
         e.preventDefault();
     });
+
+    $('#ls-close').on('click', function(e){
+        $('#lightbox-subscribe,#dimmer').hide();
+    });
     
     // add brands click handler
     /*

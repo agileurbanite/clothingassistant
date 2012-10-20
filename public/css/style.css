@@ -671,3 +671,65 @@ div#contact-sidebar {
 	margin-left: 345px;
 	margin-top: -242px;
 }
+#lightbox-subscribe {
+	width: 560px;
+	height: 360px;
+	padding: 20px;
+	background: white;
+	box-shadow: 0 0 6px 2px #aaa;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -300px;
+	margin-top: -200px;
+	z-index: 2000;
+	text-align: center;
+	display: none;
+}
+#lightbox-subscribe h2 {
+	color: #FBAF3F;
+	font-size: 25px;
+	text-align: center;
+	margin-top: 0;
+	font-family: 'Rockwell W01';
+	text-transform: uppercase;
+}
+#lightbox-subscribe h3 {
+	color: #6D6E70;
+	font-size: 21px;
+	text-align: center;
+	margin-top: 0;
+	font-family: 'Rockwell W01';
+	text-transform: uppercase;
+}
+#mce-EMAIL::-webkit-input-placeholder {
+    font-style: italic; 
+    text-align: center;
+}
+
+#mce-EMAIL:-moz-placeholder {  
+    font-style: italic;
+    text-align: center; 
+}
+#mce-EMAIL {
+	text-align: center;
+	background: #E1E2E1;
+	border-radius: 6px;
+	box-shadow: inset 1px 2px 0 0 #9EA7AD, inset -1px -1px 0 0 #9EA7AD;
+	border: none!important;
+	width: 300px!important;
+	margin-left: auto;
+	margin-right: auto;
+}
+.mc-field-group {
+	height: 30px!important;
+	min-height: 30px!important;
+}
+#lightbox-subscribe .clear {
+	text-align: center;
+}
+#ls-close {
+	margin-top: -191px;
+	margin-left: 262px;
+	z-index: 2001;
+}
