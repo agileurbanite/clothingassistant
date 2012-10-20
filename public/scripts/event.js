@@ -78,6 +78,7 @@ $(document).ready(function(){
         if(gender){
             $this.parent().find('.active').removeClass('active');
             $this.addClass('active');
+            app.set_gender(gender);
             $.post('/api/set-gender', {gender: gender}, function(e){
                 app.update_products();
                 
@@ -216,6 +217,7 @@ $(document).ready(function(){
     $('#styles-btn,#back-btn').click(function() {
         $('#products').hide();
         $('#womens-styles-cont').show();
+        $('#search-bar').hide();
         if($(this).hasClass('female-style')){
             $('#male-styles-cont').hide();
             $('#womens-styles-cont').show();

@@ -123,7 +123,7 @@
 	<div id="lp-comments"></div>
 </div>
 <div id="dimmer"></div>
-<div id="styles-btn"></div>
+<div id="styles-btn" class="<?php if( !empty($_SESSION['user']['gender']) ){ switch( $_SESSION['user']['gender']){ case 'm': echo 'male-style';break; case 'f': echo 'female-style';break; } } ?>"></div>
 <div id="back-btn" class="hide">BACK</div>
 <script type="text/javascript">
 	var app = {
@@ -142,8 +142,10 @@
                     this.update_products();
                     this.endless_scroll();
                 }
+                 $('body').css('visibility','visible');
 	    },
             hide_wizard: function(){
+                $('#search-bar').show();
                 $('#dimmer').hide();
                 $('#lightbox-gender').hide();
                 $('#splash').hide();
@@ -157,6 +159,7 @@
             },
             update_products: function(){
                 var t = this;
+               
                 $.ajax({
                     url: '/api/products',
                     type: 'post',
@@ -170,6 +173,7 @@
                             $('#styles-btn').show();
                             $('#back-btn').removeClass('hide');
                             $('#type_filter').show();
+                            
                          });
                     }
                 });
@@ -186,8 +190,6 @@
                     res.result.availableStyles.unshift('All');
                     $(res.result.availableStyles).each( function(k,v){
                         t.add_filter_type(v,res.result.style);
-                        console.log(v);
-                        console.log(res.result.type);
                     });
                 }, 'json');
             },
@@ -241,6 +243,13 @@
                 $active_filters = $('#active-filters');
                 html = '<li class="' + brand + '"><span class="close"></span>' + brand + '</li>';
                 $active_filters.append(html);
+            },
+            set_gender: function(gender){
+                switch(gender){
+                    case 'f': $('#styles-btn').addClass('female-style').removeClass('male-style');break;
+                    case 'm': $('#styles-btn').addClass('male-style').removeClass('female-style');break;
+                    default: alert('test');
+                }
             }
 	}
 </script>
