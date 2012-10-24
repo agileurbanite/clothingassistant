@@ -48,13 +48,16 @@ header {
 #wrapper {
 	width: 100%;
 }
+
+
+
 #products {
 	list-style-type: none;
 	padding: 0;
 	margin: 20px auto;
 	width: 90%;
 	padding-left: 10px;
-	display: none;
+	
 }
 #products li {
 	padding: 0;

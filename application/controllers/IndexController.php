@@ -20,7 +20,7 @@ class IndexController extends My_Controller {
         }
         
         $this->view->users = $this->getUser();
-        $this->view->products = Jien::model('Product')->approved()->limit(30,0)->get()->rows();
+        $this->view->products = Jien::model('Product')->approved()->orderBy('like_count DESC')->withPager($this->params('page', 1),30)->get();
     }
     
     public function testAction(){

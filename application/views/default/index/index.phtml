@@ -1,9 +1,9 @@
 <div id="search-bar">
 	<div class="container">
             <div id="type_filter">
-                <a href="#">All</a>
+                <a href="#" class="<?php echo (empty($_SESSION['user']['type'])? 'hit': ''); ?>">All</a>
                 <?php foreach($this->user['availableTypes'] as $type){ ?>
-                    <a href="#"><?php echo $type; ?></a>
+                    <a href="#" class="<?php if($type == $_SESSION['user']['type']){ echo 'hit'; } ?>"><?php echo ucfirst($type); ?></a>
                 <?  } ?>
             </div>
             <ul id="active-filters">
@@ -23,17 +23,24 @@
 		</div> -->
 	</div>
 </div><!--#search-->
-<div class="container">
-    
-</div>
-
-<div class="clear"></div>
 
 <div id="splash"></div>
 
 <div class="indicator"></div>
 
-<ul id="products"></ul>
+<ul id="products">
+<?php   foreach($this->products->rows() as $product){   ?>
+<li class="col3" data-product_id="<?php echo $product['product_id']; ?>">
+    <a href="<?php echo $product['product_url']; ?>" class="item" target="_blank">
+            <img src="<?php echo $product['image_url']; ?>" alt="<?php echo htmlentities($product['title'],ENT_QUOTES, 'UTF-8');?>" />
+            <div class="price">$<?php echo $product['price']; ?></div>
+    </a>
+    <div class="rating"></div>
+    <span class="current-rating"><?php echo $product['like_count']; ?></span>
+    <div data-prod_id="<?php echo $product['product_id']; ?>" class="like-button"></div>
+</li>    
+<?  }   ?>
+</ul>
 
 <div id="womens-styles-cont">
 	<h1>Choose your style</h1> 
@@ -150,6 +157,9 @@
 <div id="dimmer"></div>
 <div id="styles-btn" class="<?php if( !empty($_SESSION['user']['gender']) ){ switch( $_SESSION['user']['gender']){ case 'm': echo 'male-style';break; case 'f': echo 'female-style';break; } } ?>"></div>
 <div id="back-btn" class="hide">BACK</div>
+<nav>
+    <?php echo $this->pager($this->products->pager(), 'partials/pager/pager_custom.phtml'); ?>
+</nav>
 <script type="text/javascript">
 	var app = {
 	    user: <?php if( !empty($_SESSION['user']) ){ echo json_encode($_SESSION['user']); }else{ echo "{}"; } ?>,
@@ -160,14 +170,17 @@
                 this.type_filters = $('#type_filter');
                 if( this.skip_wizard ){
 	            this.hide_wizard();
-	            this.update_products();
-                    this.endless_scroll();
+	            //this.update_products();
+                    //this.endless_scroll();
+                    this.infinite_scroll();
                 }else if( this.user.gender !== undefined && this.user.style !== undefined ){
                     this.hide_wizard();
-                    this.update_products();
-                    this.endless_scroll();
+                    //this.update_products();
+                    //this.endless_scroll();
+                    this.infinite_scroll();
                 }
-                 $('body').css('visibility','visible');
+                $('body').css('visibility','visible');
+                $('.indicator').hide();
 	    },
             hide_wizard: function(){
                 $('#search-bar').show();
@@ -184,7 +197,11 @@
             },
             update_products: function(){
                 var t = this;
-               
+                $('#products').infinitescroll({
+                    state: {
+                        currPage: 1
+                    }
+                });
                 $.ajax({
                     url: '/api/products',
                     type: 'post',
@@ -240,6 +257,35 @@
                   }
                 });
             },
+            infinite_scroll: function(){
+                var $products = $('#products');
+                $products.infinitescroll({
+                    navSelector  : "nav",            
+                    nextSelector : "nav a:last",    
+                    itemSelector : "#products li",
+                    debug : false,
+                    dataType : 'html',
+                    prefill : false,
+                    animate: true,
+                    extraScrollPx: 50,
+                    bufferPx: 100,
+                    state: {
+                        isDuringAjax: false,
+                        isInvalidPage: false,
+                        isDestroyed: false,
+                        isDone: false, // For when it goes all the way through the archive.
+                        isPaused: false,
+                        currPage: <?php echo ( $this->params('page') ? $this->params('page'): 1 ); ?>
+                    }
+                }, function(newElements){
+                    var $newElems = $( newElements ).css({ opacity: 0 });
+                    $newElems.imagesLoaded(function(){
+                        // show elems now they're ready
+                        $newElems.animate({ opacity: 1 });
+                        $products.masonry( 'appended', $newElems, true ); 
+                    });
+                });
+            },
             append_products: function(){
                 $.ajax({
                     url: '/api/products',
@@ -281,7 +327,7 @@
                 switch(gender){
                     case 'f': $('#styles-btn').addClass('female-style').removeClass('male-style');break;
                     case 'm': $('#styles-btn').addClass('male-style').removeClass('female-style');break;
-                    default: alert('test');
+                    default: break;
                 }
             }
 	}

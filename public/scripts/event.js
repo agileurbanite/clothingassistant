@@ -69,6 +69,7 @@ $(document).ready(function(){
             gutterWidth: 5,
             isAnimatedFromBottom: true
         });
+        app.init();
     });
     
     // click handler for gender toggle in nav
@@ -294,7 +295,6 @@ $(document).ready(function(){
             $('#query').val('');
         }
     });*/
-    app.init();
 });
 
 function changeCommentsUrl(newUrl){
