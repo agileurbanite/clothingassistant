@@ -157,7 +157,7 @@
 <div id="dimmer"></div>
 <div id="styles-btn" class="<?php if( !empty($_SESSION['user']['gender']) ){ switch( $_SESSION['user']['gender']){ case 'm': echo 'male-style';break; case 'f': echo 'female-style';break; } } ?>"></div>
 <div id="back-btn" class="hide">BACK</div>
-<nav>
+<nav style="visibility: hidden;">
     <?php echo $this->pager($this->products->pager(), 'partials/pager/pager_custom.phtml'); ?>
 </nav>
 <script type="text/javascript">
