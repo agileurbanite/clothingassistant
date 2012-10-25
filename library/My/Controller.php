@@ -34,6 +34,7 @@ class My_Controller extends Jien_Controller {
     public function setGender($gender){
         $_SESSION['user']['gender'] = $gender;
         $_SESSION['user']['style'] = 'All';
+        $_SESSION['user']['availableStyles'] = array_map( function($n){ return $n['style']; }, Jien::model('Product')->select("distinct(style)")->where("style!=''")->andWhere("gender = '{$_SESSION['user']['gender']}'")->get()->rows() );
     }
     
     public function setUserBrands($brands){
@@ -47,7 +48,7 @@ class My_Controller extends Jien_Controller {
     public function setUserStyle($style){
         $_SESSION['user']['style'] = $style;
         
-        $_SESSION['user']['availableStyles'] = array_map( function($n){ return $n['style']; }, Jien::model('Product')->select("distinct(style)")->where("style!=''")->get()->rows() );
+        $_SESSION['user']['availableStyles'] = array_map( function($n){ return $n['style']; }, Jien::model('Product')->select("distinct(style)")->where("style!=''")->andWhere("gender = '{$_SESSION['user']['gender']}'")->get()->rows() );
         
         $model = Jien::model('Product')->select('distinct(brand)');
         if($style != 'All'){

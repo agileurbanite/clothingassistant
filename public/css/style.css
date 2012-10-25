@@ -48,13 +48,31 @@ header {
 #wrapper {
 	width: 100%;
 }
+
+/* infinite Scroll Loader */
+#infscr-loading { 
+    text-align: center;
+    z-index: 100;
+    position: fixed;
+    left: 45%;
+    bottom: 40px;
+    width: 200px;
+    padding: 10px;
+    background: #000; 
+    opacity: 0.8;
+    color: #FFF;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
 #products {
 	list-style-type: none;
 	padding: 0;
 	margin: 20px auto;
 	width: 90%;
 	padding-left: 10px;
-	display: none;
+	
 }
 #products li {
 	padding: 0;
