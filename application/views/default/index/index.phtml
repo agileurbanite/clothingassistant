@@ -276,6 +276,10 @@
                         isDone: false, // For when it goes all the way through the archive.
                         isPaused: false,
                         currPage: <?php echo ( $this->params('page') ? $this->params('page'): 1 ); ?>
+                    },
+                    loading: {
+                        finishedMsg: 'No more pages to load.',
+                        img: 'http://i.imgur.com/6RMhx.gif'
                     }
                 }, function(newElements){
                     var $newElems = $( newElements ).css({ opacity: 0 });
