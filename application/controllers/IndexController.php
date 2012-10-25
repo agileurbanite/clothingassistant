@@ -19,8 +19,29 @@ class IndexController extends My_Controller {
             $this->view->skip_wizard = true;
         }
         
-        $this->view->users = $this->getUser();
-        $this->view->products = Jien::model('Product')->approved()->orderBy('like_count DESC')->withPager($this->params('page', 1),30)->get();
+        $this->view->users = $user = $this->getUser();
+
+        $products = Jien::model('Product');
+        
+        if( !empty($user['gender'])){
+            $products->gender($user['gender']);
+        }
+        
+        if( !empty($user['brands']) ){
+            //$model->brands($user['brands']);
+        }
+        
+        if( !empty($user['style']) ){
+            $products->style($user['style']);
+        }
+        
+        if( !empty($user['type']) ){
+            $products->type($user['type']);
+        }
+        
+        $products = $products->approved()->orderBy('like_count DESC')->withPager($this->params('page',1), 30)->get();
+        
+        $this->view->products = $products;
     }
     
     public function testAction(){
