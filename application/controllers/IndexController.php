@@ -44,6 +44,17 @@ class IndexController extends My_Controller {
         $this->view->products = $products;
     }
     
+    public function productAction(){
+        $id = $this->params('id');
+        
+        if($id){
+            $this->view->product = $product = Jien::model('Product')->get($id)->row();
+        }else{
+            echo "test";
+        }
+        
+    }
+    
     public function testAction(){
         $html = "<html><body><div id=test>asdfasdf</div></body></html>";
         phpQuery::newDocument($html);

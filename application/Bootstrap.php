@@ -108,6 +108,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
                     );
                     $router->addRoute('api', $route);
                     
+                    $route = new Zend_Controller_Router_Route(
+                        "product/:id/*",
+                        array(
+                            "controller" => "index",
+                            "action" => "product"
+                        )
+                    );
+                    $router->addRoute('product', $route);
+                    
 		}
 	}	
     

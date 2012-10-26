@@ -67,7 +67,8 @@ $(document).ready(function(){
             itemSelector: 'li',
             columnWidth: 90,
             gutterWidth: 5,
-            isAnimatedFromBottom: true
+            isAnimatedFromBottom: true,
+            isFitWidth: true
         });
         app.init();
     });

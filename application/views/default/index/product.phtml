@@ -1,0 +1,19 @@
+<?php Jien::debug($this->product); ?>
+<div id="lightbox-product" style="display: block">
+        <a href="/"><div class="close" id="lp-close"></div></a>
+	<div class="lp-img-full"><a href="<?php echo $this->product['image_url'];?>" target="_blank"><img src="<?php echo $this->product['image_url'];?>" alt="<?php echo $this->product['title'];?>" /></a></div>
+	<div class="lp-content-right">
+		<div class="lp-name"><?php echo $this->product['title'];?></div>
+		<div class="lp-brand"></div>
+		<div class="lp-price-cont">
+			<div class="lp-price-left"><?php echo $this->product['price']; ?></div>
+			<div class="lp-price"><?php echo $this->product['price']; ?></div>
+			<div class="clear"></div>
+		</div>
+		<p class="lp-desc"><?php echo $this->product['title']; ?></p>
+		<a href="<?php echo $this->product['product_url']; ?>" target="_blank"><button class="lp-buy">BUY IT</button></a>
+	</div>
+	<div id="lp-comments"></div>
+</div>
+<div id="dimmer"></div>
+<div id="splash"></div>
