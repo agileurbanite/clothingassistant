@@ -235,28 +235,6 @@
                     });
                 }, 'json');
             },
-            endless_scroll: function(){
-                var t = this;
-            
-                $(document).endlessScroll({
-                  inflowPixels: 100,
-                  fireDelay: true,
-                  ceaseFireOnEmpty: false,
-                  loader: '<div class="indicator"></div>',
-                  callback: function(i, x, direction) {
-                    if (direction == 'prev') {
-                        return false;
-                    } else {
-                        t.productPage++
-                        $('.indicator').show();
-                        t.append_products();
-                        if (t.productPage == 2) {
-                            $('#lightbox-subscribe,#dimmer').show();
-                        }
-                    }
-                  }
-                });
-            },
             infinite_scroll: function(){
                 var $products = $('#products');
                 $products.infinitescroll({
