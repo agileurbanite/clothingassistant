@@ -137,7 +137,7 @@ $(document).ready(function(){
                 $('#mens-styles-cont').hide();
                 app.update_products();
                 // instantiate endless scroll
-                app.endless_scroll();
+                //app.endless_scroll();
             }
         });
     });
@@ -157,7 +157,7 @@ $(document).ready(function(){
                 $('#womens-styles-cont').hide();
                 app.update_products();
                 // instantiate endless scroll
-                app.endless_scroll();
+                //app.endless_scroll();
             }
         });
     });
