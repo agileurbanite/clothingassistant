@@ -5,7 +5,8 @@ steal(
 .then('jquery')
 .then('jquery/jquery-ui-1.8.24.custom.min.js'
 	, 'jquery/jquery.infinitescroll.js'
-	, 'jquery/jquery.masonry.js')
+	, 'jquery/jquery.masonry.js'
+        , 'scripts/davis.js')
 .then('scripts/event.js');
 /*.then('jquery/class'
 	, 'jquery/controller'

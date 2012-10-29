@@ -1,6 +1,31 @@
 $(document).ready(function(){
-    var productPage = 0;
+    
+    $('a.item').on('click', function(e){
+        e.preventDefault();
+        $this = $(this);
+        href = $this.attr('href');
+        if(history.pushState){
+            history.pushState(null,'product-page',href);
+        }else{
+            window.location = '#' + href;
+        }
+    });
+    
+    /*var App = Davis(function () {
+        this.get('/product/:id', function (req) {
+          alert("Hello " + req.params['name'])
+        })
+        
+        this.get('/product/:id/:name', function (req) {
+          alert("Hello " + req.params['name'])
+        })
+    })
 
+    App.start();*/
+    
+    //var productPage = 0;
+    
+    
     // update products
     /*
     function update_products(){
