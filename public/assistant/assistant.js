@@ -6,8 +6,9 @@ steal(
 .then('jquery/jquery-ui-1.8.24.custom.min.js'
 	, 'jquery/jquery.infinitescroll.js'
 	, 'jquery/jquery.masonry.js')
-.then('scripts/event.js');
-/*.then('jquery/class'
+	//, 'scripts/davis.js')
+.then('scripts/event.js')
+.then('jquery/class'
 	, 'jquery/controller'
 	, 'jquery/controller/route'
 	, 'jquery/controller/subscribe'
@@ -22,4 +23,4 @@ steal(
 .then('assistant/product/list') 
 .then(function(){					// configure your application	
 	$('#products').assistant_product_list();
-});*/
+});

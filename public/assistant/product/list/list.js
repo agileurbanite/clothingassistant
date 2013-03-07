@@ -20,7 +20,7 @@ steal(
 		init : function(){
             var self = this;
             Product.findAll({"page":this.count}, function(data) {
-            	console.log(data.result.products);
+            	self.element.html(self.view('init', data.result.products));
             });
             /*$('body').bind('findAllProducts', function(ev, data) {
             	console.log(data);

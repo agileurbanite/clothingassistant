@@ -4,6 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 <title><?php echo $this->title; ?></title>
+<?php if(APPLICATION_ENV == "prod"){ ?>
+<!--link rel="stylesheet" type="text/css" href="/assistant/production.css"-->
+<?  }   ?>
 <script type="text/javascript" src="http://fast.fonts.com/jsapi/38ec39dc-f5f2-4978-9f2b-91e9833af949.js"></script><script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -63,6 +66,7 @@
 <? }else{ ?>
     <script type='text/javascript' src='/steal/steal.js?assistant'></script>
 <?  }   ?>
+
     <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

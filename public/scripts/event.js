@@ -1,6 +1,31 @@
 $(document).ready(function(){
-    var productPage = 0;
+    
+    $('a.item').on('click', function(e){
+        e.preventDefault();
+        $this = $(this);
+        href = $this.attr('href');
+        if(history.pushState){
+            history.pushState(null,'product-page',href);
+        }else{
+            window.location = '#' + href;
+        }
+    });
+    
+    /*var App = Davis(function () {
+        this.get('/product/:id', function (req) {
+          alert("Hello " + req.params['name'])
+        })
+        
+        this.get('/product/:id/:name', function (req) {
+          alert("Hello " + req.params['name'])
+        })
+    })
 
+    App.start();*/
+    
+    //var productPage = 0;
+    
+    
     // update products
     /*
     function update_products(){
@@ -137,7 +162,7 @@ $(document).ready(function(){
                 $('#mens-styles-cont').hide();
                 app.update_products();
                 // instantiate endless scroll
-                app.infinite_scroll();
+                app.endless_scroll();
             }
         });
     });
@@ -157,7 +182,7 @@ $(document).ready(function(){
                 $('#womens-styles-cont').hide();
                 app.update_products();
                 // instantiate endless scroll
-                app.infinite_scroll();
+                app.endless_scroll();
             }
         });
     });
